@@ -39,11 +39,15 @@ const Admissions = () => {
   const faqs = [
     {
       q: t("શાળાનું માધ્યમ કયું છે?", "What is the medium of instruction?"),
-      a: t("ગુજરાતી માધ્યમ. બધા વિષયો ગુજરાતી ભાષામાં ભણાવવામાં આવે છે. અંગ્રેજી અલગ વિષય તરીકે ધોરણ 1 થી શીખવાય છે.", "Gujarati medium. All subjects are taught in Gujarati. English is taught as a separate subject from Grade 1."),
+      a: t("ગુજરાતી માધ્યમ. બધા વિષયો ગુજરાતી ભાષામાં ભણાવવામાં આવે છે. અંગ્રેજી અલગ વિષય તરીકે ધોરણ 1 થી શીખવાય છે. રાજ્ય બોર્ડ (GSEB) અભ્યાસક્રમ.", "Gujarati medium. All subjects are taught in Gujarati. English is taught as a separate subject from Grade 1. State Board (GSEB) curriculum."),
     },
     {
-      q: t("ફી EMI (હપ્તા) માં ભરી શકાય?", "Can fees be paid in EMI (installments)?"),
-      a: t("હા, 3-6 હપ્તામાં ફી ભરી શકાય છે. વિગતો માટે કાર્યાલયનો સંપર્ક કરો. SC/ST/OBC અને EWS વિદ્યાર્થીઓ માટે ફી છૂટ ઉપલબ્ધ.", "Yes, fees can be paid in 3-6 installments. Contact office for details. Fee concession available for SC/ST/OBC and EWS students."),
+      q: t("ચુકવણીના કયા મોડ સ્વીકારવામાં આવે છે?", "What are the various modes of payment accepted?"),
+      a: t("ચેક / ડિમાન્ડ ડ્રાફ્ટ અને રોકડ દ્વારા ચુકવણી કરી શકાય છે. EMI (3-6 હપ્તા) સુવિધા પણ ઉપલબ્ધ છે. SC/ST/OBC અને EWS વિદ્યાર્થીઓ માટે ફી છૂટ ઉપલબ્ધ.", "You can make payment via Cheque / Demand Draft and Cash. EMI facility (3-6 installments) is also available. Fee concession available for SC/ST/OBC and EWS students."),
+    },
+    {
+      q: t("શાળાનો કાર્ય સમય શું છે?", "What are the hours of operation?"),
+      a: t("સોમવાર થી શનિવાર: સવારે ૭:૦૦ – સાંજે ૬:૦૦. રવિવાર: બંધ. જાહેર રજાઓ પર પણ શાળા બંધ રહે છે.", "Monday to Saturday: 7:00 AM – 6:00 PM. Sunday: Closed. The school is also closed on public holidays."),
     },
     {
       q: t("શાળા બસ સુવિધા છે?", "Is school bus facility available?"),
@@ -52,6 +56,10 @@ const Admissions = () => {
     {
       q: t("અન્ય શાળામાંથી ટ્રાન્સફર લઈ શકાય?", "Can transfer be done from another school?"),
       a: t("હા, GSEB માન્ય શાળામાંથી ટ્રાન્સફર શક્ય છે. LC અને છેલ્લા વર્ષની માર્કશીટ જરૂરી. ટ્રાન્સફર સત્ર શરૂઆતમાં (જૂન-જુલાઈ) પ્રાધાન્ય.", "Yes, transfer possible from GSEB recognized school. LC and last year's mark sheet required. Transfer preferred at start of session (June-July)."),
+    },
+    {
+      q: t("શાળામાં કઈ સુવિધાઓ ઉપલબ્ધ છે?", "What facilities are available at the school?"),
+      a: t("શૈક્ષણિક ગ્રંથાલય, આધુનિક વૉશરૂમ, વિજ્ઞાન પ્રયોગશાળા, કમ્પ્યુટર લેબ, સ્માર્ટ ક્લાસરૂમ, રમતગમત મેદાન, અને Wi-Fi કેમ્પસ ઉપલબ્ધ છે.", "Academic Library, modern washroom infrastructure, science labs, computer lab, smart classrooms, sports ground, and Wi-Fi campus are available."),
     },
   ];
 

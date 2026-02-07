@@ -95,8 +95,8 @@ const Footer = () => {
         <div className="h-px bg-primary-foreground/10 my-10" />
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs opacity-40">
-          <span>© 2025 {SCHOOL_INFO.name}. All rights reserved.</span>
-          <span className="font-gujarati">{t("સેવાસી, વડોદરા", "Sevasi, Vadodara")}</span>
+          <span>© 2025 {SCHOOL_INFO.name}. {t("સ્થાપના: ૧૯૬૭", "Est. 1967")}. All rights reserved.</span>
+          <span className="font-gujarati">{t("સેવાસી, વડોદરા | સોમ-શનિ: ૭AM-૬PM", "Sewasi, Vadodara | Mon-Sat: 7AM-6PM")}</span>
         </div>
       </div>
     </footer>

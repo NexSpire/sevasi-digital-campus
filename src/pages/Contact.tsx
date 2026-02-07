@@ -29,11 +29,11 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: MapPin, label: t("સરનામું", "Address"), value: SCHOOL_INFO.address },
+    { icon: MapPin, label: t("સરનામું", "Address"), value: t(SCHOOL_INFO.address, SCHOOL_INFO.addressEn) },
     { icon: Phone, label: t("ફોન", "Phone"), value: SCHOOL_INFO.phone },
     { icon: Mail, label: t("ઈમેલ", "Email"), value: SCHOOL_INFO.email },
-    { icon: Clock, label: t("કાર્યાલય સમય", "Office Hours"), value: t("સોમ - શનિ: સવારે 8:00 - સાંજે 4:00", "Mon - Sat: 8:00 AM - 4:00 PM") },
-    { icon: MessageCircle, label: t("WhatsApp", "WhatsApp"), value: "+91 98XXX XXXXX" },
+    { icon: Clock, label: t("કાર્યાલય સમય", "Office Hours"), value: t("સોમ - શનિ: સવારે ૭:૦૦ - સાંજે ૬:૦૦ | રવિવાર: બંધ", "Mon - Sat: 7:00 AM - 6:00 PM | Sunday: Closed") },
+    { icon: MessageCircle, label: t("WhatsApp", "WhatsApp"), value: SCHOOL_INFO.phone },
   ];
 
   return (
@@ -71,8 +71,8 @@ const Contact = () => {
                 </h2>
                 <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
                   {t(
-                    "કાર્યાલય સમય: સોમવાર થી શનિવાર, સવારે 8:00 થી સાંજે 4:00. રવિવાર અને જાહેર રજાઓ બંધ. તાકીદ માટે WhatsApp પર સંદેશ મોકલો.",
-                    "Office hours: Monday to Saturday, 8:00 AM to 4:00 PM. Closed on Sundays and public holidays. For urgent matters, send a WhatsApp message."
+                    "કાર્યાલય સમય: સોમવાર થી શનિવાર, સવારે ૭:૦૦ થી સાંજે ૬:૦૦. રવિવાર અને જાહેર રજાઓ બંધ. ચુકવણી: ચેક / ડિમાન્ડ ડ્રાફ્ટ, રોકડ. તાકીદ માટે WhatsApp પર સંદેશ મોકલો.",
+                    "Office hours: Monday to Saturday, 7:00 AM to 6:00 PM. Closed on Sundays and public holidays. Payment modes: Cheque / Demand Draft, Cash. For urgent matters, send a WhatsApp message."
                   )}
                 </p>
               </AnimatedSection>

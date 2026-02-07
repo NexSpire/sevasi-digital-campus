@@ -31,9 +31,9 @@ const Index = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { num: "55+", label: t("વર્ષનો અનુભવ", "Years of Excellence") },
+    { num: "57+", label: t("વર્ષનો અનુભવ (૧૯૬૭ થી)", "Years of Excellence (Est. 1967)") },
     { num: "2500+", label: t("વિદ્યાર્થીઓ", "Students") },
-    { num: "120+", label: t("શિક્ષકો", "Faculty Members") },
+    { num: "3.9★", label: t("રેટિંગ (૨૨ રિવ્યૂ)", "Rating (22 Reviews)") },
     { num: "98%", label: t("બોર્ડ પરિણામ", "Board Results") },
   ];
 
@@ -250,31 +250,10 @@ const Index = () => {
   ];
 
   const highlights = [
-    {
-      icon: Clock,
-      text: t("૫૫+ વર્ષનો ગૌરવશાળી ઈતિહાસ", "55+ years of glorious history"),
-    },
-    {
-      icon: Star,
-      text: t(
-        "જિલ્લાની ટોચની ગુજરાતી માધ્યમ શાળા",
-        "Top Gujarati medium school in the district",
-      ),
-    },
-    {
-      icon: CheckCircle,
-      text: t(
-        "GSEB સાથે સંલગ્ન — માન્ય સંસ્થા",
-        "Affiliated with GSEB — recognized institution",
-      ),
-    },
-    {
-      icon: Users,
-      text: t(
-        "૨૫,૦૦૦+ ભૂતપૂર્વ વિદ્યાર્થીઓનું નેટવર્ક",
-        "25,000+ alumni network",
-      ),
-    },
+    { icon: Clock, text: t("૧૯૬૭ થી — ૫૭+ વર્ષનો ગૌરવશાળી ઈતિહાસ", "Since 1967 — 57+ years of glorious history") },
+    { icon: Star, text: t("૩.૯ સ્ટાર રેટિંગ — ૨૨ રિવ્યૂ પર આધારિત", "3.9 Star Rating — based on 22 reviews") },
+    { icon: CheckCircle, text: t("રાજ્ય બોર્ડ (GSEB) સાથે સંલગ્ન — માન્ય સંસ્થા", "State Board (GSEB) affiliated — recognized institution") },
+    { icon: Users, text: t("સોમ-શનિ: ૭AM-૬PM | રવિવાર: બંધ", "Mon-Sat: 7AM-6PM | Sunday: Closed") },
   ];
 
   return (
@@ -320,14 +299,14 @@ const Index = () => {
             <AnimatedSection delay={0.2}>
               <p className="text-base sm:text-lg text-white/60 leading-relaxed mb-4 max-w-lg">
                 {t(
-                  "સેવાસી હાઈ સ્કૂલ — ૧૯૬૭ થી વડોદરામાં ગુજરાતી માધ્યમમાં ગુણવત્તાયુક્ત શિક્ષણ અને સર્વાંગી વિકાસ માટે વિશ્વસનીય સંસ્થા.",
-                  "Sevasi High School — A trusted institution in Vadodara providing quality Gujarati medium education and holistic development since 1967.",
+                  "સેવાસી હાઈ સ્કૂલ, સેવાસી, વડોદરા — ૧૯૬૭ થી ગુજરાતી માધ્યમમાં ગુણવત્તાયુક્ત શિક્ષણ અને સર્વાંગી વિકાસ માટે વિશ્વસનીય સંસ્થા. ૩.૯ સ્ટાર રેટિંગ.",
+                  "Sevasi High School in Sewasi, Vadodara — A prestigious institution providing quality Gujarati medium education and holistic development since 1967. Rated 3.9 stars."
                 )}
               </p>
               <p className="text-sm text-white/40 leading-relaxed mb-8 max-w-lg">
                 {t(
-                  "પ્રાથમિક થી ઉચ્ચતર માધ્યમિક સુધી — ધોરણ ૧ થી ૧૨ — GSEB સાથે સંલગ્ન. વિજ્ઞાન અને સામાન્ય પ્રવાહ ઉપલબ્ધ.",
-                  "Primary to Higher Secondary — Grade 1 to 12 — affiliated with GSEB. Science and General streams available.",
+                  "પ્રાથમિક, માધ્યમિક, ઉચ્ચતર માધ્યમિક — ધોરણ ૧ થી ૧૨ — રાજ્ય બોર્ડ (GSEB) સાથે સંલગ્ન. વિજ્ઞાન અને સામાન્ય પ્રવાહ ઉપલબ્ધ. સોમ-શનિ: ૭AM-૬PM.",
+                  "Primary, Secondary, Higher Secondary — Grade 1 to 12 — State Board (GSEB) affiliated. Science and General streams available. Mon-Sat: 7AM-6PM."
                 )}
               </p>
             </AnimatedSection>
