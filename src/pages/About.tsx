@@ -41,10 +41,10 @@ const About = () => {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-5">
               {t("અમારી ઓળખ", "Who We Are")}
             </h1>
-            <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
+             <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
               {t(
-                "સેવાસી હાઈ સ્કૂલ ૧૯૬૭ થી વડોદરામાં ગુજરાતી માધ્યમ શિક્ષણ ક્ષેત્રે એક વિશ્વસનીય નામ છે. ૫૫+ વર્ષમાં ૨૫,૦૦૦+ વિદ્યાર્થીઓને ગુણવત્તાયુક્ત શિક્ષણ આપવાનો અમારો ગૌરવશાળી ઈતિહાસ છે. ધોરણ ૧ થી ૧૨ — વિજ્ઞાન અને સામાન્ય પ્રવાહ — GSEB સાથે સંલગ્ન.",
-                "Since 1967, Sevasi High School has been a trusted name in Gujarati medium education in Vadodara. We take pride in our 55+ year legacy of providing quality education to 25,000+ students. Grade 1 to 12 — Science and General streams — affiliated with GSEB."
+                "સેવાસી હાઈ સ્કૂલ, સેવાસી, વડોદરા — ૧૯૬૭ થી ગુજરાતી માધ્યમ શિક્ષણ ક્ષેત્રે એક પ્રતિષ્ઠિત સંસ્થા. ૩.૯ સ્ટાર રેટિંગ (૨૨ રિવ્યૂ). પ્રાથમિક, માધ્યમિક, ઉચ્ચતર માધ્યમિક — રાજ્ય બોર્ડ (GSEB) સાથે સંલગ્ન. સોમ-શનિ: ૭AM-૬PM.",
+                "Sevasi High School in Sewasi, Vadodara — a prestigious educational institution established in 1967. Rated 3.9 stars (22 reviews). Primary, Secondary, Higher Secondary — State Board (GSEB) affiliated. Mon-Sat: 7AM-6PM."
               )}
             </p>
           </AnimatedSection>
