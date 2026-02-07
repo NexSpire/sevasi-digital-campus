@@ -167,10 +167,7 @@ const Admissions = () => {
               )}
             </p>
             <Link to="/contact">
-              <Button
-                size="lg"
-                className="h-13 px-8 bg-secondary text-secondary-foreground hover:bg-secondary/90 font-heading font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-              >
+              <Button className="btn-standard-lg bg-secondary text-secondary-foreground hover:bg-secondary/90 font-heading font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                 {t("સંપર્ક કરો", "Contact Us")}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>

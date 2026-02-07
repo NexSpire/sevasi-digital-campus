@@ -4,12 +4,13 @@ import { BookOpen, Users, Award, Building, ArrowRight, GraduationCap, FlaskConic
 import AnimatedSection from "@/components/AnimatedSection";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
+import heroImage from "@/assets/hero-school.jpeg";
 
 const Index = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { num: "35+", label: t("વર્ષનો અનુભવ", "Years of Excellence") },
+    { num: "55+", label: t("વર્ષનો અનુભવ", "Years of Excellence") },
     { num: "2500+", label: t("વિદ્યાર્થીઓ", "Students") },
     { num: "120+", label: t("શિક્ષકો", "Faculty Members") },
     { num: "98%", label: t("બોર્ડ પરિણામ", "Board Results") },
@@ -96,8 +97,17 @@ const Index = () => {
   return (
     <div className="pb-16 lg:pb-0">
       {/* Hero */}
-      <section className="relative cta-surface min-h-[92vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,_hsl(215_78%_30%_/_0.4)_0%,_transparent_50%)]" />
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+        {/* Hero background image */}
+        <div className="absolute inset-0">
+          <img
+            src={heroImage}
+            alt="Sevasi High School Campus"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(215_78%_12%_/_0.92)] via-[hsl(215_78%_16%_/_0.85)] to-[hsl(215_78%_20%_/_0.7)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,_hsl(215_78%_30%_/_0.3)_0%,_transparent_50%)]" />
+        </div>
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
         <div className="section-container relative z-10 py-28 sm:py-36">
           <div className="max-w-2xl">
@@ -106,26 +116,26 @@ const Index = () => {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-foreground/10 border border-primary-foreground/10 mb-6"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6"
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                <span className="text-xs font-medium tracking-wide text-primary-foreground/80">
+                <span className="text-xs font-medium tracking-wide text-white/80">
                   {t("પ્રવેશ ચાલુ છે • 2025-26", "Admissions Open • 2025-26")}
                 </span>
               </motion.div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <h1 className="font-gujarati text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-primary-foreground leading-[1.15] mb-5">
+              <h1 className="font-gujarati text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-white leading-[1.15] mb-5">
                 {t("શિક્ષણનો પાયો, ભવિષ્યની ઈમારત", "Foundation of Education, Architecture of Future")}
               </h1>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <p className="text-base sm:text-lg text-primary-foreground/60 leading-relaxed mb-8 max-w-lg">
+              <p className="text-base sm:text-lg text-white/60 leading-relaxed mb-8 max-w-lg">
                 {t(
-                  "સેવાસી હાઈ સ્કૂલ — ૧૯૮૫ થી વડોદરામાં ગુજરાતી માધ્યમમાં ગુણવત્તાયુક્ત શિક્ષણ અને સર્વાંગી વિકાસ માટે વિશ્વસનીય સંસ્થા.",
-                  "Sevasi High School — A trusted institution in Vadodara providing quality Gujarati medium education and holistic development since 1985."
+                  "સેવાસી હાઈ સ્કૂલ — ૧૯૬૭ થી વડોદરામાં ગુજરાતી માધ્યમમાં ગુણવત્તાયુક્ત શિક્ષણ અને સર્વાંગી વિકાસ માટે વિશ્વસનીય સંસ્થા.",
+                  "Sevasi High School — A trusted institution in Vadodara providing quality Gujarati medium education and holistic development since 1967."
                 )}
               </p>
             </AnimatedSection>
@@ -133,20 +143,13 @@ const Index = () => {
             <AnimatedSection delay={0.3}>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link to="/admissions">
-                  <Button
-                    size="lg"
-                    className="h-13 px-7 bg-secondary text-secondary-foreground hover:bg-secondary/90 font-heading font-semibold rounded-xl text-sm shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
+                  <Button className="btn-standard-lg bg-secondary text-secondary-foreground hover:bg-secondary/90 font-heading font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                     {t("પ્રવેશ માટે પૂછપરછ", "Enquire for Admission")}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
                 <Link to="/about">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="h-13 px-7 border-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/5 font-heading rounded-xl text-sm"
-                  >
+                  <Button variant="outline" className="btn-standard-lg border-white/15 text-white hover:bg-white/5 font-heading rounded-xl">
                     {t("અમારા વિશે જાણો", "Learn About Us")}
                   </Button>
                 </Link>
@@ -246,7 +249,7 @@ const Index = () => {
           <AnimatedSection delay={0.3}>
             <div className="mt-10 text-center">
               <Link to="/academics">
-                <Button variant="outline" className="font-heading rounded-xl px-6 hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+                <Button variant="outline" className="btn-standard font-heading rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                   {t("સંપૂર્ણ અભ્યાસક્રમ જુઓ", "View Full Curriculum")}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
@@ -319,16 +322,16 @@ const Index = () => {
         <div className="section-container py-20 sm:py-24 relative z-10">
           <AnimatedSection>
             <div className="text-center max-w-lg mx-auto">
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-foreground/10 border border-primary-foreground/10 mb-6">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                <span className="text-xs font-medium text-primary-foreground/80">
+                <span className="text-xs font-medium text-white/80">
                   {t("૨૦૨૫-૨૬ પ્રવેશ", "2025-26 Admissions")}
                 </span>
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-primary-foreground mb-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 {t("પ્રવેશ પ્રક્રિયા ચાલુ છે", "Admissions Are Now Open")}
               </h2>
-              <p className="text-sm text-primary-foreground/60 mb-10 leading-relaxed">
+              <p className="text-sm text-white/60 mb-10 leading-relaxed">
                 {t(
                   "આપના બાળકના ઉજ્જવળ ભવિષ્ય માટે આજે જ સેવાસી હાઈ સ્કૂલમાં પ્રવેશ માટે સંપર્ક કરો.",
                   "Contact us today to enroll your child for a brighter future at Sevasi High School."
@@ -336,20 +339,13 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link to="/admissions">
-                  <Button
-                    size="lg"
-                    className="h-13 px-8 bg-secondary text-secondary-foreground hover:bg-secondary/90 font-heading font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
+                  <Button className="btn-standard-lg bg-secondary text-secondary-foreground hover:bg-secondary/90 font-heading font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                     {t("અરજી કરો", "Apply Now")}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Link>
                 <Link to="/contact">
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="h-13 px-8 border-primary-foreground/15 text-primary-foreground hover:bg-primary-foreground/5 font-heading rounded-xl"
-                  >
+                  <Button variant="outline" className="btn-standard-lg border-white/15 text-white hover:bg-white/5 font-heading rounded-xl">
                     {t("સંપર્ક કરો", "Contact Us")}
                   </Button>
                 </Link>

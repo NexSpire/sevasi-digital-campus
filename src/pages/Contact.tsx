@@ -188,7 +188,7 @@ const Contact = () => {
                     <Button
                       type="submit"
                       disabled={loading}
-                      className="w-full h-12 font-heading font-semibold bg-primary hover:bg-primary/90 rounded-xl text-sm transition-all duration-300 hover:shadow-md"
+                      className="w-full btn-standard-lg font-heading font-semibold bg-primary hover:bg-primary/90 rounded-xl transition-all duration-300 hover:shadow-md"
                     >
                       {loading
                         ? t("મોકલી રહ્યા છે...", "Sending...")

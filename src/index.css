@@ -178,4 +178,12 @@
     @apply absolute inset-0 opacity-30;
     background: radial-gradient(ellipse at 20% 50%, hsl(45 100% 48% / 0.15) 0%, transparent 60%);
   }
+
+  /* Standardized button sizes */
+  .btn-standard {
+    @apply h-11 px-6 text-sm;
+  }
+  .btn-standard-lg {
+    @apply h-12 px-8 text-sm;
+  }
 }
