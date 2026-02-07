@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { GraduationCap, Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { SCHOOL_INFO, NAV_ITEMS } from "@/config/constants";
 import { useLanguage } from "@/contexts/LanguageContext";
+import logoImg from "@/assets/logo.png";
 
 const Footer = () => {
   const { lang, t } = useLanguage();
@@ -13,9 +14,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
-              <div className="relative w-10 h-10 rounded-xl bg-primary-foreground/10 flex items-center justify-center">
-                <GraduationCap className="w-5 h-5" />
-              </div>
+              <img src={logoImg} alt="Logo" className="w-10 h-10 object-contain brightness-0 invert opacity-80" />
               <div className="leading-[1.2]">
                 <span className="font-heading font-bold text-sm block">
                   {SCHOOL_INFO.name}
@@ -27,8 +26,8 @@ const Footer = () => {
             </div>
             <p className="font-gujarati text-sm opacity-60 leading-relaxed max-w-xs">
               {t(
-                "ગુણવત્તાયુક્ત શિક્ષણ અને સર્વાંગી વિકાસ માટે સમર્પિત સંસ્થા. ૧૯૮૫ થી વડોદરાના વિદ્યાર્થીઓને ઉત્તમ શિક્ષણ આપી રહ્યા છીએ.",
-                "An institution dedicated to quality education and holistic development. Serving Vadodara's students with excellence since 1985."
+                "ગુણવત્તાયુક્ત શિક્ષણ અને સર્વાંગી વિકાસ માટે સમર્પિત સંસ્થા. ૧૯૬૭ થી વડોદરાના વિદ્યાર્થીઓને ઉત્તમ શિક્ષણ આપી રહ્યા છીએ.",
+                "An institution dedicated to quality education and holistic development. Serving Vadodara's students with excellence since 1967."
               )}
             </p>
           </div>

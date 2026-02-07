@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, GraduationCap, Globe, ChevronRight } from "lucide-react";
+import { Menu, Globe, ChevronRight } from "lucide-react";
 import { NAV_ITEMS, SCHOOL_INFO } from "@/config/constants";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
+import logoImg from "@/assets/logo.png";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -19,7 +20,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close sheet on route change
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
@@ -38,10 +38,11 @@ const Navbar = () => {
       <div className="section-container flex items-center justify-between h-16 lg:h-[4.25rem]">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-            <GraduationCap className="w-5 h-5 text-primary-foreground" />
-            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-secondary border-2 border-background" />
-          </div>
+          <img
+            src={logoImg}
+            alt="Sevasi High School Logo"
+            className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-105"
+          />
           <div className="leading-[1.2]">
             <span className="font-heading font-bold text-[0.9rem] text-foreground block tracking-tight">
               {SCHOOL_INFO.name}
@@ -73,7 +74,7 @@ const Navbar = () => {
           {/* Language Toggle */}
           <button
             onClick={toggleLang}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border border-border/60 bg-card/50 hover:bg-muted/80 transition-all duration-200 text-muted-foreground hover:text-foreground"
+            className="flex items-center gap-1.5 h-9 px-3 rounded-lg text-xs font-medium border border-border/60 bg-card/50 hover:bg-muted/80 transition-all duration-200 text-muted-foreground hover:text-foreground"
             aria-label="Toggle language"
           >
             <Globe className="w-3.5 h-3.5" />
@@ -93,10 +94,7 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <Link to="/admissions" className="hidden lg:block">
-            <Button
-              size="sm"
-              className="h-9 px-4 bg-primary hover:bg-primary/90 font-heading text-xs font-semibold rounded-lg transition-all duration-200 hover:shadow-md"
-            >
+            <Button className="btn-standard bg-primary hover:bg-primary/90 font-heading text-xs font-semibold rounded-lg transition-all duration-200 hover:shadow-md">
               {t("પ્રવેશ પૂછપરછ", "Admissions")}
             </Button>
           </Link>
@@ -109,13 +107,9 @@ const Navbar = () => {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80 bg-card p-0 border-l border-border/50">
-              {/* Sheet header */}
               <div className="p-6 pb-4">
                 <div className="flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                    <GraduationCap className="w-5 h-5 text-primary-foreground" />
-                    <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-secondary border-2 border-card" />
-                  </div>
+                  <img src={logoImg} alt="Logo" className="w-10 h-10 object-contain" />
                   <div className="leading-[1.2]">
                     <span className="font-heading font-bold text-sm block">
                       {SCHOOL_INFO.name}
@@ -129,7 +123,6 @@ const Navbar = () => {
 
               <div className="h-px bg-border/50 mx-6" />
 
-              {/* Nav links */}
               <nav className="flex flex-col p-4 gap-0.5">
                 {NAV_ITEMS.map((item, i) => {
                   const isActive = location.pathname === item.href;
@@ -164,10 +157,9 @@ const Navbar = () => {
                 })}
               </nav>
 
-              {/* Sheet CTA */}
               <div className="mt-auto p-6 pt-4">
                 <Link to="/admissions" onClick={() => setOpen(false)}>
-                  <Button className="w-full h-12 bg-primary hover:bg-primary/90 font-heading font-semibold rounded-xl">
+                  <Button className="w-full btn-standard bg-primary hover:bg-primary/90 font-heading font-semibold rounded-xl">
                     {t("પ્રવેશ પૂછપરછ", "Admissions Enquiry")}
                   </Button>
                 </Link>
