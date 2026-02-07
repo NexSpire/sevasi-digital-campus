@@ -271,7 +271,7 @@ const About = () => {
               </blockquote>
               <div className="mt-6 pt-4 border-t border-border/50">
                 <p className="font-heading font-semibold text-sm text-foreground">
-                  {t("શ્રી રમેશભાઈ દેસાઈ", "Shri Rameshbhai Desai")}
+                  <span className="text-foreground font-semibold">Lorem ipsum.</span>
                 </p>
                 <p className="text-xs text-muted-foreground">{t("આચાર્ય, સેવાસી હાઈ સ્કૂલ", "Principal, Sevasi High School")}</p>
               </div>
