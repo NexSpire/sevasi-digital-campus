@@ -1,22 +1,44 @@
 import AnimatedSection from "@/components/AnimatedSection";
-import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Target, Eye, BookOpen, Users } from "lucide-react";
 
 const About = () => {
+  const { t } = useLanguage();
+
+  const milestones = [
+    { year: "1985", event: t("શાળાની સ્થાપના", "School established") },
+    { year: "1995", event: t("ઉચ્ચ પ્રાથમિક વિભાગ શરૂ", "Upper primary section launched") },
+    { year: "2005", event: t("માધ્યમિક વિભાગ શરૂ", "Secondary section launched") },
+    { year: "2012", event: t("ઉચ્ચતર માધ્યમિક વિભાગ શરૂ", "Higher secondary section launched") },
+    { year: "2018", event: t("સ્માર્ટ ક્લાસરૂમ શરૂ", "Smart classrooms introduced") },
+    { year: "2024", event: t("નવી કમ્પ્યુટર લેબ", "New computer lab inaugurated") },
+  ];
+
+  const values = [
+    { icon: Target, title: t("શિસ્ત", "Discipline"), desc: t("સ્વ-શિસ્ત અને જવાબદારીનું મૂલ્ય", "Values of self-discipline and responsibility") },
+    { icon: Eye, title: t("ઈમાનદારી", "Integrity"), desc: t("સત્ય અને નૈતિકતાનું પાલન", "Adherence to truth and ethics") },
+    { icon: BookOpen, title: t("જ્ઞાન", "Knowledge"), desc: t("આજીવન શિક્ષણની ભાવના", "Spirit of lifelong learning") },
+    { icon: Users, title: t("સેવા", "Service"), desc: t("સમાજ પ્રત્યે જવાબદારી", "Responsibility towards society") },
+  ];
+
   return (
     <div className="pt-20 pb-16 lg:pb-0">
       {/* Header */}
-      <section className="bg-primary py-16 sm:py-20">
-        <div className="section-container">
+      <section className="cta-surface py-20 sm:py-24">
+        <div className="section-container relative z-10">
           <AnimatedSection>
-            <p className="text-xs font-medium tracking-wider uppercase text-secondary mb-2">
-              About Us
-            </p>
-            <h1 className="font-gujarati text-3xl sm:text-4xl font-bold text-primary-foreground mb-4">
-              અમારા વિશે
+            <span className="section-label text-primary-foreground/40 before:bg-primary-foreground/20">
+              {t("અમારા વિશે", "About Us")}
+            </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-5">
+              {t("અમારી ઓળખ", "Who We Are")}
             </h1>
-            <p className="font-gujarati text-sm text-primary-foreground/70 max-w-xl leading-relaxed">
-              સેવાસી હાઈ સ્કૂલ વડોદરામાં ગુજરાતી માધ્યમ શિક્ષણ ક્ષેત્રે એક વિશ્વસનીય નામ છે.
+            <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
+              {t(
+                "સેવાસી હાઈ સ્કૂલ ૧૯૮૫ થી વડોદરામાં ગુજરાતી માધ્યમ શિક્ષણ ક્ષેત્રે એક વિશ્વસનીય નામ છે. હજારો વિદ્યાર્થીઓને ગુણવત્તાયુક્ત શિક્ષણ આપવાનો અમારો ગૌરવશાળી ઈતિહાસ છે.",
+                "Since 1985, Sevasi High School has been a trusted name in Gujarati medium education in Vadodara. We take pride in our legacy of providing quality education to thousands of students."
+              )}
             </p>
           </AnimatedSection>
         </div>
@@ -25,97 +47,141 @@ const About = () => {
       {/* Vision & Mission */}
       <section className="section-padding bg-background">
         <div className="section-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <AnimatedSection>
-              <Card className="border border-border shadow-sm h-full">
-                <CardContent className="p-6 sm:p-8">
-                  <p className="text-xs font-medium tracking-wider uppercase text-muted-foreground mb-2">
-                    Vision — દ્રષ્ટિ
-                  </p>
-                  <h2 className="font-gujarati text-xl font-bold text-foreground mb-4">
-                    અમારી દ્રષ્ટિ
-                  </h2>
-                  <p className="font-gujarati text-sm text-muted-foreground leading-relaxed">
-                    દરેક વિદ્યાર્થીને જ્ઞાન, સંસ્કાર અને આત્મવિશ્વાસથી સજ્જ કરી
-                    સમાજના જવાબદાર નાગરિક તરીકે તૈયાર કરવા. અમારો ઉદ્દેશ્ય
-                    માત્ર પુસ્તકિયું જ્ઞાન નહીં, પરંતુ જીવનલક્ષી શિક્ષણ આપવાનો છે.
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="card-modern p-7 sm:p-8 h-full">
+                <div className="w-11 h-11 rounded-xl bg-primary/5 flex items-center justify-center mb-5">
+                  <Eye className="w-5 h-5 text-primary" />
+                </div>
+                <span className="section-label">{t("દ્રષ્ટિ", "Vision")}</span>
+                <h2 className="font-heading text-xl font-bold text-foreground mb-4">
+                  {t("અમારી દ્રષ્ટિ", "Our Vision")}
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t(
+                    "દરેક વિદ્યાર્થીને જ્ઞાન, સંસ્કાર અને આત્મવિશ્વાસથી સજ્જ કરી સમાજના જવાબદાર નાગરિક તરીકે તૈયાર કરવા. અમારો ઉદ્દેશ્ય માત્ર પુસ્તકિયું જ્ઞાન નહીં, પરંતુ જીવનલક્ષી શિક્ષણ આપવાનો છે. દરેક બાળક વિશ્વાસ સાથે પોતાના સપનાં સાકાર કરી શકે તે અમારું ધ્યેય છે.",
+                    "To equip every student with knowledge, values, and confidence to become responsible citizens. Our purpose extends beyond textbook learning to life-oriented education. We aim for every child to realize their dreams with confidence."
+                  )}
+                </p>
+              </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <Card className="border border-border shadow-sm h-full">
-                <CardContent className="p-6 sm:p-8">
-                  <p className="text-xs font-medium tracking-wider uppercase text-muted-foreground mb-2">
-                    Mission — ધ્યેય
-                  </p>
-                  <h2 className="font-gujarati text-xl font-bold text-foreground mb-4">
-                    અમારું ધ્યેય
-                  </h2>
-                  <p className="font-gujarati text-sm text-muted-foreground leading-relaxed">
-                    ગુજરાતી માધ્યમમાં ઉત્તમ શૈક્ષણિક વાતાવરણ પ્રદાન કરવું,
-                    વિદ્યાર્થીઓની સર્જનાત્મકતા અને વિચારશક્તિનો વિકાસ કરવો,
-                    અને તેમને રાષ્ટ્રીય તથા આંતરરાષ્ટ્રીય સ્તરે સ્પર્ધાત્મક
-                    બનાવવા.
-                  </p>
-                </CardContent>
-              </Card>
+              <div className="card-modern p-7 sm:p-8 h-full">
+                <div className="w-11 h-11 rounded-xl bg-primary/5 flex items-center justify-center mb-5">
+                  <Target className="w-5 h-5 text-primary" />
+                </div>
+                <span className="section-label">{t("ધ્યેય", "Mission")}</span>
+                <h2 className="font-heading text-xl font-bold text-foreground mb-4">
+                  {t("અમારું ધ્યેય", "Our Mission")}
+                </h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t(
+                    "ગુજરાતી માધ્યમમાં ઉત્તમ શૈક્ષણિક વાતાવરણ પ્રદાન કરવું, વિદ્યાર્થીઓની સર્જનાત્મકતા અને વિચારશક્તિનો વિકાસ કરવો, અને તેમને રાષ્ટ્રીય તથા આંતરરાષ્ટ્રીય સ્તરે સ્પર્ધાત્મક બનાવવા. અમે દરેક વિદ્યાર્થીની અનન્ય ક્ષમતાઓને ઓળખી તેને યોગ્ય દિશા આપવામાં માનીએ છીએ.",
+                    "To provide an excellent academic environment in Gujarati medium, develop students' creativity and critical thinking, and prepare them for national and international competitiveness. We believe in recognizing each student's unique abilities and guiding them in the right direction."
+                  )}
+                </p>
+              </div>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Philosophy */}
-      <section className="section-padding bg-card">
-        <div className="section-container max-w-3xl">
+      {/* Core Values */}
+      <section className="section-padding bg-muted/30">
+        <div className="section-container">
           <AnimatedSection>
-            <p className="text-xs font-medium tracking-wider uppercase text-muted-foreground mb-2">
-              Our Philosophy
-            </p>
-            <h2 className="font-gujarati text-2xl font-bold text-foreground mb-6">
-              શાળાનું તત્વજ્ઞાન
-            </h2>
-            <div className="font-gujarati text-sm text-muted-foreground leading-relaxed space-y-4">
-              <p>
-                સેવાસી હાઈ સ્કૂલમાં અમે માનીએ છીએ કે શિક્ષણ માત્ર પરીક્ષાના
-                પરિણામો પૂરતું મર્યાદિત નથી. અમારો અભિગમ સર્વાંગી વિકાસ પર
-                કેન્દ્રિત છે — જેમાં શૈક્ષણિક ઉત્કૃષ્ટતા, નૈતિક મૂલ્યો,
-                શારીરિક તંદુરસ્તી અને સામાજિક જવાબદારીનો સમાવેશ થાય છે.
-              </p>
-              <p>
-                અમે દરેક બાળકની વ્યક્તિગત ક્ષમતાઓને ઓળખી તેને યોગ્ય દિશા
-                આપવામાં વિશ્વાસ ધરાવીએ છીએ. અમારા શિક્ષકો વિદ્યાર્થીઓના
-                માર્ગદર્શક અને પ્રેરણાસ્ત્રોત છે.
-              </p>
+            <div className="text-center mb-14">
+              <span className="section-label">{t("મૂલ્યો", "Values")}</span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+                {t("અમારા મૂળ મૂલ્યો", "Our Core Values")}
+              </h2>
             </div>
           </AnimatedSection>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {values.map((v, i) => (
+              <AnimatedSection key={i} delay={i * 0.08}>
+                <div className="feature-item text-center py-8 h-full">
+                  <div className="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mx-auto mb-4">
+                    <v.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-heading font-semibold text-foreground mb-2">{v.title}</h3>
+                  <p className="text-xs text-muted-foreground">{v.desc}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline */}
+      <section className="section-padding bg-background">
+        <div className="section-container max-w-2xl">
+          <AnimatedSection>
+            <div className="text-center mb-14">
+              <span className="section-label">{t("ઈતિહાસ", "History")}</span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+                {t("અમારી સફર", "Our Journey")}
+              </h2>
+            </div>
+          </AnimatedSection>
+
+          <div className="space-y-0">
+            {milestones.map((m, i) => (
+              <AnimatedSection key={i} delay={i * 0.08}>
+                <div className="flex gap-6 items-start group">
+                  <div className="flex flex-col items-center">
+                    <div className="w-3 h-3 rounded-full bg-primary/20 group-hover:bg-primary transition-colors duration-300 shrink-0 mt-1.5" />
+                    {i < milestones.length - 1 && <div className="w-px h-12 bg-border" />}
+                  </div>
+                  <div className="pb-8">
+                    <p className="font-heading font-bold text-primary text-sm">{m.year}</p>
+                    <p className="text-sm text-muted-foreground">{m.event}</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Principal's Message */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-muted/30">
         <div className="section-container max-w-3xl">
           <AnimatedSection>
-            <p className="text-xs font-medium tracking-wider uppercase text-muted-foreground mb-2">
-              Principal's Message
-            </p>
-            <h2 className="font-gujarati text-2xl font-bold text-foreground mb-6">
-              આચાર્યનો સંદેશ
+            <span className="section-label">{t("આચાર્યનો સંદેશ", "Principal's Message")}</span>
+            <h2 className="text-2xl font-bold text-foreground mb-8">
+              {t("આચાર્યશ્રીનો સંદેશ", "Message from the Principal")}
             </h2>
-            <Separator className="mb-6" />
-            <blockquote className="font-gujarati text-sm text-muted-foreground leading-relaxed border-l-2 border-primary pl-6 space-y-4">
-              <p>
-                "વિદ્યાર્થીમિત્રો અને વાલીઓ, સેવાસી હાઈ સ્કૂલના પરિવારમાં
-                આપનું સ્વાગત છે. અમારી શાળા વર્ષોથી ગુજરાતી માધ્યમમાં
-                ગુણવત્તાયુક્ત શિક્ષણ આપવા પ્રતિબદ્ધ છે."
-              </p>
-              <p>
-                "અમારો પ્રયાસ દરેક વિદ્યાર્થીને એક સારા માણસ, એક સારા
-                નાગરિક અને એક સારા વ્યાવસાયિક તરીકે તૈયાર કરવાનો છે.
-                આપના સહકાર અને વિશ્વાસ માટે આભાર."
-              </p>
-            </blockquote>
+            <div className="card-modern p-7 sm:p-8">
+              <blockquote className="text-sm text-muted-foreground leading-[1.8] space-y-4 border-l-2 border-primary/20 pl-6">
+                <p>
+                  {t(
+                    "\"વિદ્યાર્થીમિત્રો અને વાલીઓ, સેવાસી હાઈ સ્કૂલના પરિવારમાં આપનું હાર્દિક સ્વાગત છે. અમારી શાળા ૧૯૮૫ થી ગુજરાતી માધ્યમમાં ગુણવત્તાયુક્ત શિક્ષણ આપવા પ્રતિબદ્ધ છે.\"",
+                    "\"Dear students and parents, a heartfelt welcome to the Sevasi High School family. Our school has been committed to providing quality education in Gujarati medium since 1985.\""
+                  )}
+                </p>
+                <p>
+                  {t(
+                    "\"અમારો પ્રયાસ દરેક વિદ્યાર્થીને એક સારા માણસ, એક સારા નાગરિક અને એક સારા વ્યાવસાયિક તરીકે તૈયાર કરવાનો છે. શિક્ષણ માત્ર પુસ્તકો સુધી સીમિત નથી — તે જીવન જીવવાની કળા છે.\"",
+                    "\"Our endeavor is to prepare every student as a good person, a good citizen, and a good professional. Education is not limited to books — it is the art of living.\""
+                  )}
+                </p>
+                <p>
+                  {t(
+                    "\"આપના સહકાર અને વિશ્વાસ માટે અમે સદા આભારી છીએ. સાથે મળીને આપણે આપના બાળકોનું ઉજ્જવળ ભવિષ્ય ઘડીશું.\"",
+                    "\"We are always grateful for your cooperation and trust. Together, we shall build a bright future for your children.\""
+                  )}
+                </p>
+              </blockquote>
+              <div className="mt-6 pt-4 border-t border-border/50">
+                <p className="font-heading font-semibold text-sm text-foreground">
+                  {t("શ્રી રમેશભાઈ દેસાઈ", "Shri Rameshbhai Desai")}
+                </p>
+                <p className="text-xs text-muted-foreground">{t("આચાર્ય, સેવાસી હાઈ સ્કૂલ", "Principal, Sevasi High School")}</p>
+              </div>
+            </div>
           </AnimatedSection>
         </div>
       </section>
