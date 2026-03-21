@@ -4,12 +4,13 @@ import FloatingShapes from "@/components/FloatingShapes";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { CheckCircle, ArrowRight, FileText, Users, School, CreditCard, Clock, Phone, HelpCircle } from "lucide-react";
+import { SCHOOL_INFO } from "@/config/constants";
 
 const Admissions = () => {
   const { t } = useLanguage();
 
   const steps = [
-    { icon: FileText, step: "01", title: t("પૂછપરછ", "Enquiry"), desc: t("શાળા કાર્યાલય અથવા ઑનલાઇન ફોર્મ દ્વારા પૂછપરછ કરો. ફોન (0265-XXXXXXX), ઈમેલ, WhatsApp, અથવા રૂબરૂ મુલાકાત. અમારી ટીમ 24 કલાકમાં જવાબ આપશે. શાળાનું બ્રોશર અને ફી માળખું ઉપલબ્ધ.", "Enquire through school office or online form. Via phone (0265-XXXXXXX), email, WhatsApp, or in-person visit. Our team will respond within 24 hours. School brochure and fee structure available.") },
+    { icon: FileText, step: "01", title: t("પૂછપરછ", "Enquiry"), desc: t(`શાળા કાર્યાલય અથવા ઑનલાઇન ફોર્મ દ્વારા પૂછપરછ કરો. ફોન (${SCHOOL_INFO.phone}), ઈમેલ, WhatsApp, અથવા રૂબરૂ મુલાકાત. અમારી ટીમ 24 કલાકમાં જવાબ આપશે. શાળાનું બ્રોશર અને ફી માળખું ઉપલબ્ધ.`, `Enquire through school office or online form. Via phone (${SCHOOL_INFO.phone}), email, WhatsApp, or in-person visit. Our team will respond within 24 hours. School brochure and fee structure available.`) },
     { icon: Users, step: "02", title: t("ફોર્મ ભરો", "Fill Form"), desc: t("પ્રવેશ ફોર્મ ભરો અને જરૂરી દસ્તાવેજો સાથે જમા કરો. ઑનલાઇન અને ઑફલાઇન બંને વિકલ્પ. ફોર્મ ફી: ₹100. ફોર્મ કાર્યાલય સમય (સોમ-શનિ, 8AM-4PM) દરમિયાન જમા કરો.", "Fill the admission form and submit with required documents. Both online and offline options. Form fee: ₹100. Submit during office hours (Mon-Sat, 8AM-4PM).") },
     { icon: School, step: "03", title: t("મુલાકાત અને ઇન્ટરવ્યૂ", "Visit & Interview"), desc: t("શાળાની મુલાકાત લો — ક્લાસરૂમ, લેબ, ગ્રંથાલય, મેદાન જુઓ. આચાર્ય સાથે 15-20 મિનિટની ચર્ચા. વિદ્યાર્થી સાથે સરળ ઇન્ટરેક્ટિવ સેશન (ધોરણ 2+). શાળાનું વાતાવરણ, શિસ્ત, અને સુરક્ષા જાણો.", "Visit the school — see classrooms, labs, library, grounds. 15-20 minute discussion with the principal. Simple interactive session with student (Grade 2+). Experience the school environment, discipline, and safety.") },
     { icon: CreditCard, step: "04", title: t("પ્રવેશ અને ફી", "Admission & Fee"), desc: t("ફી ભરીને પ્રવેશ પ્રક્રિયા પૂર્ણ કરો. EMI સુવિધા ઉપલબ્ધ (3-6 હપ્તા). ગણવેશ, પુસ્તકો, અને ID કાર્ડ શાળામાંથી ઉપલબ્ધ. ઓરિએન્ટેશન પ્રોગ્રામ — વાલી અને વિદ્યાર્થી બંને માટે. બસ રૂટ માહિતી (જો ઉપલબ્ધ હોય).", "Complete admission by paying fees. EMI facility available (3-6 installments). Uniform, books, and ID card available from school. Orientation program — for both parents and students. Bus route information (if available).") },
@@ -47,7 +48,7 @@ const Admissions = () => {
     },
     {
       q: t("શાળાનો કાર્ય સમય શું છે?", "What are the hours of operation?"),
-      a: t("સોમવાર થી શનિવાર: સવારે ૭:૦૦ – સાંજે ૬:૦૦. રવિવાર: બંધ. જાહેર રજાઓ પર પણ શાળા બંધ રહે છે.", "Monday to Saturday: 7:00 AM – 6:00 PM. Sunday: Closed. The school is also closed on public holidays."),
+      a: t("વિભાગ પ્રમાણે સમય અલગ છે: પ્રાથમિક 7:30-11:30 (શનિ 11:30-2:30), માધ્યમિક 11:45-5:30 (શનિ 7:30-11:15). રવિવાર: બંધ.", "Timings vary by section: Primary 7:30-11:30 (Sat 11:30-2:30), Secondary 11:45-5:30 (Sat 7:30-11:15). Sunday: Closed."),
     },
     {
       q: t("શાળા બસ સુવિધા છે?", "Is school bus facility available?"),
@@ -118,7 +119,7 @@ const Admissions = () => {
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground font-medium">{t("હેલ્પલાઇન", "Helpline")}</p>
-                  <p className="font-heading font-semibold text-sm text-foreground">0265-XXXXXXX</p>
+                  <p className="font-heading font-semibold text-sm text-foreground">{SCHOOL_INFO.phone}</p>
                 </div>
               </div>
             </div>
@@ -275,8 +276,8 @@ const Admissions = () => {
             </h2>
             <p className="text-sm text-primary-foreground/60 mb-10 leading-relaxed">
               {t(
-                "વધુ માહિતી, ફી માળખું, અથવા શાળા મુલાકાત માટે અમારો સંપર્ક કરો. અમે મદદ માટે તત્પર છીએ. કાર્યાલય સમય: સોમ-શનિ, 8AM-4PM.",
-                "Contact us for more information, fee structure, or school visit. We're here to help. Office hours: Mon-Sat, 8AM-4PM."
+                `વધુ માહિતી, ફી માળખું, અથવા શાળા મુલાકાત માટે અમારો સંપર્ક કરો. અમે મદદ માટે તત્પર છીએ. ફોન: ${SCHOOL_INFO.phone}`,
+                `Contact us for more information, fee structure, or school visit. We're here to help. Phone: ${SCHOOL_INFO.phone}`
               )}
             </p>
             <Link to="/contact">

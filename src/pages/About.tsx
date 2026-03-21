@@ -1,6 +1,7 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingShapes from "@/components/FloatingShapes";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SCHOOL_INFO, SCHOOL_INFO_PARTIAL_DATA } from "@/config/constants";
 import { Target, Eye, BookOpen, Users, Shield, Heart, Lightbulb, Star } from "lucide-react";
 
 const About = () => {
@@ -28,6 +29,16 @@ const About = () => {
     { icon: Star, title: t("ઉત્કૃષ્ટતા", "Excellence"), desc: t("દરેક કાર્યમાં શ્રેષ્ઠતાનો પ્રયાસ. શૈક્ષણિક, રમતગમત, સાંસ્કૃતિક — દરેક ક્ષેત્રમાં ઉત્તમ પ્રદર્શન. મધ્યમતા નહીં, ઉત્કૃષ્ટતા અમારું ધોરણ.", "Striving for excellence in everything. Outstanding performance in academics, sports, cultural — every field. Not mediocrity, but excellence is our standard.") },
   ];
 
+  const visionPoints = t(
+    SCHOOL_INFO_PARTIAL_DATA.vision.gu.join("\n"),
+    SCHOOL_INFO_PARTIAL_DATA.vision.en.join("\n"),
+  ).split("\n");
+
+  const missionPoints = t(
+    SCHOOL_INFO_PARTIAL_DATA.mission.gu.join("\n"),
+    SCHOOL_INFO_PARTIAL_DATA.mission.en.join("\n"),
+  ).split("\n");
+
   return (
     <div className="pt-20 pb-16 lg:pb-0">
       {/* Header */}
@@ -43,8 +54,8 @@ const About = () => {
             </h1>
              <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
               {t(
-                "સેવાસી હાઈ સ્કૂલ, સેવાસી, વડોદરા — ૧૯૬૭ થી ગુજરાતી માધ્યમ શિક્ષણ ક્ષેત્રે એક પ્રતિષ્ઠિત સંસ્થા. ૩.૯ સ્ટાર રેટિંગ (૨૨ રિવ્યૂ). પ્રાથમિક, માધ્યમિક, ઉચ્ચતર માધ્યમિક — રાજ્ય બોર્ડ (GSEB) સાથે સંલગ્ન. સોમ-શનિ: ૭AM-૬PM.",
-                "Sevasi High School in Sewasi, Vadodara — a prestigious educational institution established in 1967. Rated 3.9 stars (22 reviews). Primary, Secondary, Higher Secondary — State Board (GSEB) affiliated. Mon-Sat: 7AM-6PM."
+                `${SCHOOL_INFO_PARTIAL_DATA.school.description.gu} સમય: ${SCHOOL_INFO.officeHours.weekdaysGujarati}, શનિ: ${SCHOOL_INFO.officeHours.saturdayGujarati}.`,
+                `${SCHOOL_INFO_PARTIAL_DATA.school.description.en} Timings: ${SCHOOL_INFO.officeHours.weekdays}, Sat: ${SCHOOL_INFO.officeHours.saturday}.`
               )}
             </p>
           </AnimatedSection>
@@ -99,24 +110,9 @@ const About = () => {
                   {t("અમારી દ્રષ્ટિ", "Our Vision")}
                 </h2>
                 <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
-                  <p>
-                    {t(
-                      "દરેક વિદ્યાર્થીને જ્ઞાન, સંસ્કાર અને આત્મવિશ્વાસથી સજ્જ કરી સમાજના જવાબદાર નાગરિક તરીકે તૈયાર કરવા.",
-                      "To equip every student with knowledge, values, and confidence to become responsible citizens of society."
-                    )}
-                  </p>
-                  <p>
-                    {t(
-                      "અમારો ઉદ્દેશ્ય માત્ર પુસ્તકિયું જ્ઞાન નહીં, પરંતુ જીવનલક્ષી શિક્ષણ આપવાનો છે. દરેક બાળક વિશ્વાસ સાથે પોતાના સપનાં સાકાર કરી શકે તે અમારું ધ્યેય છે.",
-                      "Our purpose extends beyond textbook learning to life-oriented education. We aim for every child to realize their dreams with confidence."
-                    )}
-                  </p>
-                  <p>
-                    {t(
-                      "ગુજરાતી માધ્યમમાં વિશ્વસ્તરીય શિક્ષણ — તે અમારું સ્વપ્ન છે. ભાષા કોઈ અવરોધ નથી — તે શક્તિ છે. અમે ગુજરાતી ભાષામાં વિજ્ઞાન, ટેકનોલોજી, અને આધુનિક જ્ઞાન આપીને સાબિત કરવા માગીએ છીએ.",
-                      "World-class education in Gujarati medium — that is our dream. Language is not a barrier — it is a strength. We aim to prove this by delivering science, technology, and modern knowledge in Gujarati."
-                    )}
-                  </p>
+                  {visionPoints.map((point) => (
+                    <p key={point}>{point}</p>
+                  ))}
                 </div>
               </div>
             </AnimatedSection>
@@ -131,24 +127,9 @@ const About = () => {
                   {t("અમારું ધ્યેય", "Our Mission")}
                 </h2>
                 <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
-                  <p>
-                    {t(
-                      "ગુજરાતી માધ્યમમાં ઉત્તમ શૈક્ષણિક વાતાવરણ પ્રદાન કરવું. વિદ્યાર્થીઓની સર્જનાત્મકતા અને વિચારશક્તિનો વિકાસ કરવો.",
-                      "To provide an excellent academic environment in Gujarati medium. To develop students' creativity and critical thinking."
-                    )}
-                  </p>
-                  <p>
-                    {t(
-                      "તેમને રાષ્ટ્રીય તથા આંતરરાષ્ટ્રીય સ્તરે સ્પર્ધાત્મક બનાવવા. દરેક વિદ્યાર્થીની અનન્ય ક્ષમતાઓને ઓળખી તેને યોગ્ય દિશા આપવી.",
-                      "To make them competitive at national and international levels. To recognize each student's unique abilities and guide them in the right direction."
-                    )}
-                  </p>
-                  <p>
-                    {t(
-                      "આધુનિક ટેકનોલોજી, અનુભવી શિક્ષકો, અને મૂલ્ય આધારિત શિક્ષણ દ્વારા — સેવાસી હાઈ સ્કૂલ દરેક વિદ્યાર્થીને જીવનમાં સફળ થવા માટે તૈયાર કરે છે. અમે માત્ર ડિગ્રી નથી આપતા — અમે ભવિષ્ય ઘડીએ છીએ.",
-                      "Through modern technology, experienced teachers, and value-based education — Sevasi High School prepares every student for success in life. We don't just award degrees — we shape futures."
-                    )}
-                  </p>
+                  {missionPoints.map((point) => (
+                    <p key={point}>{point}</p>
+                  ))}
                 </div>
               </div>
             </AnimatedSection>
@@ -271,9 +252,16 @@ const About = () => {
               </blockquote>
               <div className="mt-6 pt-4 border-t border-border/50">
                 <p className="font-heading font-semibold text-sm text-foreground">
-                  <span className="text-foreground font-semibold">Lorem ipsum.</span>
+                  <span className="text-foreground font-semibold">
+                    {t(SCHOOL_INFO_PARTIAL_DATA.principal.name.gu, SCHOOL_INFO_PARTIAL_DATA.principal.name.en)}
+                  </span>
                 </p>
-                <p className="text-xs text-muted-foreground">{t("આચાર્ય, સેવાસી હાઈ સ્કૂલ", "Principal, Sevasi High School")}</p>
+                <p className="text-xs text-muted-foreground">
+                  {t(
+                    `${SCHOOL_INFO_PARTIAL_DATA.principal.designation.gu}, ${SCHOOL_INFO_PARTIAL_DATA.school.name.gu}`,
+                    `${SCHOOL_INFO_PARTIAL_DATA.principal.designation.en}, ${SCHOOL_INFO_PARTIAL_DATA.school.name.en}`,
+                  )}
+                </p>
               </div>
             </div>
           </AnimatedSection>

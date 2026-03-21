@@ -5,9 +5,11 @@ import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SCHOOL_INFO_PARTIAL_DATA } from "@/config/constants";
 
 const Academics = () => {
   const { t } = useLanguage();
+  const classCounts = SCHOOL_INFO_PARTIAL_DATA.academics.classes;
 
   const subjects = [
     {
@@ -130,10 +132,31 @@ const Academics = () => {
             </h1>
             <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
               {t(
-                "GSEB (ગુજરાત માધ્યમિક અને ઉચ્ચતર માધ્યમિક શિક્ષણ બોર્ડ) સાથે સંલગ્ન. પ્રાથમિક થી ઉચ્ચતર માધ્યમિક — ધોરણ ૧ થી ૧૨. વિજ્ઞાન (PCB/PCM) અને સામાન્ય પ્રવાહ ઉપલબ્ધ. આધુનિક શિક્ષણ પદ્ધતિ, સ્માર્ટ ક્લાસરૂમ, અને CCE આધારિત મૂલ્યાંકન.",
-                "Affiliated with GSEB (Gujarat Secondary & Higher Secondary Education Board). Primary to Higher Secondary — Grade 1 to 12. Science (PCB/PCM) and General streams available. Modern teaching methodology, smart classrooms, and CCE-based assessment."
+                `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.gu}. માધ્યમ: ${SCHOOL_INFO_PARTIAL_DATA.academics.teaching_medium.gu}. ${SCHOOL_INFO_PARTIAL_DATA.academics.focus.gu}.`,
+                `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.en}. Medium: ${SCHOOL_INFO_PARTIAL_DATA.academics.teaching_medium.en}. ${SCHOOL_INFO_PARTIAL_DATA.academics.focus.en}.`
               )}
             </p>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Curriculum Snapshot */}
+      <section className="py-10 bg-background relative">
+        <div className="section-container">
+          <AnimatedSection>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              {[
+                { value: classCounts.pre_primary, label: t("પ્રિ-પ્રાથમિક", "Pre-Primary") },
+                { value: classCounts.primary, label: t("પ્રાથમિક", "Primary") },
+                { value: classCounts.secondary, label: t("માધ્યમિક", "Secondary") },
+                { value: classCounts.higher_secondary, label: t("ઉચ્ચતર માધ્યમિક", "Higher Secondary") },
+              ].map((item) => (
+                <div key={item.label} className="card-modern p-5 sm:p-6 text-center">
+                  <p className="stat-number mb-1">{item.value}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground font-medium">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </AnimatedSection>
         </div>
       </section>

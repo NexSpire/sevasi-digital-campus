@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
-import { SCHOOL_INFO } from "@/config/constants";
+import { MapPin, Phone, Mail, Clock, MessageCircle, Globe } from "lucide-react";
+import { SCHOOL_INFO, SCHOOL_INFO_PARTIAL_DATA } from "@/config/constants";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 
@@ -32,7 +32,15 @@ const Contact = () => {
     { icon: MapPin, label: t("સરનામું", "Address"), value: t(SCHOOL_INFO.address, SCHOOL_INFO.addressEn) },
     { icon: Phone, label: t("ફોન", "Phone"), value: SCHOOL_INFO.phone },
     { icon: Mail, label: t("ઈમેલ", "Email"), value: SCHOOL_INFO.email },
-    { icon: Clock, label: t("કાર્યાલય સમય", "Office Hours"), value: t("સોમ - શનિ: સવારે ૭:૦૦ - સાંજે ૬:૦૦ | રવિવાર: બંધ", "Mon - Sat: 7:00 AM - 6:00 PM | Sunday: Closed") },
+    { icon: Globe, label: t("વેબસાઇટ", "Website"), value: SCHOOL_INFO.website },
+    {
+      icon: Clock,
+      label: t("કાર્યાલય સમય", "Office Hours"),
+      value: t(
+        `સોમ-શુક્ર: ${SCHOOL_INFO.officeHours.weekdaysGujarati} | શનિ: ${SCHOOL_INFO.officeHours.saturdayGujarati} | રવિવાર: ${SCHOOL_INFO.officeHours.sundayGujarati}`,
+        `Mon-Fri: ${SCHOOL_INFO.officeHours.weekdays} | Sat: ${SCHOOL_INFO.officeHours.saturday} | Sun: ${SCHOOL_INFO.officeHours.sunday}`,
+      ),
+    },
     { icon: MessageCircle, label: t("WhatsApp", "WhatsApp"), value: SCHOOL_INFO.phone },
   ];
 
@@ -71,8 +79,8 @@ const Contact = () => {
                 </h2>
                 <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
                   {t(
-                    "કાર્યાલય સમય: સોમવાર થી શનિવાર, સવારે ૭:૦૦ થી સાંજે ૬:૦૦. રવિવાર અને જાહેર રજાઓ બંધ. ચુકવણી: ચેક / ડિમાન્ડ ડ્રાફ્ટ, રોકડ. તાકીદ માટે WhatsApp પર સંદેશ મોકલો.",
-                    "Office hours: Monday to Saturday, 7:00 AM to 6:00 PM. Closed on Sundays and public holidays. Payment modes: Cheque / Demand Draft, Cash. For urgent matters, send a WhatsApp message."
+                    `કાર્યાલય સમય વિભાગ મુજબ અલગ છે: પ્રાથમિક/ઉ.મા. અને માધ્યમિકના સમય ઉપર દર્શાવ્યા મુજબ છે. કુલ શિક્ષણ સમય: ${SCHOOL_INFO_PARTIAL_DATA.timings.weekly_hours.teaching.gu}. વિરામ સમય: ${SCHOOL_INFO_PARTIAL_DATA.timings.weekly_hours.break.gu}. રવિવાર અને જાહેર રજાઓ બંધ. ચુકવણી: ચેક / ડિમાન્ડ ડ્રાફ્ટ, રોકડ.`,
+                    `Office timings vary by section: Primary/H.S. and Secondary timings are listed above. Weekly teaching hours: ${SCHOOL_INFO_PARTIAL_DATA.timings.weekly_hours.teaching.en}. Break time: ${SCHOOL_INFO_PARTIAL_DATA.timings.weekly_hours.break.en}. Closed on Sundays and public holidays. Payment modes: Cheque / Demand Draft, Cash.`
                   )}
                 </p>
               </AnimatedSection>

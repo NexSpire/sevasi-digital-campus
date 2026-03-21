@@ -1,10 +1,15 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingShapes from "@/components/FloatingShapes";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SCHOOL_INFO_PARTIAL_DATA } from "@/config/constants";
 import { Trophy, Music, Calendar, Users, Medal, Palette, Flag, BookOpen, Heart, Star } from "lucide-react";
 
 const StudentLife = () => {
   const { t } = useLanguage();
+  const celebrationItems = t(
+    SCHOOL_INFO_PARTIAL_DATA.activities_and_celebrations.gu.join("\n"),
+    SCHOOL_INFO_PARTIAL_DATA.activities_and_celebrations.en.join("\n"),
+  ).split("\n");
 
   const activities = [
     {
@@ -37,15 +42,10 @@ const StudentLife = () => {
       icon: Calendar,
       title: t("વાર્ષિક કાર્યક્રમો", "Annual Events"),
       desc: t(
-        "વર્ષ દરમિયાન 20+ શૈક્ષણિક અને સાંસ્કૃતિક કાર્યક્રમોનું આયોજન. દરેક કાર્યક્રમ વિદ્યાર્થીઓના વ્યક્તિત્વ વિકાસમાં ભૂમિકા ભજવે છે. કાર્યક્રમોનું આયોજન વિદ્યાર્થી સમિતિ દ્વારા — નેતૃત્વ ક્ષમતાનો વિકાસ. વાલીઓ, ભૂતપૂર્વ વિદ્યાર્થીઓ, અને સમાજના અગ્રણીઓને આમંત્રણ.",
-        "20+ educational and cultural events organized throughout the year. Each event plays a role in student personality development. Events organized by student committee — leadership development. Parents, alumni, and community leaders invited."
+        "વર્ષ દરમિયાન શૈક્ષણિક અને સાંસ્કૃતિક કાર્યક્રમોનું આયોજન થાય છે. રાષ્ટ્રીય દિવસો અને પરંપરાગત ઉજવણીઓ દ્વારા વિદ્યાર્થીઓમાં નેતૃત્વ, દેશભક્તિ અને સામાજિક જાગૃતિ વિકસે છે.",
+        "Educational and cultural events are conducted throughout the year. National days and traditional celebrations build leadership, patriotism, and social awareness in students."
       ),
-      items: [
-        t("વિજ્ઞાન મેળો", "Science Fair"), t("વાર્ષિકોત્સવ", "Annual Day"),
-        t("શિક્ષક દિન", "Teachers' Day"), t("બાળ દિન", "Children's Day"),
-        t("ગણિત ઓલિમ્પિયાડ", "Math Olympiad"), t("પુસ્તક મેળો", "Book Fair"),
-        t("ક્વિઝ સ્પર્ધા", "Quiz Competition"), t("ક્રીડા દિવસ", "Sports Day"),
-      ],
+      items: celebrationItems,
     },
     {
       icon: Flag,

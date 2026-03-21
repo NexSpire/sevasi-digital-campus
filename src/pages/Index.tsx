@@ -24,11 +24,13 @@ import {
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingShapes from "@/components/FloatingShapes";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SCHOOL_INFO, SCHOOL_INFO_PARTIAL_DATA, SCHOOL_ACADEMICS_DATA } from "@/config/constants";
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-school.jpeg";
 
 const Index = () => {
   const { t } = useLanguage();
+  const classCounts = SCHOOL_ACADEMICS_DATA.classes;
 
   const stats = [
     { num: "57+", label: t("વર્ષનો અનુભવ (૧૯૬૭ થી)", "Years of Excellence (Est. 1967)") },
@@ -106,35 +108,35 @@ const Index = () => {
 
   const grades = [
     {
-      range: t("ધોરણ 1-5", "Grade 1-5"),
-      label: t("પ્રાથમિક", "Primary"),
+      range: String(classCounts.pre_primary),
+      label: t("પ્રિ-પ્રાથમિક વર્ગો", "Pre-Primary Classes"),
       desc: t(
-        "મૂળભૂત ખ્યાલો, ભાષા કૌશલ્ય, અને ગણિતનો પાયો. પ્રવૃત્તિ આધારિત શિક્ષણ દ્વારા રમતમાં શીખવું. ચિત્રકામ, સંગીત, અને શારીરિક શિક્ષણ.",
-        "Foundation concepts, language skills, and mathematical basics. Learning through play with activity-based education. Drawing, music, and physical education.",
+        "આરંભિક અધ્યયન, ભાષા અને વ્યવહારિક વિકાસ પર ધ્યાન.",
+        "Early-stage foundational learning with language and behavioral development focus.",
       ),
     },
     {
-      range: t("ધોરણ 6-8", "Grade 6-8"),
-      label: t("ઉચ્ચ પ્રાથમિક", "Upper Primary"),
+      range: String(classCounts.primary),
+      label: t("પ્રાથમિક વર્ગો", "Primary Classes"),
       desc: t(
-        "વિષયવસ્તુની ઊંડી સમજ, વિશ્લેષણાત્મક વિચારસરણી, અને પ્રોજેક્ટ આધારિત કાર્ય. વિજ્ઞાન, ગણિત, સામાજિક વિજ્ઞાન, અને કમ્પ્યુટર.",
-        "Deeper subject understanding, analytical thinking, and project-based work. Science, Mathematics, Social Science, and Computer Studies.",
+        "ગુજરાતી માધ્યમ સાથે મૂળભૂત શૈક્ષણિક પાયો મજબૂત કરાય છે.",
+        "Core foundational academics delivered in Gujarati medium.",
       ),
     },
     {
-      range: t("ધોરણ 9-10", "Grade 9-10"),
-      label: t("માધ્યમિક", "Secondary"),
+      range: String(classCounts.secondary),
+      label: t("માધ્યમિક વર્ગો", "Secondary Classes"),
       desc: t(
-        "GSEB બોર્ડ પરીક્ષા તૈયારી, નિયમિત ટેસ્ટ, પ્રેક્ટિકલ, અને પ્રોજેક્ટ કાર્ય. વિશેષ રિવિઝન સેશન અને મોક ટેસ્ટ.",
-        "GSEB board exam preparation, regular tests, practicals, and project work. Special revision sessions and mock tests.",
+        "શૈક્ષણિક કૌશલ્ય અને પરીક્ષા તૈયારી માટે રચાયેલ સંરચના.",
+        "Structured for stronger academic outcomes and exam readiness.",
       ),
     },
     {
-      range: t("ધોરણ 11-12", "Grade 11-12"),
-      label: t("ઉચ્ચતર માધ્યમિક", "Higher Secondary"),
+      range: String(classCounts.higher_secondary),
+      label: t("ઉચ્ચતર માધ્યમિક વર્ગો", "Higher Secondary Classes"),
       desc: t(
-        "વિજ્ઞાન પ્રવાહ (PCB/PCM) અને સામાન્ય પ્રવાહ. NEET/JEE માર્ગદર્શન, કારકિર્દી કાઉન્સેલિંગ, અને કોલેજ પ્રવેશ સહાય.",
-        "Science stream (PCB/PCM) and General stream. NEET/JEE guidance, career counseling, and college admission support.",
+        "વિજ્ઞાન અને સામાન્ય પ્રવાહ સાથે આગળના અભ્યાસ માટે માર્ગદર્શન.",
+        "Science and General streams with guidance for higher studies.",
       ),
     },
   ];
@@ -253,7 +255,7 @@ const Index = () => {
     { icon: Clock, text: t("૧૯૬૭ થી — ૫૭+ વર્ષનો ગૌરવશાળી ઈતિહાસ", "Since 1967 — 57+ years of glorious history") },
     { icon: Star, text: t("૩.૯ સ્ટાર રેટિંગ — ૨૨ રિવ્યૂ પર આધારિત", "3.9 Star Rating — based on 22 reviews") },
     { icon: CheckCircle, text: t("રાજ્ય બોર્ડ (GSEB) સાથે સંલગ્ન — માન્ય સંસ્થા", "State Board (GSEB) affiliated — recognized institution") },
-    { icon: Users, text: t("સોમ-શનિ: ૭AM-૬PM | રવિવાર: બંધ", "Mon-Sat: 7AM-6PM | Sunday: Closed") },
+    { icon: Users, text: t("સમય વિભાગ પ્રમાણે અલગ — સંપર્ક પેજ જુઓ", "Section-wise timings available — see Contact page") },
   ];
 
   return (
@@ -290,8 +292,8 @@ const Index = () => {
             <AnimatedSection delay={0.1}>
               <h1 className="font-gujarati text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-white leading-[1.15] mb-5">
                 {t(
-                  "શિક્ષણનો પાયો, ભવિષ્યની ઈમારત",
-                  "Foundation of Education, Architecture of Future",
+                  SCHOOL_INFO_PARTIAL_DATA.school.tagline.gu,
+                  SCHOOL_INFO_PARTIAL_DATA.school.tagline.en,
                 )}
               </h1>
             </AnimatedSection>
@@ -299,14 +301,14 @@ const Index = () => {
             <AnimatedSection delay={0.2}>
               <p className="text-base sm:text-lg text-white/60 leading-relaxed mb-4 max-w-lg">
                 {t(
-                  "સેવાસી હાઈ સ્કૂલ, સેવાસી, વડોદરા — ૧૯૬૭ થી ગુજરાતી માધ્યમમાં ગુણવત્તાયુક્ત શિક્ષણ અને સર્વાંગી વિકાસ માટે વિશ્વસનીય સંસ્થા. ૩.૯ સ્ટાર રેટિંગ.",
-                  "Sevasi High School in Sewasi, Vadodara — A prestigious institution providing quality Gujarati medium education and holistic development since 1967. Rated 3.9 stars."
+                  SCHOOL_INFO_PARTIAL_DATA.school.description.gu,
+                  SCHOOL_INFO_PARTIAL_DATA.school.description.en,
                 )}
               </p>
               <p className="text-sm text-white/40 leading-relaxed mb-8 max-w-lg">
                 {t(
-                  "પ્રાથમિક, માધ્યમિક, ઉચ્ચતર માધ્યમિક — ધોરણ ૧ થી ૧૨ — રાજ્ય બોર્ડ (GSEB) સાથે સંલગ્ન. વિજ્ઞાન અને સામાન્ય પ્રવાહ ઉપલબ્ધ. સોમ-શનિ: ૭AM-૬PM.",
-                  "Primary, Secondary, Higher Secondary — Grade 1 to 12 — State Board (GSEB) affiliated. Science and General streams available. Mon-Sat: 7AM-6PM."
+                  `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.gu}. સંપર્ક: ${SCHOOL_INFO.phone}.`,
+                  `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.en}. Contact: ${SCHOOL_INFO.phone}.`
                 )}
               </p>
             </AnimatedSection>
@@ -438,8 +440,8 @@ const Index = () => {
               </h2>
               <p className="text-sm text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
                 {t(
-                  "GSEB (ગુજરાત માધ્યમિક અને ઉચ્ચતર માધ્યમિક શિક્ષણ બોર્ડ) સાથે સંલગ્ન. પ્રાથમિક થી ઉચ્ચતર માધ્યમિક સુધી — દરેક સ્તરે વિદ્યાર્થી-કેન્દ્રિત અભિગમ.",
-                  "Affiliated with GSEB (Gujarat Secondary & Higher Secondary Education Board). Primary to Higher Secondary — a student-centric approach at every level.",
+                  `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.gu}. માધ્યમ: ${SCHOOL_INFO_PARTIAL_DATA.academics.teaching_medium.gu}. ${SCHOOL_INFO_PARTIAL_DATA.academics.focus.gu}.`,
+                  `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.en}. Medium: ${SCHOOL_INFO_PARTIAL_DATA.academics.teaching_medium.en}. ${SCHOOL_INFO_PARTIAL_DATA.academics.focus.en}.`,
                 )}
               </p>
             </div>
