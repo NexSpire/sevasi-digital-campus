@@ -1,159 +1,317 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingShapes from "@/components/FloatingShapes";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Accordion, AccordionContent, AccordionItem, AccordionTrigger,
-} from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SCHOOL_INFO_PARTIAL_DATA } from "@/config/constants";
+import {
+  BookOpen, FlaskConical, Library, Trophy,
+  ClipboardCheck, Compass, Star, Users,
+  CheckCircle2, Building2,
+} from "lucide-react";
+
+const scrollToSection = (id: string) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 96;
+  window.scrollTo({ top, behavior: "smooth" });
+};
 
 const Academics = () => {
   const { t } = useLanguage();
   const classCounts = SCHOOL_INFO_PARTIAL_DATA.academics.classes;
 
-  const subjects = [
+  const levels = [
+    {
+      accent: "bg-rose-50 border-rose-200",
+      badge: "bg-rose-100 text-rose-700",
+      badgeBorder: "border-rose-200",
+      dot: "bg-rose-500",
+      numBg: "bg-rose-500",
+      key: "pre_primary",
+      label: t("પ્રિ-પ્રાથમિક", "Pre-Primary"),
+      grade: t("નર્સરી · LKG · UKG", "Nursery · LKG · UKG"),
+      description: t(
+        "ખેલ આધારિત શિક્ષણ દ્વારા ઉત્સુકતા, સ્વ-અભિવ્યક્તિ અને ભાષા-ગણિતના પ્રાથમિક કૌશલ્યોનો વિકાસ.",
+        "A play-based foundation focusing on curiosity, self-expression, and early literacy and numeracy."
+      ),
+      exam: t(
+        "આંતરિક મૂલ્યાંકન — શિક્ષક નિરીક્ષણ, ચેકલિસ્ટ અને પોર્ટફોલિયો",
+        "Internal — Teacher Observation, Checklist & Portfolio"
+      ),
+      subjects: [
+        t("ગીત, કવિતા અને સામૂહિક રમતો", "Songs, Rhymes & Group Play"),
+        t("ભાષા — સાંભળવાની અને બોલવાની કૌશલ્ય", "Language — Listening & Speaking Skills"),
+        t("ગણિત — 1 થી 100, આકારો અને રંગો", "Numeracy — 1–100, Shapes & Colours"),
+        t("પર્યાવરણ જ્ઞાન અને તહેવારો", "Environmental Awareness & Festivals"),
+        t("ચિત્રકામ, રંગકામ અને હસ્તકલા", "Drawing, Colouring & Craft"),
+        t("સંગીત, શારીરિક શિક્ષણ અને યોગ", "Music, Physical Education & Yoga"),
+        t("સ્વ-સંભાળ અને સારા સ્વભાવ", "Self-Care & Good-Habit Formation"),
+      ],
+      points: [
+        t("મોન્ટેસોરી આધારિત પ્રવૃત્તિ કોર્નર્સ અને TLM સામગ્રી", "Montessori-inspired activity corners with TLM materials"),
+        t("20–25 વિદ્યાર્થીઓના નાના જૂથો", "Small groups of 20–25 students"),
+        t("વાર્તા અને અનુભવ આધારિત શિક્ષણ", "Story-based experiential learning"),
+        t("ત્રિમાસિક PTM અને ઘરઆધારિત માર્ગદર્શન", "Quarterly PTM with home-activity guidance"),
+        t("આઉટડોર રમતો અને સેન્સરી પ્રવૃત્તિઓ", "Outdoor play and sensory activities"),
+      ],
+    },
+
     {
       key: "primary",
+      accent: "bg-emerald-50 border-emerald-200",
+      badge: "bg-emerald-100 text-emerald-700",
+      badgeBorder: "border-emerald-200",
+      dot: "bg-emerald-500",
+      numBg: "bg-emerald-500",
       label: t("પ્રાથમિક", "Primary"),
-      grade: t("ધોરણ 1 થી 5", "Grade 1 to 5"),
-      subjects: t(
-        "ગુજરાતી (મૂળ ભાષા), હિન્દી (રાષ્ટ્રભાષા), અંગ્રેજી (તૃતીય ભાષા), ગણિત (મૂળભૂત સંખ્યા ખ્યાલો, ભૂમિતિ, માપ), પર્યાવરણ (વિજ્ઞાન + સામાજિક વિજ્ઞાનનો પાયો), ચિત્રકામ અને હસ્તકલા, સંગીત (દેશભક્તિ ગીત, પ્રાર્થના), શારીરિક શિક્ષણ (PT, યોગ, રમતો), અને નૈતિક શિક્ષણ.",
-        "Gujarati (Mother tongue), Hindi (National language), English (Third language), Mathematics (Basic number concepts, geometry, measurement), Environmental Studies (Foundation of Science + Social Science), Drawing and Craft, Music (Patriotic songs, prayers), Physical Education (PT, Yoga, games), and Moral Education."
+      grade: t("ધોરણ 1 – 5", "Grade 1 – 5"),
+      description: t(
+        "ભાષા, ગણિત અને પર્યાવરણ અભ્યાસમાં મજબૂત આધાર પ્રવૃત્તિ આધારિત શિક્ષણ દ્વારા.",
+        "Strong foundations in language, mathematics and environmental studies through activity-based learning."
       ),
-      approach: t(
-        "પ્રવૃત્તિ આધારિત શિક્ષણ પદ્ધતિ દ્વારા મૂળભૂત ખ્યાલોને મજબૂત બનાવવામાં આવે છે. ક્રિયાત્મક શિક્ષણ અને રમત દ્વારા શીખવવાની પદ્ધતિ. TLM (Teaching Learning Material) — રંગીન ચાર્ટ, મોડેલ, ફ્લેશ કાર્ડ, પઝલ, અને બ્લોક્સ. વાર્તા કહેવા, ભૂમિકા-ભજવણી, અને જૂથ પ્રવૃત્તિઓ. દરેક વર્ગમાં 30-35 વિદ્યાર્થીઓ — વ્યક્તિગત ધ્યાન શક્ય.",
-        "Activity-based learning methodology strengthens fundamental concepts. Learning through practical activities and play-based methods. TLM (Teaching Learning Material) — colorful charts, models, flash cards, puzzles, and blocks. Storytelling, role-playing, and group activities. 30-35 students per class — individual attention possible."
+      exam: t(
+        "CCE — રચનાત્મક અને સમાપન મૂલ્યાંકન",
+        "CCE — Formative + Summative Assessment"
       ),
+      subjects: [
+        t("ગુજરાતી — માતૃભાષા", "Gujarati — Mother Tongue"),
+        t("હિન્દી — રાષ્ટ્રીય ભાષા", "Hindi — National Language"),
+        t("અંગ્રેજી — ત્રીજી ભાષા", "English — Third Language"),
+        t("ગણિત — સંખ્યાઓ અને જ્યોમેટ્રી", "Mathematics — Numbers & Geometry"),
+        t("પર્યાવરણ અભ્યાસ", "Environmental Studies"),
+        t("કલા અને હસ્તકલા", "Art & Craft"),
+        t("સંગીત અને શારીરિક શિક્ષણ", "Music & Physical Education"),
+        t("નૈતિક શિક્ષણ", "Moral Education"),
+      ],
+      points: [
+        t("TLM અને પ્રવૃત્તિ આધારિત શિક્ષણ", "TLM-based interactive learning"),
+        t("વાર્તા અને રોલ-પ્લે પ્રવૃત્તિઓ", "Storytelling and role-play"),
+        t("30–35 વિદ્યાર્થીઓ પ્રતિ વર્ગ", "30–35 students per class"),
+        t("પ્રવૃત્તિ આધારિત અભ્યાસ", "Activity-based learning"),
+        t("સહકાર આધારિત શિક્ષણ", "Collaborative learning"),
+      ],
     },
+
     {
       key: "upper",
+      accent: "bg-blue-50 border-blue-200",
+      badge: "bg-blue-100 text-blue-700",
+      badgeBorder: "border-blue-200",
+      dot: "bg-blue-500",
+      numBg: "bg-blue-500",
       label: t("ઉચ્ચ પ્રાથમિક", "Upper Primary"),
-      grade: t("ધોરણ 6 થી 8", "Grade 6 to 8"),
-      subjects: t(
-        "ગુજરાતી (વ્યાકરણ, નિબંધ, પત્રલેખન), હિન્દી, અંગ્રેજી (Grammar, Composition, Reading), ગણિત (બીજગણિત, ભૂમિતિ, આંકડાશાસ્ત્ર), વિજ્ઞાન (ભૌતિક, રસાયણ, જીવ વિજ્ઞાનના પાયા), સામાજિક વિજ્ઞાન (ઈતિહાસ, ભૂગોળ, નાગરિકશાસ્ત્ર), સંસ્કૃત (ચોથી ભાષા), અને કમ્પ્યુટર (MS Office, ટાઇપિંગ, ઇન્ટરનેટ બેઝિક્સ).",
-        "Gujarati (Grammar, Essay, Letter writing), Hindi, English (Grammar, Composition, Reading), Mathematics (Algebra, Geometry, Statistics), Science (Basics of Physics, Chemistry, Biology), Social Science (History, Geography, Civics), Sanskrit (Fourth language), and Computer (MS Office, Typing, Internet Basics)."
+      grade: t("ધોરણ 6 – 8", "Grade 6 – 8"),
+      description: t(
+        "વિષયમાં ઊંડાણ સાથે વિશ્લેષણાત્મક વિચાર અને પ્રોજેક્ટ આધારિત અભ્યાસ.",
+        "Deeper subject understanding with analytical thinking and project-based learning."
       ),
-      approach: t(
-        "વિષયવસ્તુની ઊંડી સમજ અને વિશ્લેષણાત્મક વિચારસરણીનો વિકાસ. પ્રોજેક્ટ આધારિત કાર્ય (દર સત્રમાં ઓછામાં ઓછા 2 પ્રોજેક્ટ), જૂથ ચર્ચા, પ્રયોગો, ક્ષેત્ર મુલાકાત, અને ડિજિટલ કન્ટેન્ટ. CCE (Continuous Comprehensive Evaluation) — યુનિટ ટેસ્ટ, ઓરલ, પ્રેક્ટિકલ, અને સત્રાંત પરીક્ષા. વિજ્ઞાન મેળો, ગણિત ઓલિમ્પિયાડ, ક્વિઝ સ્પર્ધા, અને વક્તૃત્વ.",
-        "Deeper understanding and analytical thinking development. Project-based work (minimum 2 projects per semester), group discussions, experiments, field visits, and digital content. CCE (Continuous Comprehensive Evaluation) — unit tests, oral, practical, and semester exams. Science fair, Math Olympiad, Quiz competitions, and Elocution."
+      exam: t(
+        "CCE — યુનિટ ટેસ્ટ, પ્રોજેક્ટ અને સેમેસ્ટર પરીક્ષા",
+        "CCE — Unit Tests, Projects & Semester Exams"
       ),
+      subjects: [
+        t("ગુજરાતી — વ્યાકરણ અને લેખન", "Gujarati — Grammar & Writing"),
+        t("હિન્દી અને અંગ્રેજી", "Hindi & English"),
+        t("ગણિત — બીજગણિત અને જ્યોમેટ્રી", "Mathematics — Algebra & Geometry"),
+        t("વિજ્ઞાન", "Science"),
+        t("સામાજિક વિજ્ઞાન", "Social Science"),
+        t("સંસ્કૃત", "Sanskrit"),
+        t("કમ્પ્યુટર", "Computer"),
+      ],
+      points: [
+        t("દર સેમેસ્ટર પ્રોજેક્ટ કાર્ય", "Project work each semester"),
+        t("નિયમિત મૂલ્યાંકન", "Regular assessment"),
+        t("સાયન્સ ફેર અને સ્પર્ધાઓ", "Science fairs and competitions"),
+        t("પ્રયોગ અને ફિલ્ડ વિઝિટ", "Experiments and field visits"),
+        t("ચર્ચા અને વિશ્લેષણ", "Discussions and analysis"),
+      ],
     },
+
     {
       key: "secondary",
+      accent: "bg-violet-50 border-violet-200",
+      badge: "bg-violet-100 text-violet-700",
+      badgeBorder: "border-violet-200",
+      dot: "bg-violet-500",
+      numBg: "bg-violet-500",
       label: t("માધ્યમિક", "Secondary"),
-      grade: t("ધોરણ 9 અને 10", "Grade 9 and 10"),
-      subjects: t(
-        "GSEB અભ્યાસક્રમ — ગુજરાતી (પ્રથમ ભાષા), અંગ્રેજી (દ્વિતીય ભાષા), ગણિત (બીજગણિત, ભૂમિતિ, ત્રિકોણમિતિ, આંકડાશાસ્ત્ર), વિજ્ઞાન અને ટેકનોલોજી (ભૌતિક, રસાયણ, જીવ વિજ્ઞાન + ટેકનોલોજી), સામાજિક વિજ્ઞાન (ઈતિહાસ, ભૂગોળ, અર્થશાસ્ત્ર, નાગરિકશાસ્ત્ર). બોર્ડ પરીક્ષા: 80 માર્ક્સ થિયરી + 20 માર્ક્સ ઇન્ટરનલ.",
-        "GSEB Curriculum — Gujarati (First language), English (Second language), Mathematics (Algebra, Geometry, Trigonometry, Statistics), Science & Technology (Physics, Chemistry, Biology + Technology), Social Science (History, Geography, Economics, Civics). Board exam: 80 marks theory + 20 marks internal."
+      grade: t("ધોરણ 9 – 10", "Grade 9 – 10"),
+      description: t(
+        "GSEB બોર્ડ માટે કેન્દ્રિત તૈયારી સાથે સંકલિત અભ્યાસક્રમ.",
+        "Focused preparation for GSEB board with structured curriculum."
       ),
-      approach: t(
-        "બોર્ડ પરીક્ષાની તૈયારી માટે વિશેષ માર્ગદર્શન. દર અઠવાડિયે ટેસ્ટ (Weekly Test), માસિક પરીક્ષા (Monthly Exam), અને પ્રિલિમ પરીક્ષા. પાછલા 10 વર્ષના પ્રશ્નપત્રોનો અભ્યાસ. પ્રેક્ટિકલ પરીક્ષા માટે વિશેષ તૈયારી. નબળા વિદ્યાર્થીઓ માટે વધારાના ટ્યુશન (રીમીડિયલ ક્લાસ). ટોપર્સ માટે NTSE, NMMS તૈયારી.",
-        "Special guidance for board exam preparation. Weekly tests, monthly exams, and preliminary exams. Study of last 10 years' question papers. Special preparation for practical exams. Extra tuition (remedial classes) for weak students. NTSE, NMMS preparation for toppers."
+      exam: t(
+        "GSEB બોર્ડ — 80 ગુણ લેખિત + 20 આંતરિક",
+        "GSEB Board — 80 marks Theory + 20 Internal"
       ),
+      subjects: [
+        t("ગુજરાતી", "Gujarati"),
+        t("અંગ્રેજી", "English"),
+        t("ગણિત", "Mathematics"),
+        t("વિજ્ઞાન અને ટેક્નોલોજી", "Science & Technology"),
+        t("સામાજિક વિજ્ઞાન", "Social Science"),
+      ],
+      points: [
+        t("સાપ્તાહિક ટેસ્ટ અને માસિક પરીક્ષા", "Weekly & monthly tests"),
+        t("પાછલા પ્રશ્નપત્રો", "Previous year papers"),
+        t("પ્રાયોગિક તૈયારી", "Practical preparation"),
+        t("સ્પર્ધાત્મક પરીક્ષા માર્ગદર્શન", "Competitive exam guidance"),
+        t("રિમેડિયલ ક્લાસીસ", "Remedial classes"),
+      ],
     },
+
     {
       key: "higher",
-      label: t("ઉચ્ચતર માધ્યમિક", "Higher Sec."),
-      grade: t("ધોરણ 11 અને 12", "Grade 11 and 12"),
-      subjects: t(
-        "વિજ્ઞાન પ્રવાહ: ભૌતિકશાસ્ત્ર, રસાયણશાસ્ત્ર, જીવવિજ્ઞાન (PCB) અથવા ગણિત (PCM), અંગ્રેજી. સામાન્ય પ્રવાહ: અર્થશાસ્ત્ર, વાણિજ્ય, આંકડાશાસ્ત્ર, મનોવિજ્ઞાન. GSEB બોર્ડ — 100 માર્ક્સ થિયરી + 30 માર્ક્સ પ્રેક્ટિકલ.",
-        "Science stream: Physics, Chemistry, Biology (PCB) or Mathematics (PCM), English. General stream: Economics, Commerce, Statistics, Psychology. GSEB Board — 100 marks theory + 30 marks practical."
+      accent: "bg-amber-50 border-amber-200",
+      badge: "bg-amber-100 text-amber-700",
+      badgeBorder: "border-amber-200",
+      dot: "bg-amber-500",
+      numBg: "bg-amber-500",
+      label: t("ઉચ્ચતર માધ્યમિક", "Higher Secondary"),
+      grade: t("ધોરણ 11 – 12", "Grade 11 – 12"),
+      description: t(
+        "વિજ્ઞાન અને કોમર્સ પ્રવાહ સાથે કારકિર્દી કેન્દ્રિત અભ્યાસ.",
+        "Stream-based education with strong career focus."
       ),
-      approach: t(
-        "NEET (મેડિકલ) અને JEE (એન્જિનિયરિંગ) માટે વધારાની તૈયારી. MCQ પ્રેક્ટિસ, મોક ટેસ્ટ, અને ઓનલાઇન ટેસ્ટ સિરીઝ. કારકિર્દી માર્ગદર્શન — કયા કોર્સમાં જવું, કઈ કોલેજ, કઈ પરીક્ષાઓ. ભૂતપૂર્વ વિદ્યાર્થીઓ (ડૉક્ટર, એન્જિનિયર) દ્વારા પ્રેરણા સેશન. કોલેજ એડમિશન ગાઇડન્સ, સ્કોલરશિપ માહિતી.",
-        "Extra preparation for NEET (Medical) and JEE (Engineering). MCQ practice, mock tests, and online test series. Career guidance — which course, which college, which exams. Inspiration sessions by alumni (doctors, engineers). College admission guidance, scholarship information."
+      exam: t(
+        "GSEB બોર્ડ — 100 ગુણ લેખિત + 30 પ્રાયોગિક",
+        "GSEB Board — 100 Theory + 30 Practical"
       ),
+      subjects: [
+        t("વિજ્ઞાન પ્રવાહ — PCB / PCM", "Science Stream — PCB / PCM"),
+        t("કોમર્સ પ્રવાહ", "Commerce Stream"),
+        t("અંગ્રેજી", "English"),
+        t("મનોવિજ્ઞાન", "Psychology"),
+      ],
+      points: [
+        t("NEET, JEE, GUJCET તૈયારી", "NEET, JEE, GUJCET coaching"),
+        t("મોક ટેસ્ટ", "Mock tests"),
+        t("એલ્યુમ્ની સત્રો", "Alumni sessions"),
+        t("કોલેજ માર્ગદર્શન", "College guidance"),
+        t("કેરિયર કાઉન્સેલિંગ", "Career counselling"),
+      ],
     },
   ];
-
-  const accordionItems = [
+  const methodology = [
     {
-      value: "methodology",
+      icon: BookOpen,
+      color: "text-blue-600 bg-blue-50", 
       title: t("શિક્ષણ પદ્ધતિ", "Teaching Methodology"),
-      content: t(
-        "અમે બહુવિધ શિક્ષણ પદ્ધતિઓનો ઉપયોગ કરીએ છીએ:\n\n• પ્રવૃત્તિ આધારિત શિક્ષણ (Activity Based Learning) — કરીને શીખવું\n• જૂથ ચર્ચા અને સહયોગી શિક્ષણ (Collaborative Learning)\n• પ્રોજેક્ટ આધારિત કાર્ય (Project Based Learning) — દર સત્રમાં 2-3 પ્રોજેક્ટ\n• ટેકનોલોજી સહાયિત શિક્ષણ — સ્માર્ટ ક્લાસરૂમ, ડિજિટલ કન્ટેન્ટ, વિડિયો\n• ફ્લિપ્ડ ક્લાસરૂમ — ઘરે વિડિયો જોવો, વર્ગમાં ચર્ચા\n• ડિફરેન્શિયેટેડ ઇન્સ્ટ્રક્શન — હોશિયાર અને નબળા બંને માટે અલગ અભિગમ\n• રિયલ-વર્લ્ડ કનેક્શન — દરેક ખ્યાલને રોજિંદા જીવન સાથે જોડવો\n• પીઅર ટીચિંગ — વિદ્યાર્થીઓ એકબીજાને ભણાવે",
-        "We use multiple teaching methodologies:\n\n• Activity Based Learning — learning by doing\n• Group discussions and Collaborative Learning\n• Project Based Learning — 2-3 projects per semester\n• Technology-assisted teaching — smart classrooms, digital content, videos\n• Flipped Classroom — watch videos at home, discuss in class\n• Differentiated Instruction — separate approach for advanced and struggling students\n• Real-world Connection — connecting every concept to daily life\n• Peer Teaching — students teaching each other"
+      desc: t(
+        "વિદ્યાર્થી કેન્દ્રિત અને આધુનિક શિક્ષણ પદ્ધતિઓ.",
+        "Student-centric modern teaching approaches."
       ),
+      items: [
+        t("પ્રવૃત્તિ આધારિત શિક્ષણ", "Activity-based learning"),
+        t("જૂથ અભ્યાસ", "Collaborative learning"),
+        t("પ્રોજેક્ટ આધારિત અભ્યાસ", "Project-based learning"),
+        t("સ્માર્ટ ક્લાસરૂમ", "Smart classrooms"),
+        t("ફ્લિપ્ડ ક્લાસરૂમ", "Flipped classroom"),
+        t("વ્યક્તિગત શિક્ષણ", "Personalized learning"),
+      ],
     },
+
     {
-      value: "assessment",
-      title: t("મૂલ્યાંકન પ્રણાલી", "Assessment System"),
-      content: t(
-        "સતત અને વ્યાપક મૂલ્યાંકન (CCE) પદ્ધતિ:\n\n• સાપ્તાહિક ટેસ્ટ (Weekly Test) — દર શુક્રવારે\n• એકમ કસોટી (Unit Test) — દર મહિને\n• સત્રાંત પરીક્ષા (Semester Exam) — દર 6 મહિને\n• પ્રિલિમ પરીક્ષા (Prelim) — ધોરણ 10, 12 માટે બોર્ડ પહેલાં\n• પ્રોજેક્ટ મૂલ્યાંકન — દર સત્રમાં\n• પ્રેક્ટિકલ પરીક્ષા — વિજ્ઞાન, કમ્પ્યુટર\n• મૌખિક મૂલ્યાંકન (Oral) — ભાષા, વિજ્ઞાન\n• સ્વ-મૂલ્યાંકન અને પીઅર મૂલ્યાંકન\n\nPTM (Parent-Teacher Meeting) — દર 2 મહિને. વાલીઓને SMS/WhatsApp દ્વારા પ્રગતિ અને ઉપસ્થિતિની માહિતી.",
-        "Continuous and Comprehensive Evaluation (CCE) system:\n\n• Weekly Test — every Friday\n• Unit Test — every month\n• Semester Exam — every 6 months\n• Prelim Exam — before board for Grade 10, 12\n• Project Assessment — every semester\n• Practical Exam — Science, Computer\n• Oral Assessment — Languages, Science\n• Self-assessment and Peer assessment\n\nPTM (Parent-Teacher Meeting) — every 2 months. Parents informed about progress and attendance via SMS/WhatsApp."
+      icon: ClipboardCheck,
+      title: t("મૂલ્યાંકન પદ્ધતિ", "Assessment System"),
+      desc: t(
+        "સતત અને વ્યાપક મૂલ્યાંકન પદ્ધતિ.",
+        "Continuous and comprehensive evaluation system."
       ),
+      items: [
+        t("સાપ્તાહિક ટેસ્ટ", "Weekly tests"),
+        t("માસિક અને સેમેસ્ટર પરીક્ષા", "Monthly & semester exams"),
+        t("પ્રાયોગિક અને મૌખિક મૂલ્યાંકન", "Practical & oral assessment"),
+        t("સ્વ-મૂલ્યાંકન", "Self-assessment"),
+        t("PTM અને પ્રગતિ અપડેટ", "PTM & progress updates"),
+        t("પ્રિલિમ પરીક્ષા", "Preliminary exams"),
+      ],
     },
+
     {
-      value: "infrastructure",
-      title: t("માળખાકીય સુવિધાઓ", "Infrastructure"),
-      content: t(
-        "• વિજ્ઞાન પ્રયોગશાળા — ભૌતિક, રસાયણ, જીવ વિજ્ઞાન માટે અલગ-અલગ. GSEB+ સ્તરના સાધનો.\n• કમ્પ્યુટર લેબ — ૪૦+ કમ્પ્યુટર, હાઇ-સ્પીડ ઇન્ટરનેટ, UPS બેકઅપ\n• ગ્રંથાલય — ૧૫,૦૦૦+ પુસ્તકો, 50+ સામયિકો, ડિજિટલ કેટેલોગ\n• સ્માર્ટ ક્લાસરૂમ — LED પ્રોજેક્ટર, ડિજિટલ બોર્ડ, ઑડિઓ-વિઝ્યુઅલ\n• ગણિત લેબ — 3D મોડેલ, ભૂમિતિ કિટ, ગણતરી સાધનો\n• Wi-Fi કેમ્પસ — સંપૂર્ણ કેમ્પસ કવરેજ\n• ૫૦૦+ ક્ષમતાનો સભાખંડ — AC, સાઉન્ડ સિસ્ટમ, સ્ટેજ\n• વિશાળ રમતગમત મેદાન — ક્રિકેટ, ફૂટબોલ, કબડ્ડી, ખો-ખો\n• CCTV — ૫૦+ કેમેરા, 24/7 નિગરાણી\n• RO શુદ્ધ પાણી — દરેક ફ્લોર પર\n• ફર્સ્ટ એઇડ રૂમ — પ્રશિક્ષિત નર્સ",
-        "• Science Labs — Separate for Physics, Chemistry, Biology. GSEB+ level equipment.\n• Computer Lab — 40+ computers, high-speed internet, UPS backup\n• Library — 15,000+ books, 50+ periodicals, digital catalog\n• Smart Classrooms — LED projectors, digital boards, audio-visual\n• Math Lab — 3D models, geometry kits, calculation tools\n• Wi-Fi Campus — complete campus coverage\n• 500+ capacity Auditorium — AC, sound system, stage\n• Expansive Sports Ground — cricket, football, kabaddi, kho-kho\n• CCTV — 50+ cameras, 24/7 monitoring\n• RO Purified Water — on every floor\n• First Aid Room — trained nurse"
+      icon: Compass,
+      title: t("કેરિયર માર્ગદર્શન", "Career Guidance"),
+      desc: t(
+        "વિદ્યાર્થીઓ માટે ભવિષ્યની યોગ્ય દિશા.",
+        "Guidance for informed career decisions."
       ),
-    },
-    {
-      value: "extracurricular",
-      title: t("સહઅભ્યાસિક પ્રવૃત્તિઓ", "Co-Curricular Activities"),
-      content: t(
-        "અમે માનીએ છીએ કે શિક્ષણ = અભ્યાસ + પ્રવૃત્તિઓ. દરેક વિદ્યાર્થીને ઓછામાં ઓછી 1 સહઅભ્યાસિક પ્રવૃત્તિમાં ભાગ લેવાનું ફરજિયાત:\n\n🏏 રમતગમત: ક્રિકેટ, કબડ્ડી, ખો-ખો, એથ્લેટિક્સ, વોલીબોલ, ચેસ, યોગ\n🎭 સાંસ્કૃતિક: નૃત્ય (ગરબા, રાસ, લોકનૃત્ય), સંગીત, નાટક, ફેન્સી ડ્રેસ\n🔬 શૈક્ષણિક: વિજ્ઞાન મેળો, ગણિત ઓલિમ્પિયાડ, ક્વિઝ, ડિબેટ, વક્તૃત્વ\n🎨 કલાત્મક: ચિત્રકલા, હસ્તકલા, રંગોળી, મહેંદી\n🇮🇳 રાષ્ટ્રીય: NCC, NSS, સ્કાઉટ-ગાઈડ\n🌱 સામાજિક: રક્તદાન, વૃક્ષારોપણ, સ્વચ્છતા, ગ્રામ મુલાકાત\n📚 સાહિત્ય: નિબંધ સ્પર્ધા, કવિતા પઠન, વાર્તા લેખન, દીવાલ સામયિક",
-        "We believe Education = Academics + Activities. Every student must participate in at least 1 co-curricular activity:\n\n🏏 Sports: Cricket, Kabaddi, Kho-Kho, Athletics, Volleyball, Chess, Yoga\n🎭 Cultural: Dance (Garba, Raas, Folk dance), Music, Drama, Fancy Dress\n🔬 Academic: Science Fair, Math Olympiad, Quiz, Debate, Elocution\n🎨 Artistic: Drawing, Craft, Rangoli, Mehndi\n🇮🇳 National: NCC, NSS, Scout-Guide\n🌱 Social: Blood donation, Tree planting, Cleanliness, Village visits\n📚 Literary: Essay competition, Poetry recitation, Story writing, Wall magazine"
-      ),
-    },
-    {
-      value: "career",
-      title: t("કારકિર્દી માર્ગદર્શન", "Career Guidance"),
-      content: t(
-        "ધોરણ 10 અને 12 ના વિદ્યાર્થીઓ માટે વ્યાપક કારકિર્દી માર્ગદર્શન:\n\n• કારકિર્દી કાઉન્સેલિંગ સેલ — અઠવાડિક સેશન\n• વિવિધ ક્ષેત્રોના નિષ્ણાતો (ડૉક્ટર, એન્જિનિયર, CA, વકીલ) દ્વારા સેમિનાર\n• ભૂતપૂર્વ વિદ્યાર્થીઓ સાથે ઇન્ટરેક્ટિવ સેશન\n• NEET, JEE, GUJCET, CET ની પ્રારંભિક તૈયારી\n• કોલેજ એડમિશન પ્રક્રિયા — ACPC, મેરિટ, મેનેજમેન્ટ\n• સ્કોલરશિપ માહિતી — SC/ST/OBC, મેરિટ, EWS\n• એપ્ટિટ્યુડ ટેસ્ટ — વિદ્યાર્થીઓની ક્ષમતા અને રુચિ ઓળખવા\n• ડિપ્લોમા, ITI, B.Ed, D.El.Ed — વૈકલ્પિક કારકિર્દી માર્ગ\n• વાલી-શિક્ષક-વિદ્યાર્થી ત્રિપક્ષીય ચર્ચા",
-        "Comprehensive career guidance for Grade 10 and 12 students:\n\n• Career Counseling Cell — weekly sessions\n• Seminars by experts from various fields (Doctors, Engineers, CAs, Lawyers)\n• Interactive sessions with alumni\n• Early preparation for NEET, JEE, GUJCET, CET\n• College admission process — ACPC, Merit, Management\n• Scholarship information — SC/ST/OBC, Merit, EWS\n• Aptitude tests — to identify students' abilities and interests\n• Diploma, ITI, B.Ed, D.El.Ed — alternative career paths\n• Parent-Teacher-Student tripartite discussions"
-      ),
-    },
-    {
-      value: "special",
-      title: t("વિશેષ કાર્યક્રમો", "Special Programs"),
-      content: t(
-        "• રીમીડિયલ ક્લાસ — નબળા વિદ્યાર્થીઓ માટે વધારાના કાલાંશ (શાળા સમય પછી)\n• એન્રિચમેન્ટ ક્લાસ — હોશિયાર વિદ્યાર્થીઓ માટે એડવાન્સ ટોપિક\n• વાંચન સપ્તાહ — દર વર્ષે ગ્રંથાલય સપ્તાહ ઉજવણી\n• વિજ્ઞાન સપ્તાહ — પ્રયોગો, ડેમો, અને વિજ્ઞાન મેળો\n• ગણિત દિવસ — રામાનુજન જન્મ દિવસ ઉજવણી\n• પર્યાવરણ દિવસ — વૃક્ષારોપણ, જાગૃતિ રેલી\n• બંધારણ દિવસ — લોકશાહી મૂલ્યો\n• રાષ્ટ્રીય દિવસો — 15 ઓગસ્ટ, 26 જાન્યુઆરી, ગાંધી જયંતી",
-        "• Remedial Classes — extra periods for struggling students (after school hours)\n• Enrichment Classes — advanced topics for gifted students\n• Reading Week — annual library week celebration\n• Science Week — experiments, demos, and science fair\n• Mathematics Day — Ramanujan birthday celebration\n• Environment Day — tree planting, awareness rally\n• Constitution Day — democratic values\n• National Days — August 15, January 26, Gandhi Jayanti"
-      ),
+      items: [
+        t("કાઉન્સેલિંગ સત્રો", "Counselling sessions"),
+        t("સ્પર્ધાત્મક પરીક્ષા માર્ગદર્શન", "Entrance exam coaching"),
+        t("એક્સપર્ટ સેમિનાર", "Expert seminars"),
+        t("સ્કોલરશિપ માર્ગદર્શન", "Scholarship guidance"),
+        t("એપ્ટિટ્યુડ ટેસ્ટ", "Aptitude testing"),
+        t("પેરેન્ટ-ટીચર-સ્ટુડન્ટ મીટિંગ", "Tripartite meetings"),
+      ],
     },
   ];
+  const facilities = [
+    {
+      icon: FlaskConical,
+      color: "text-rose-600 bg-rose-50",
+      title: t("વિજ્ઞાન લેબ્સ", "Science Labs"),
+      items: [
+        t("અલગ ફિઝિક્સ, કેમિસ્ટ્રી અને બાયોલોજી લેબ", "Separate Physics, Chemistry & Biology labs"),
+        t("ગણિત લેબ", "Mathematics lab"),
+        t("કમ્પ્યુટર લેબ", "Computer lab"),
+        t("સ્માર્ટ ક્લાસરૂમ", "Smart classrooms"),
+      ],
+    },
 
+    {
+      icon: Library,
+      title: t("લાઇબ્રેરી અને ડિજિટલ", "Library & Digital"),
+      items: [
+        t("15,000+ પુસ્તકો", "15,000+ books"),
+        t("Wi-Fi કેમ્પસ", "Wi-Fi campus"),
+        t("ડિજિટલ બોર્ડ", "Digital boards"),
+        t("UPS બેકઅપ", "UPS backup"),
+      ],
+    },
+
+    {
+      icon: Building2,
+      title: t("કેમ્પસ અને સુરક્ષા", "Campus & Safety"),
+      items: [
+        t("ઓડિટોરિયમ", "Auditorium"),
+        t("સ્પોર્ટ્સ ગ્રાઉન્ડ", "Sports ground"),
+        t("CCTV સુરક્ષા", "CCTV security"),
+        t("RO પાણી અને ફર્સ્ટ એડ", "RO water & first-aid"),
+      ],
+    },
+  ];
   return (
     <div className="pt-20 pb-16 lg:pb-0">
-      {/* Header */}
-      <section className="cta-surface py-20 sm:py-24 relative">
+
+      {/* ── Hero ── */}
+      <section className="cta-surface py-20 sm:py-28 relative overflow-hidden">
         <FloatingShapes variant="dark" density="medium" />
-        <div className="section-container relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <span className="section-label text-primary-foreground/40 before:bg-primary-foreground/20">
               {t("શૈક્ષણિક", "Academics")}
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-5">
-              {t("શૈક્ષણિક માહિતી", "Academic Information")}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-5 max-w-3xl">
+              {t("શૈક્ષણિક ઉત્કૃષ્ટતા અને અભ્યાસક્રમ", "Academic Excellence & Curriculum")}
             </h1>
-            <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg text-primary-foreground/65 max-w-2xl leading-relaxed">
               {t(
                 `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.gu}. માધ્યમ: ${SCHOOL_INFO_PARTIAL_DATA.academics.teaching_medium.gu}. ${SCHOOL_INFO_PARTIAL_DATA.academics.focus.gu}.`,
                 `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.en}. Medium: ${SCHOOL_INFO_PARTIAL_DATA.academics.teaching_medium.en}. ${SCHOOL_INFO_PARTIAL_DATA.academics.focus.en}.`
               )}
             </p>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Curriculum Snapshot */}
-      <section className="py-10 bg-background relative">
-        <div className="section-container">
-          <AnimatedSection>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
               {[
-                { value: classCounts.pre_primary, label: t("પ્રિ-પ્રાથમિક", "Pre-Primary") },
-                { value: classCounts.primary, label: t("પ્રાથમિક", "Primary") },
-                { value: classCounts.secondary, label: t("માધ્યમિક", "Secondary") },
-                { value: classCounts.higher_secondary, label: t("ઉચ્ચતર માધ્યમિક", "Higher Secondary") },
-              ].map((item) => (
-                <div key={item.label} className="card-modern p-5 sm:p-6 text-center">
-                  <p className="stat-number mb-1">{item.value}</p>
-                  <p className="text-xs sm:text-sm text-muted-foreground font-medium">{item.label}</p>
+                { label: t("GSEB બોર્ડ",  "GSEB Board"),       sub: t("ધો. 10 & 12",  "Grade 10 & 12")    },
+                { label: t("ગુ. માધ્યમ",   "Gujarati Medium"),  sub: t("ધો. 1–12",      "Grade 1–12")       },
+                { label: t("Co-Education", "Co-Education"),     sub: t("Boys & Girls",  "Boys & Girls")      },
+                { label: t("Morning Shift","Morning Shift"),    sub: t("7:30 – 1:00 PM","7:30 AM – 1:00 PM") },
+              ].map((f) => (
+                <div key={f.label} className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-secondary shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold text-primary-foreground">{f.label}</p>
+                    <p className="text-xs text-primary-foreground/50">{f.sub}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -161,93 +319,214 @@ const Academics = () => {
         </div>
       </section>
 
-      {/* Curriculum Tabs */}
+      {/* ── Quick-nav stat cards ── */}
+      <section className="py-10 bg-background border-b border-border/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { value: classCounts.pre_primary,      label: t("પ્રિ-પ્રાથ.",   "Pre-Primary"),     sub: t("Nursery – UKG", "Nursery – UKG"),  target: "section-pre_primary",  accent: "hover:border-rose-400/60 hover:bg-rose-50/50",    num: "group-hover:text-rose-600"    },
+                { value: classCounts.primary,          label: t("પ્રા.+ઉ.પ.",   "Primary"),          sub: t("ધો. 1 – 8",    "Grade 1 – 8"),     target: "section-primary",      accent: "hover:border-emerald-400/60 hover:bg-emerald-50/50", num: "group-hover:text-emerald-600" },
+                { value: classCounts.secondary,        label: t("માધ્ય.",        "Secondary"),         sub: t("ધો. 9 – 10",   "Grade 9 – 10"),    target: "section-secondary",    accent: "hover:border-violet-400/60 hover:bg-violet-50/50",  num: "group-hover:text-violet-600"  },
+                { value: classCounts.higher_secondary, label: t("ઉ.માધ.",        "Higher Secondary"),  sub: t("ધો. 11 – 12",  "Grade 11 – 12"),   target: "section-higher",       accent: "hover:border-amber-400/60 hover:bg-amber-50/50",    num: "group-hover:text-amber-600"   },
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.target)}
+                  className={`card-modern p-5 sm:p-6 text-center group cursor-pointer transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-2xl w-full ${item.accent}`}
+                >
+                  <p className={`stat-number mb-1 transition-colors duration-300 ${item.num}`}>{item.value}</p>
+                  <p className="text-sm sm:text-base font-semibold text-foreground">{item.label}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
+                  <span className="mt-3 inline-block text-xs font-medium text-primary/0 group-hover:text-primary/70 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                    {t("જુઓ ↓", "Explore ↓")}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ── Grade-wise Curriculum ── */}
       <section className="section-padding bg-background relative">
         <FloatingShapes variant="light" density="low" />
-        <div className="section-container max-w-3xl relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
             <span className="section-label">{t("અભ્યાસક્રમ", "Curriculum")}</span>
-            <h2 className="text-2xl font-bold text-foreground mb-3">
-              {t("ધોરણ પ્રમાણે અભ્યાસક્રમ", "Grade-wise Curriculum")}
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
+              {t("ધોરણ-વિભાજિત અભ્યાસક્રમ", "Grade-wise Curriculum Overview")}
             </h2>
-            <p className="text-sm text-muted-foreground mb-10 leading-relaxed max-w-xl">
+            <p className="text-base text-muted-foreground mb-12 max-w-2xl leading-relaxed">
               {t(
-                "દરેક સ્તરે GSEB અભ્યાસક્રમ અનુસાર વિષયો, સાથે વધારાની સહઅભ્યાસિક પ્રવૃત્તિઓ. વિદ્યાર્થી-કેન્દ્રિત અભિગમ અને વ્યક્તિગત ધ્યાન.",
-                "Subjects as per GSEB curriculum at every level, along with additional co-curricular activities. Student-centric approach and individual attention."
+                "દરેક ધોરણ GSEB અભ્યાસક્રમ અનુસાર ચાલે છે.",
+                "Each level follows the GSEB curriculum enriched with co-curricular activities, modern teaching aids and a student-centric learning environment."
               )}
             </p>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.1}>
-            <Tabs defaultValue="primary" className="w-full">
-              <TabsList className="w-full justify-start bg-muted/50 h-auto flex-wrap gap-1 p-1.5 rounded-xl">
-                {subjects.map((s) => (
-                  <TabsTrigger key={s.key} value={s.key} className="text-xs rounded-lg px-4 py-2 data-[state=active]:bg-card data-[state=active]:shadow-sm">
-                    {s.label}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
+          <div className="space-y-5">
+            {levels.map((lvl, i) => (
+              <AnimatedSection key={lvl.key} delay={i * 0.06}>
+                <div
+                  id={`section-${lvl.key}`}
+                  className="rounded-2xl border border-border/60 overflow-hidden scroll-mt-28 bg-card shadow-sm hover:shadow-md transition-shadow duration-300"
+                >
+                  {/* coloured top stripe */}
+                  <div className={`h-1.5 w-full ${lvl.numBg}`} />
 
-              {subjects.map((s) => (
-                <TabsContent key={s.key} value={s.key} className="mt-8">
-                  <div className="space-y-5">
-                    <div>
-                      <p className="font-heading font-bold text-foreground mb-1">{s.grade}</p>
-                      <div className="h-px bg-border/50 my-4" />
+                  {/* header */}
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-4 px-6 sm:px-8 pt-5 pb-5 border-b border-border/40">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-white font-bold text-base ${lvl.numBg}`}>
+                      {i + 1}
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground/60 mb-2">
-                        {t("વિષયો", "Subjects")}
-                      </p>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{s.subjects}</p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <h3 className="font-heading text-xl font-bold text-foreground">{lvl.label}</h3>
+                        <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border ${lvl.badge} ${lvl.badgeBorder}`}>
+                          {lvl.grade}
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{lvl.description}</p>
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold tracking-wider uppercase text-muted-foreground/60 mb-2">
-                        {t("અભિગમ", "Approach")}
+                    <div className={`shrink-0 rounded-xl px-4 py-2.5 border text-right ${lvl.accent}`}>
+                      <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground/70 mb-0.5">
+                        {t("આકારણી", "Assessment")}
                       </p>
-                      <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">{s.approach}</p>
+                      <p className="text-sm font-semibold text-foreground leading-snug">{lvl.exam}</p>
                     </div>
                   </div>
-                </TabsContent>
-              ))}
-            </Tabs>
-          </AnimatedSection>
+
+                  {/* body */}
+                  <div className="grid lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-border/40">
+                    <div className="p-6 sm:p-8">
+                      <p className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-muted-foreground/70 mb-5">
+                        <span className={`inline-block w-2 h-2 rounded-full ${lvl.dot}`} />
+                        {t("વિષયો", "Subjects Offered")}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {lvl.subjects.map((sub) => (
+                          <span key={sub} className={`text-sm px-3 py-1.5 rounded-lg font-medium border ${lvl.badge} ${lvl.badgeBorder}`}>
+                            {sub}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="p-6 sm:p-8">
+                      <p className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-muted-foreground/70 mb-5">
+                        <span className={`inline-block w-2 h-2 rounded-full ${lvl.dot}`} />
+                        {t("શ.પ. અને ઉ.", "Pedagogy & Approach")}
+                      </p>
+                      <ul className="space-y-3">
+                        {lvl.points.map((pt) => (
+                          <li key={pt} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${lvl.dot.replace("bg-", "text-")}`} />
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Details Accordion */}
-      <section className="section-padding bg-muted/30 relative">
-        <FloatingShapes variant="light" density="medium" />
-        <div className="section-container max-w-3xl relative z-10">
+      {/* ── Teaching, Assessment & Career ── */}
+      <section className="section-padding bg-muted/40 relative">
+        <FloatingShapes variant="light" density="low" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <AnimatedSection>
-            <span className="section-label">{t("વિગતો", "Details")}</span>
-            <h2 className="text-2xl font-bold text-foreground mb-3">
-              {t("શિક્ષણ પદ્ધતિ અને વધુ", "Teaching Methodology & More")}
+            <span className="section-label">{t("શ.પ.", "Pedagogy")}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
+              {t("શિક્ષણ, મૂલ્યાંકન અને કારકિર્દી સહાય", "Teaching, Assessment & Career Support")}
             </h2>
-            <p className="text-sm text-muted-foreground mb-10 leading-relaxed max-w-xl">
+            <p className="text-base text-muted-foreground mb-12 max-w-2xl leading-relaxed">
               {t(
-                "અમારી શિક્ષણ પદ્ધતિ, મૂલ્યાંકન પ્રણાલી, માળખાકીય સુવિધાઓ, સહઅભ્યાસિક પ્રવૃત્તિઓ, અને વિશેષ કાર્યક્રમો વિશે વિગતવાર માહિતી.",
-                "Detailed information about our teaching methodology, assessment system, infrastructure, co-curricular activities, and special programs."
+                "Our evidence-based methodologies, transparent assessment system and dedicated career guidance ensure every student achieves their full potential.",
+                "Our evidence-based methodologies, transparent assessment system and dedicated career guidance ensure every student achieves their full potential."
               )}
             </p>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.1}>
-            <Accordion type="single" collapsible className="w-full space-y-2">
-              {accordionItems.map((item) => (
-                <AccordionItem key={item.value} value={item.value} className="card-modern border-border/60 rounded-xl px-1 data-[state=open]:shadow-md transition-shadow duration-300">
-                  <AccordionTrigger className="text-sm font-heading font-semibold px-5 py-4 hover:no-underline">
-                    {item.title}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed px-5 pb-5 whitespace-pre-line">
-                    {item.content}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </AnimatedSection>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {methodology.map((m, i) => {
+              const Icon = m.icon;
+              return (
+                <AnimatedSection key={m.title} delay={i * 0.08}>
+                  <div className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                    <div className={`px-6 pt-6 pb-5 border-b border-border/40 flex items-start gap-4 ${m.color ? m.color.split(" ")[1] + "/10" : "bg-primary/5"}`}>
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${m.color || "text-primary bg-primary/10"}`}>
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="font-heading text-base font-bold text-foreground leading-tight">{m.title}</h3>
+                        <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{m.desc}</p>
+                      </div>
+                    </div>
+                    <ul className="p-6 space-y-2.5 flex-1">
+                      {m.items.map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/80 leading-relaxed">
+                          <CheckCircle2 className="w-4 h-4 text-primary/60 mt-0.5 shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
         </div>
       </section>
+
+      {/* ── Facilities, Co-curricular & Community ── */}
+      <section className="section-padding bg-background relative">
+        <FloatingShapes variant="light" density="medium" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <AnimatedSection>
+            <span className="section-label">{t("સ.", "Facilities")}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
+              {t("ઇન્ફ્રાસ્ટ્રક્ચર, સહ-અભ્યાસક્રમ અને કેમ્પસ લાઇફ", "Infrastructure, Co-Curricular & Campus Life")}
+            </h2>
+            <p className="text-base text-muted-foreground mb-12 max-w-2xl leading-relaxed">
+              {t(
+                "World-class labs, a well-stocked library, a safe campus and a vibrant co-curricular programme to develop every student holistically.",
+                "World-class labs, a well-stocked library, a safe campus and a vibrant co-curricular programme to develop every student holistically."
+              )}
+            </p>
+          </AnimatedSection>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {facilities.map((f, i) => {
+              const Icon = f.icon;
+              return (
+                <AnimatedSection key={f.title} delay={i * 0.06}>
+                  <div className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 h-full flex flex-col">
+                    <div className="px-6 pt-6 pb-4 border-b border-border/40 flex items-center gap-3">
+                      <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${f.color || "text-primary bg-primary/10"}`}>
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="font-heading text-base font-bold text-foreground">{f.title}</h3>
+                    </div>
+                    <ul className="p-6 space-y-3 flex-1">
+                      {f.items.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary/50 mt-2 shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 };

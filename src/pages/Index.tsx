@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +21,7 @@ import {
   Microscope,
   Wifi,
   TreePine,
+  PenLine,
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingShapes from "@/components/FloatingShapes";
@@ -27,10 +29,16 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { SCHOOL_INFO, SCHOOL_INFO_PARTIAL_DATA, SCHOOL_ACADEMICS_DATA } from "@/config/constants";
 import { motion } from "framer-motion";
 import heroImage from "@/assets/hero-school.jpeg";
+import { testimonialStore, type Testimonial } from "@/lib/testimonials";
 
 const Index = () => {
   const { t } = useLanguage();
   const classCounts = SCHOOL_ACADEMICS_DATA.classes;
+  const [visibleTestimonials, setVisibleTestimonials] = useState<Testimonial[]>([]);
+
+  useEffect(() => {
+    setVisibleTestimonials(testimonialStore.getVisible());
+  }, []);
 
   const stats = [
     { num: "57+", label: t("વર્ષનો અનુભવ (૧૯૬૭ થી)", "Years of Excellence (Est. 1967)") },
@@ -216,41 +224,6 @@ const Index = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      quote: t(
-        "સેવાસી હાઈ સ્કૂલે મારા બાળકના વ્યક્તિત્વ વિકાસમાં ખૂબ જ મહત્વની ભૂમિકા ભજવી છે. શિક્ષકો ખૂબ જ સમર્પિત છે અને દરેક બાળક પર વ્યક્તિગત ધ્યાન આપે છે.",
-        "Sevasi High School has played a vital role in my child's personality development. The teachers are truly dedicated and give individual attention to every child.",
-      ),
-      name: t("રાજેશભાઈ પટેલ", "Rajeshbhai Patel"),
-      role: t("વાલી", "Parent"),
-    },
-    {
-      quote: t(
-        "ગુજરાતી માધ્યમમાં આટલી સારી ગુણવત્તાનું શિક્ષણ મળવું ખૂબ જ દુર્લભ છે. અમે ખૂબ સંતુષ્ટ છીએ. મારા બંને બાળકો અહીં ભણે છે અને બંનેના પરિણામો ઉત્તમ આવે છે.",
-        "Finding such quality education in Gujarati medium is rare. We are extremely satisfied. Both my children study here and both get excellent results.",
-      ),
-      name: t("મીનાબેન શાહ", "Meenaben Shah"),
-      role: t("વાલી", "Parent"),
-    },
-    {
-      quote: t(
-        "બોર્ડ પરીક્ષામાં મળેલી સફળતા માટે હું મારી શાળાનો આભારી છું. શિક્ષકોનું માર્ગદર્શન અમૂલ્ય હતું. આજે હું ડૉક્ટર છું તે ફક્ત આ શાળાના શિક્ષણને કારણે.",
-        "I owe my board exam success to my school. The guidance from teachers was invaluable. I'm a doctor today thanks to this school's education.",
-      ),
-      name: t("અર્જુન ઠાકર", "Arjun Thakar"),
-      role: t("ભૂતપૂર્વ વિદ્યાર્થી, ડૉક્ટર", "Alumni, Doctor"),
-    },
-    {
-      quote: t(
-        "શાળાનું વાતાવરણ ખૂબ જ શિસ્તબદ્ધ અને પ્રેરણાદાયક છે. બાળકો ખુશ થઈને શાળાએ જાય છે. રમતગમત અને સાંસ્કૃતિક પ્રવૃત્તિઓ બાળકોના સર્વાંગી વિકાસમાં ઘણી મદદ કરે છે.",
-        "The school environment is very disciplined and inspiring. Children go to school happily. Sports and cultural activities contribute greatly to children's holistic development.",
-      ),
-      name: t("કાવ્યાબેન જોશી", "Kavyaben Joshi"),
-      role: t("વાલી", "Parent"),
-    },
-  ];
-
   const highlights = [
     { icon: Clock, text: t("૧૯૬૭ થી — ૫૭+ વર્ષનો ગૌરવશાળી ઈતિહાસ", "Since 1967 — 57+ years of glorious history") },
     { icon: Star, text: t("૩.૯ સ્ટાર રેટિંગ — ૨૨ રિવ્યૂ પર આધારિત", "3.9 Star Rating — based on 22 reviews") },
@@ -260,7 +233,8 @@ const Index = () => {
 
   return (
     <div className="pb-16 lg:pb-0">
-      {/* Hero */}
+
+      {/* ── Hero ── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -283,14 +257,14 @@ const Index = () => {
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6"
               >
                 <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                <span className="text-xs font-medium tracking-wide text-white/80">
+                <span className="text-sm font-medium tracking-wide text-white/80">
                   {t("પ્રવેશ ચાલુ છે • 2025-26", "Admissions Open • 2025-26")}
                 </span>
               </motion.div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <h1 className="font-gujarati text-3xl sm:text-4xl lg:text-[3.25rem] font-bold text-white leading-[1.15] mb-5">
+              <h1 className="font-gujarati text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-white leading-[1.15] mb-5">
                 {t(
                   SCHOOL_INFO_PARTIAL_DATA.school.tagline.gu,
                   SCHOOL_INFO_PARTIAL_DATA.school.tagline.en,
@@ -299,13 +273,13 @@ const Index = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <p className="text-base sm:text-lg text-white/60 leading-relaxed mb-4 max-w-lg">
+              <p className="text-lg sm:text-xl text-white/60 leading-relaxed mb-4 max-w-lg">
                 {t(
                   SCHOOL_INFO_PARTIAL_DATA.school.description.gu,
                   SCHOOL_INFO_PARTIAL_DATA.school.description.en,
                 )}
               </p>
-              <p className="text-sm text-white/40 leading-relaxed mb-8 max-w-lg">
+              <p className="text-base text-white/40 leading-relaxed mb-8 max-w-lg">
                 {t(
                   `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.gu}. સંપર્ક: ${SCHOOL_INFO.phone}.`,
                   `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.en}. Contact: ${SCHOOL_INFO.phone}.`
@@ -332,7 +306,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Stats Bar */}
+      {/* ── Stats Bar ── */}
       <section className="relative z-10 -mt-16">
         <div className="section-container">
           <AnimatedSection>
@@ -344,10 +318,10 @@ const Index = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.4 }}
-                  className="card-modern p-5 sm:p-6 text-center"
+                  className="bg-card border border-border/60 rounded-2xl p-5 sm:p-6 text-center shadow-md"
                 >
                   <p className="stat-number mb-1">{s.num}</p>
-                  <p className="text-xs sm:text-sm text-muted-foreground font-medium">
+                  <p className="text-sm sm:text-base text-muted-foreground font-medium leading-snug">
                     {s.label}
                   </p>
                 </motion.div>
@@ -357,12 +331,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Highlights strip */}
+      {/* ── Highlights strip ── */}
       <section className="py-10 bg-background relative">
         <FloatingShapes variant="light" density="low" />
         <div className="section-container relative z-10">
           <AnimatedSection>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {highlights.map((h, i) => (
                 <motion.div
                   key={i}
@@ -370,10 +344,12 @@ const Index = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/[0.03] border border-primary/[0.06]"
+                  className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-primary/[0.04] border border-primary/[0.08] hover:bg-primary/[0.07] transition-colors duration-200"
                 >
-                  <h.icon className="w-4 h-4 text-primary/60 shrink-0" />
-                  <span className="text-sm text-foreground font-medium">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <h.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-sm text-foreground font-medium leading-snug">
                     {h.text}
                   </span>
                 </motion.div>
@@ -383,19 +359,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Why Sevasi */}
-      <section className="section-padding bg-background relative">
+      {/* ── Why Sevasi ── */}
+      <section className="section-padding bg-muted/40 relative">
         <FloatingShapes variant="light" density="medium" />
         <div className="section-container relative z-10">
           <AnimatedSection>
             <div className="text-center mb-14">
-              <span className="section-label">
-                {t("શા માટે અમે", "Why Us")}
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+              <span className="section-label">{t("શા માટે અમે", "Why Us")}</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
                 {t("શા માટે સેવાસી હાઈ સ્કૂલ?", "Why Sevasi High School?")}
               </h2>
-              <p className="text-sm text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
+              <p className="text-base text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
                 {t(
                   "૫૫+ વર્ષના અનુભવ, સમર્પિત શિક્ષકો, અને આધુનિક સુવિધાઓ સાથે અમે ગુજરાતી માધ્યમમાં શ્રેષ્ઠ શિક્ષણ આપીએ છીએ. અમારા ૨૫,૦૦૦+ ભૂતપૂર્વ વિદ્યાર્થીઓ વિવિધ ક્ષેત્રોમાં દેશ-વિદેશમાં પ્રગતિ કરી રહ્યા છે.",
                   "With 55+ years of experience, dedicated faculty, and modern facilities, we deliver excellence in Gujarati medium education. Our 25,000+ alumni are making progress across various fields nationally and internationally.",
@@ -405,14 +379,23 @@ const Index = () => {
           </AnimatedSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
-            {whyCards.map((card, i) => (
+            {[
+              { ...whyCards[0], accent: "bg-blue-50 border-blue-100",    icon_bg: "bg-blue-100",    icon_c: "text-blue-600"    },
+              { ...whyCards[1], accent: "bg-emerald-50 border-emerald-100", icon_bg: "bg-emerald-100", icon_c: "text-emerald-600" },
+              { ...whyCards[2], accent: "bg-amber-50 border-amber-100",  icon_bg: "bg-amber-100",   icon_c: "text-amber-600"   },
+              { ...whyCards[3], accent: "bg-slate-50 border-slate-200",  icon_bg: "bg-slate-100",   icon_c: "text-slate-600"   },
+              { ...whyCards[4], accent: "bg-violet-50 border-violet-100", icon_bg: "bg-violet-100", icon_c: "text-violet-600"  },
+              { ...whyCards[5], accent: "bg-rose-50 border-rose-100",    icon_bg: "bg-rose-100",    icon_c: "text-rose-600"    },
+              { ...whyCards[6], accent: "bg-orange-50 border-orange-100", icon_bg: "bg-orange-100", icon_c: "text-orange-600"  },
+              { ...whyCards[7], accent: "bg-teal-50 border-teal-100",    icon_bg: "bg-teal-100",    icon_c: "text-teal-600"    },
+            ].map((card, i) => (
               <AnimatedSection key={i} delay={i * 0.06}>
-                <div className="feature-item h-full flex gap-5">
-                  <div className="w-11 h-11 shrink-0 rounded-xl bg-primary/5 flex items-center justify-center">
-                    <card.icon className="w-5 h-5 text-primary" />
+                <div className={`rounded-2xl border p-6 h-full flex gap-4 hover:shadow-md transition-shadow duration-300 ${card.accent}`}>
+                  <div className={`w-11 h-11 shrink-0 rounded-xl flex items-center justify-center ${card.icon_bg}`}>
+                    <card.icon className={`w-5 h-5 ${card.icon_c}`} />
                   </div>
                   <div>
-                    <h3 className="font-heading font-semibold text-foreground mb-2 text-[0.95rem]">
+                    <h3 className="font-heading font-semibold text-foreground mb-1.5 text-base">
                       {card.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -426,19 +409,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Academics Overview */}
-      <section className="section-padding bg-muted/30 relative">
+      {/* ── Academics Overview ── */}
+      <section className="section-padding bg-background relative">
         <FloatingShapes variant="light" density="low" />
         <div className="section-container relative z-10">
           <AnimatedSection>
-            <div className="text-center mb-6">
-              <span className="section-label">
-                {t("અભ્યાસક્રમ", "Academics")}
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            <div className="text-center mb-12">
+              <span className="section-label">{t("અભ્યાસક્રમ", "Academics")}</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
                 {t("અભ્યાસક્રમ માળખું", "Curriculum Structure")}
               </h2>
-              <p className="text-sm text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
+              <p className="text-base text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
                 {t(
                   `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.gu}. માધ્યમ: ${SCHOOL_INFO_PARTIAL_DATA.academics.teaching_medium.gu}. ${SCHOOL_INFO_PARTIAL_DATA.academics.focus.gu}.`,
                   `${SCHOOL_INFO_PARTIAL_DATA.basic_info.school_type.en}. Medium: ${SCHOOL_INFO_PARTIAL_DATA.academics.teaching_medium.en}. ${SCHOOL_INFO_PARTIAL_DATA.academics.focus.en}.`,
@@ -447,17 +428,27 @@ const Index = () => {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
-            {grades.map((grade, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { ...grades[0], stripe: "bg-rose-500",   badge: "bg-rose-100 text-rose-700"   },
+              { ...grades[1], stripe: "bg-emerald-500", badge: "bg-emerald-100 text-emerald-700" },
+              { ...grades[2], stripe: "bg-violet-500", badge: "bg-violet-100 text-violet-700" },
+              { ...grades[3], stripe: "bg-amber-500",  badge: "bg-amber-100 text-amber-700"  },
+            ].map((grade, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
-                <div className="card-modern p-6 text-center h-full">
-                  <p className="stat-number text-3xl mb-2">{grade.range}</p>
-                  <p className="font-heading font-semibold text-foreground text-sm mb-2">
-                    {grade.label}
-                  </p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {grade.desc}
-                  </p>
+                <div className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm h-full flex flex-col hover:shadow-md transition-shadow duration-300">
+                  <div className={`h-1.5 w-full ${grade.stripe}`} />
+                  <div className="p-6 text-center flex-1 flex flex-col">
+                    <p className={`text-4xl font-bold mb-3 inline-block mx-auto px-4 py-1.5 rounded-xl ${grade.badge}`}>
+                      {grade.range}
+                    </p>
+                    <p className="font-heading font-semibold text-foreground text-base mb-2">
+                      {grade.label}
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mt-auto">
+                      {grade.desc}
+                    </p>
+                  </div>
                 </div>
               </AnimatedSection>
             ))}
@@ -479,19 +470,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Facilities */}
-      <section className="section-padding bg-background relative">
+      {/* ── Facilities ── */}
+      <section className="section-padding bg-muted/40 relative">
         <FloatingShapes variant="light" density="medium" />
         <div className="section-container relative z-10">
           <AnimatedSection>
-            <div className="text-center mb-6">
-              <span className="section-label">
-                {t("સુવિધાઓ", "Facilities")}
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+            <div className="text-center mb-12">
+              <span className="section-label">{t("સુવિધાઓ", "Facilities")}</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
                 {t("અમારી સુવિધાઓ", "Our Facilities")}
               </h2>
-              <p className="text-sm text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
+              <p className="text-base text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
                 {t(
                   "વિદ્યાર્થીઓના શૈક્ષણિક અને સર્વાંગી વિકાસ માટે અત્યાધુનિક સુવિધાઓ. દરેક સુવિધા GSEB ધોરણો અનુસાર અને તેનાથી ઉપર.",
                   "State-of-the-art facilities for students' academic and holistic development. Every facility meets and exceeds GSEB standards.",
@@ -500,69 +489,30 @@ const Index = () => {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
-            {facilities.map((f, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { ...facilities[0], icon_bg: "bg-rose-100",    icon_c: "text-rose-600"    },
+              { ...facilities[1], icon_bg: "bg-blue-100",    icon_c: "text-blue-600"    },
+              { ...facilities[2], icon_bg: "bg-violet-100",  icon_c: "text-violet-600"  },
+              { ...facilities[3], icon_bg: "bg-emerald-100", icon_c: "text-emerald-600" },
+              { ...facilities[4], icon_bg: "bg-amber-100",   icon_c: "text-amber-600"   },
+              { ...facilities[5], icon_bg: "bg-slate-100",   icon_c: "text-slate-600"   },
+              { ...facilities[6], icon_bg: "bg-orange-100",  icon_c: "text-orange-600"  },
+              { ...facilities[7], icon_bg: "bg-cyan-100",    icon_c: "text-cyan-600"    },
+              { ...facilities[8], icon_bg: "bg-green-100",   icon_c: "text-green-600"   },
+            ].map((f, i) => (
               <AnimatedSection key={i} delay={i * 0.05}>
-                <div className="feature-item h-full">
-                  <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 shrink-0 rounded-xl bg-primary/5 flex items-center justify-center">
-                      <f.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-heading font-semibold text-sm text-foreground mb-1.5">
-                        {f.name}
-                      </p>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
-                        {f.desc}
-                      </p>
-                    </div>
+                <div className="bg-card border border-border/60 rounded-2xl p-5 h-full flex gap-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  <div className={`w-11 h-11 shrink-0 rounded-xl flex items-center justify-center ${f.icon_bg}`}>
+                    <f.icon className={`w-5 h-5 ${f.icon_c}`} />
                   </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="section-padding bg-muted/30 relative">
-        <FloatingShapes variant="light" density="low" />
-        <div className="section-container relative z-10">
-          <AnimatedSection>
-            <div className="text-center mb-14">
-              <span className="section-label">
-                {t("પ્રતિભાવ", "Testimonials")}
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
-                {t(
-                  "વાલીઓ અને વિદ્યાર્થીઓના અનુભવો",
-                  "What Parents & Students Say",
-                )}
-              </h2>
-              <p className="text-sm text-muted-foreground mt-3 max-w-md mx-auto">
-                {t(
-                  "અમારા વાલીઓ અને ભૂતપૂર્વ વિદ્યાર્થીઓના અનુભવો જ અમારી સૌથી મોટી ઓળખ છે.",
-                  "The experiences of our parents and alumni are our greatest identity.",
-                )}
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
-            {testimonials.map((item, i) => (
-              <AnimatedSection key={i} delay={i * 0.08}>
-                <div className="card-modern p-6 sm:p-7 h-full flex flex-col">
-                  <div className="text-3xl text-primary/20 font-heading font-bold mb-3">
-                    "
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5">
-                    {item.quote}
-                  </p>
-                  <div className="border-t border-border/50 pt-4">
-                    <p className="font-heading font-semibold text-sm text-foreground">
-                      {item.name}
+                  <div>
+                    <p className="font-heading font-semibold text-base text-foreground mb-1.5">
+                      {f.name}
                     </p>
-                    <p className="text-xs text-muted-foreground">{item.role}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {f.desc}
+                    </p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -571,7 +521,77 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Admissions CTA */}
+      {/* ── Testimonials ── */}
+      {visibleTestimonials.length > 0 && (
+        <section className="section-padding bg-background relative">
+          <FloatingShapes variant="light" density="low" />
+          <div className="section-container relative z-10">
+            <AnimatedSection>
+              <div className="text-center mb-14">
+                <span className="section-label">{t("પ્રતિભાવ", "Testimonials")}</span>
+                <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                  {t(
+                    "વાલીઓ અને વિદ્યાર્થીઓના અનુભવો",
+                    "What Parents & Students Say",
+                  )}
+                </h2>
+                <p className="text-base text-muted-foreground mt-3 max-w-md mx-auto">
+                  {t(
+                    "અમારા વાલીઓ અને ભૂતપૂર્વ વિદ્યાર્થીઓના અનુભવો જ અમારી સૌથી મોટી ઓળખ છે.",
+                    "The experiences of our parents and alumni are our greatest identity.",
+                  )}
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
+              {visibleTestimonials.map((item, i) => (
+                <AnimatedSection key={item.id} delay={i * 0.08}>
+                  <div className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm h-full flex flex-col hover:shadow-md transition-shadow duration-300">
+                    <div className="px-7 pt-7 pb-5 flex-1">
+                      <div className="text-5xl text-primary/15 font-heading font-bold leading-none mb-3 select-none">"</div>
+                      <p className="text-base text-foreground/80 leading-relaxed">
+                        {item.quote}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3 border-t border-border/50 px-7 py-4">
+                      <div className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                        <span className="text-sm font-bold text-primary">
+                          {item.name.charAt(0)}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-heading font-semibold text-sm text-foreground">
+                          {item.name}
+                        </p>
+                        {item.role && (
+                          <p className="text-xs text-muted-foreground">{item.role}</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+
+            <AnimatedSection delay={0.3}>
+              <div className="mt-10 text-center">
+                <Link to="/testimonials/submit">
+                  <Button
+                    variant="outline"
+                    className="btn-standard font-heading rounded-xl hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  >
+                    <PenLine className="w-4 h-4 mr-2" />
+                    {t("તમારો અનુભવ શેર કરો", "Share Your Experience")}
+                  </Button>
+                </Link>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
+
+      {/* ── Admissions CTA ── */}
       <section className="cta-surface relative">
         <FloatingShapes variant="dark" density="medium" />
         <div className="section-container py-20 sm:py-24 relative z-10">
@@ -579,14 +599,14 @@ const Index = () => {
             <div className="text-center max-w-lg mx-auto">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                <span className="text-xs font-medium text-white/80">
+                <span className="text-sm font-medium text-white/80">
                   {t("૨૦૨૫-૨૬ પ્રવેશ", "2025-26 Admissions")}
                 </span>
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
                 {t("પ્રવેશ પ્રક્રિયા ચાલુ છે", "Admissions Are Now Open")}
               </h2>
-              <p className="text-sm text-white/60 mb-10 leading-relaxed">
+              <p className="text-base text-white/60 mb-10 leading-relaxed">
                 {t(
                   "આપના બાળકના ઉજ્જવળ ભવિષ્ય માટે આજે જ સેવાસી હાઈ સ્કૂલમાં પ્રવેશ માટે સંપર્ક કરો. ધોરણ ૧ થી ૧૨ — વિજ્ઞાન અને સામાન્ય પ્રવાહ ઉપલબ્ધ.",
                   "Contact us today to enroll your child for a brighter future at Sevasi High School. Grade 1 to 12 — Science and General streams available.",
@@ -601,7 +621,7 @@ const Index = () => {
                 </Link>
                 <Link to="/contact">
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     className="btn-standard-lg border-white/15 text-white hover:bg-white/5 font-heading rounded-xl"
                   >
                     {t("સંપર્ક કરો", "Contact Us")}
@@ -612,6 +632,7 @@ const Index = () => {
           </AnimatedSection>
         </div>
       </section>
+
     </div>
   );
 };

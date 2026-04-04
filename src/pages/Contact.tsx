@@ -54,10 +54,10 @@ const Contact = () => {
             <span className="section-label text-primary-foreground/40 before:bg-primary-foreground/20">
               {t("સંપર્ક", "Contact")}
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-5">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-5">
               {t("અમારો સંપર્ક કરો", "Get In Touch")}
             </h1>
-            <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg text-primary-foreground/60 max-w-xl leading-relaxed">
               {t(
                 "પ્રવેશ, શૈક્ષણિક, ફી, શાળા મુલાકાત, અથવા કોઈપણ પ્રશ્ન માટે અમારો સંપર્ક કરો. ફોન, ઈમેલ, WhatsApp, અથવા રૂબરૂ — અમે મદદ માટે તત્પર છીએ. અમે 24 કલાકમાં જવાબ આપીશું.",
                 "Contact us for admissions, academics, fees, school visits, or any other queries. Via phone, email, WhatsApp, or in-person — we're here to help. We'll respond within 24 hours."
@@ -74,10 +74,10 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="lg:col-span-2">
               <AnimatedSection>
-                <h2 className="font-heading text-xl font-bold text-foreground mb-3">
+                <h2 className="font-heading text-2xl font-bold text-foreground mb-3">
                   {t("સંપર્ક માહિતી", "Contact Information")}
                 </h2>
-                <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
+                <p className="text-base text-muted-foreground mb-8 leading-relaxed">
                   {t(
                     `કાર્યાલય સમય વિભાગ મુજબ અલગ છે: પ્રાથમિક/ઉ.મા. અને માધ્યમિકના સમય ઉપર દર્શાવ્યા મુજબ છે. કુલ શિક્ષણ સમય: ${SCHOOL_INFO_PARTIAL_DATA.timings.weekly_hours.teaching.gu}. વિરામ સમય: ${SCHOOL_INFO_PARTIAL_DATA.timings.weekly_hours.break.gu}. રવિવાર અને જાહેર રજાઓ બંધ. ચુકવણી: ચેક / ડિમાન્ડ ડ્રાફ્ટ, રોકડ.`,
                     `Office timings vary by section: Primary/H.S. and Secondary timings are listed above. Weekly teaching hours: ${SCHOOL_INFO_PARTIAL_DATA.timings.weekly_hours.teaching.en}. Break time: ${SCHOOL_INFO_PARTIAL_DATA.timings.weekly_hours.break.en}. Closed on Sundays and public holidays. Payment modes: Cheque / Demand Draft, Cash.`
@@ -89,12 +89,12 @@ const Contact = () => {
                 {contactInfo.map((item, i) => (
                   <AnimatedSection key={i} delay={i * 0.08}>
                     <div className="flex items-start gap-4 group">
-                      <div className="w-10 h-10 shrink-0 rounded-xl bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                      <div className="w-10 h-10 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
                         <item.icon className="w-4 h-4 text-primary" />
                       </div>
                       <div>
-                        <p className="text-xs font-heading font-semibold text-muted-foreground/60 uppercase tracking-wider mb-1">{item.label}</p>
-                        <p className="text-sm text-foreground">{item.value}</p>
+                        <p className="text-sm font-heading font-semibold text-muted-foreground/60 uppercase tracking-wider mb-1">{item.label}</p>
+                        <p className="text-base text-foreground">{item.value}</p>
                       </div>
                     </div>
                   </AnimatedSection>
@@ -122,10 +122,10 @@ const Contact = () => {
             <div className="lg:col-span-3">
               <AnimatedSection>
                 <div className="card-modern p-6 sm:p-8">
-                  <h2 className="font-heading text-xl font-bold text-foreground mb-3">
+                  <h2 className="font-heading text-2xl font-bold text-foreground mb-3">
                     {t("સંદેશ મોકલો", "Send a Message")}
                   </h2>
-                  <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
+                  <p className="text-base text-muted-foreground mb-8 leading-relaxed">
                     {t(
                       "નીચેનું ફોર્મ ભરો. અમે 24 કલાકમાં આપનો જવાબ આપીશું. * ચિહ્ન ફરજિયાત ફીલ્ડ દર્શાવે છે.",
                       "Fill the form below. We'll respond within 24 hours. * indicates required fields."
@@ -134,13 +134,13 @@ const Contact = () => {
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name" className="text-xs font-heading font-semibold">
+                        <Label htmlFor="name" className="text-sm font-heading font-semibold">
                           {t("નામ", "Name")} *
                         </Label>
                         <Input id="name" required placeholder={t("આપનું નામ", "Your name")} className="h-11 rounded-lg" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-xs font-heading font-semibold">
+                        <Label htmlFor="phone" className="text-sm font-heading font-semibold">
                           {t("ફોન નંબર", "Phone Number")} *
                         </Label>
                         <Input id="phone" required type="tel" placeholder="+91" className="h-11 rounded-lg" />
@@ -148,26 +148,26 @@ const Contact = () => {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="email" className="text-xs font-heading font-semibold">
+                        <Label htmlFor="email" className="text-sm font-heading font-semibold">
                           {t("ઈમેલ", "Email")}
                         </Label>
                         <Input id="email" type="email" placeholder="email@example.com" className="h-11 rounded-lg" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="grade" className="text-xs font-heading font-semibold">
+                        <Label htmlFor="grade" className="text-sm font-heading font-semibold">
                           {t("ધોરણ (પ્રવેશ માટે)", "Grade (for admission)")}
                         </Label>
                         <Input id="grade" placeholder={t("ધોરણ 1-12", "Grade 1-12")} className="h-11 rounded-lg" />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="subject" className="text-xs font-heading font-semibold">
+                      <Label htmlFor="subject" className="text-sm font-heading font-semibold">
                         {t("વિષય", "Subject")} *
                       </Label>
                       <Input id="subject" required placeholder={t("પ્રવેશ પૂછપરછ / ફી માહિતી / શાળા મુલાકાત / અન્ય", "Admission Enquiry / Fee Info / School Visit / Other")} className="h-11 rounded-lg" />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-xs font-heading font-semibold">
+                      <Label htmlFor="message" className="text-sm font-heading font-semibold">
                         {t("સંદેશ", "Message")} *
                       </Label>
                       <Textarea id="message" required rows={5} placeholder={t("આપનો સંદેશ અહીં લખો. પ્રવેશ પૂછપરછ માટે બાળકનું નામ, ઉંમર, અને હાલનું ધોરણ જણાવો.", "Write your message here. For admission enquiry, mention child's name, age, and current grade.")} className="rounded-lg resize-none" />

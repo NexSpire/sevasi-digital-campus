@@ -44,10 +44,10 @@ const Navbar = () => {
             className="w-10 h-10 object-contain transition-transform duration-300 group-hover:scale-105"
           />
           <div className="leading-[1.2]">
-            <span className="font-heading font-bold text-[0.9rem] text-foreground block tracking-tight">
+            <span className="font-heading font-bold text-[1.025rem] text-foreground block tracking-tight">
               {SCHOOL_INFO.name}
             </span>
-            <span className="font-gujarati text-[0.65rem] text-muted-foreground tracking-wide">
+            <span className="font-gujarati text-[0.775rem] text-muted-foreground tracking-wide">
               {SCHOOL_INFO.nameGujarati}
             </span>
           </div>
@@ -74,7 +74,7 @@ const Navbar = () => {
           {/* Language Toggle */}
           <button
             onClick={toggleLang}
-            className="flex items-center gap-1.5 h-9 px-3 rounded-lg text-xs font-medium border border-border/60 bg-card/50 hover:bg-muted/80 transition-all duration-200 text-muted-foreground hover:text-foreground"
+            className="flex items-center gap-1.5 h-9 px-3 rounded-lg text-sm font-medium border border-border/60 bg-card/50 hover:bg-muted/80 transition-all duration-200 text-muted-foreground hover:text-foreground"
             aria-label="Toggle language"
           >
             <Globe className="w-3.5 h-3.5" />
@@ -94,7 +94,7 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <Link to="/admissions" className="hidden lg:block">
-            <Button className="btn-standard bg-primary hover:bg-primary/90 font-heading text-xs font-semibold rounded-lg transition-all duration-200 hover:shadow-md">
+            <Button className="btn-standard bg-primary hover:bg-primary/90 font-heading text-sm font-semibold rounded-lg transition-all duration-200 hover:shadow-md">
               {t("પ્રવેશ પૂછપરછ", "Admissions")}
             </Button>
           </Link>
@@ -111,10 +111,10 @@ const Navbar = () => {
                 <div className="flex items-center gap-3">
                   <img src={logoImg} alt="Logo" className="w-10 h-10 object-contain" />
                   <div className="leading-[1.2]">
-                    <span className="font-heading font-bold text-sm block">
+                    <span className="font-heading font-bold text-base block">
                       {SCHOOL_INFO.name}
                     </span>
-                    <span className="font-gujarati text-[0.65rem] text-muted-foreground">
+                    <span className="font-gujarati text-[0.775rem] text-muted-foreground">
                       {SCHOOL_INFO.nameGujarati}
                     </span>
                   </div>
@@ -136,7 +136,7 @@ const Navbar = () => {
                       <Link
                         to={item.href}
                         onClick={() => setOpen(false)}
-                        className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-200 group ${
+                        className={`flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-all duration-200 group ${
                           isActive
                             ? "text-primary bg-primary/5"
                             : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
@@ -145,7 +145,7 @@ const Navbar = () => {
                         <span>
                           {lang === "gu" ? item.label : item.labelEn}
                           {lang === "en" && (
-                            <span className="font-gujarati text-xs text-muted-foreground/60 ml-2">
+                            <span className="font-gujarati text-sm text-muted-foreground/60 ml-2">
                               {item.label}
                             </span>
                           )}

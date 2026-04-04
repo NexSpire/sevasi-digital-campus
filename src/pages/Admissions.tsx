@@ -73,14 +73,14 @@ const Admissions = () => {
           <AnimatedSection>
             <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-foreground/10 border border-primary-foreground/10 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-              <span className="text-xs font-medium text-primary-foreground/80">
+              <span className="text-sm font-medium text-primary-foreground/80">
                 {t("૨૦૨૫-૨૬ પ્રવેશ ચાલુ", "2025-26 Admissions Open")}
               </span>
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-5">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-5">
               {t("પ્રવેશ પ્રક્રિયા", "Admission Process")}
             </h1>
-            <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg text-primary-foreground/60 max-w-xl leading-relaxed">
               {t(
                 "સેવાસી હાઈ સ્કૂલમાં ધોરણ ૧ થી ૧૨ માટે પ્રવેશ ખુલ્લો છે. સરળ, પારદર્શક, અને ન્યાયી પ્રવેશ પ્રક્રિયા. દરેક વિદ્યાર્થીને સમાન તક. SC/ST/OBC/EWS વિદ્યાર્થીઓ માટે ફી છૂટ ઉપલબ્ધ.",
                 "Admissions open for Grade 1 to 12 at Sevasi High School. Simple, transparent, and fair admission process. Equal opportunity for every student. Fee concession available for SC/ST/OBC/EWS students."
@@ -100,17 +100,17 @@ const Admissions = () => {
                   <Clock className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-medium">{t("ફોર્મ ઉપલબ્ધ", "Forms Available")}</p>
-                  <p className="font-heading font-semibold text-sm text-foreground">{t("માર્ચ ૧ થી", "From March 1")}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{t("ફોર્મ ઉપલબ્ધ", "Forms Available")}</p>
+                  <p className="font-heading font-semibold text-base text-foreground">{t("માર્ચ ૧ થી", "From March 1")}</p>
                 </div>
               </div>
               <div className="card-modern p-5 flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <FileText className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-medium">{t("છેલ્લી તારીખ", "Last Date")}</p>
-                  <p className="font-heading font-semibold text-sm text-foreground">{t("મે ૩૧", "May 31")}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{t("છેલ્લી તારીખ", "Last Date")}</p>
+                  <p className="font-heading font-semibold text-base text-foreground">{t("મે ૩૧", "May 31")}</p>
                 </div>
               </div>
               <div className="card-modern p-5 flex items-center gap-4">
@@ -118,8 +118,8 @@ const Admissions = () => {
                   <Phone className="w-5 h-5 text-accent" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-medium">{t("હેલ્પલાઇન", "Helpline")}</p>
-                  <p className="font-heading font-semibold text-sm text-foreground">{SCHOOL_INFO.phone}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{t("હેલ્પલાઇન", "Helpline")}</p>
+                  <p className="font-heading font-semibold text-base text-foreground">{SCHOOL_INFO.phone}</p>
                 </div>
               </div>
             </div>
@@ -130,13 +130,13 @@ const Admissions = () => {
       {/* Steps */}
       <section className="section-padding bg-background relative">
         <FloatingShapes variant="light" density="low" />
-        <div className="section-container max-w-4xl relative z-10">
+        <div className="section-container max-w-7xl relative z-10">
           <AnimatedSection>
             <span className="section-label">{t("પ્રક્રિયા", "Process")}</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3">
               {t("પ્રવેશના પગલાં", "Admission Steps")}
             </h2>
-            <p className="text-sm text-muted-foreground mb-12 max-w-xl leading-relaxed">
+            <p className="text-base text-muted-foreground mb-12 max-w-xl leading-relaxed">
               {t(
                 "ચાર સરળ પગલાંમાં પ્રવેશ પ્રક્રિયા પૂર્ણ કરો. શરૂઆતથી અંત સુધી અમે માર્ગદર્શન આપીશું.",
                 "Complete the admission process in four simple steps. We'll guide you from start to finish."
@@ -149,13 +149,13 @@ const Admissions = () => {
               <AnimatedSection key={i} delay={i * 0.08}>
                 <div className="card-modern p-6 sm:p-7 h-full">
                   <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 shrink-0 rounded-xl bg-primary/5 flex items-center justify-center">
+                    <div className="w-11 h-11 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center">
                       <s.icon className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <span className="text-xs font-heading font-bold text-primary/30">{s.step}</span>
+                      <span className="text-sm font-heading font-bold text-primary/30">{s.step}</span>
                       <h3 className="font-heading font-semibold text-foreground mt-0.5 mb-2">{s.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                      <p className="text-base text-muted-foreground leading-relaxed">{s.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -168,13 +168,13 @@ const Admissions = () => {
       {/* Eligibility */}
       <section className="section-padding bg-muted/30 relative">
         <FloatingShapes variant="light" density="low" />
-        <div className="section-container max-w-3xl relative z-10">
+        <div className="section-container max-w-7xl relative z-10">
           <AnimatedSection>
             <span className="section-label">{t("પાત્રતા", "Eligibility")}</span>
-            <h2 className="text-2xl font-bold text-foreground mb-3">
+            <h2 className="text-3xl font-bold text-foreground mb-3">
               {t("પાત્રતા માપદંડ", "Eligibility Criteria")}
             </h2>
-            <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base text-muted-foreground mb-8 leading-relaxed">
               {t(
                 "દરેક ધોરણ માટે ઉંમર અને શૈક્ષણિક લાયકાતના માપદંડ નીચે આપેલા છે. વિશેષ કિસ્સામાં આચાર્યશ્રી સાથે ચર્ચા કરો.",
                 "Age and academic eligibility criteria for each grade are listed below. For special cases, discuss with the principal."
@@ -185,19 +185,19 @@ const Admissions = () => {
           <AnimatedSection delay={0.1}>
             <div className="card-modern overflow-hidden">
               <div className="grid grid-cols-2 gap-px bg-border/50">
-                <div className="bg-primary/5 p-4">
-                  <p className="text-xs font-heading font-semibold text-primary">{t("ધોરણ", "Grade")}</p>
+                <div className="bg-primary/10 p-4">
+                  <p className="text-sm font-heading font-semibold text-primary">{t("ધોરણ", "Grade")}</p>
                 </div>
-                <div className="bg-primary/5 p-4">
-                  <p className="text-xs font-heading font-semibold text-primary">{t("લાયકાત", "Requirement")}</p>
+                <div className="bg-primary/10 p-4">
+                  <p className="text-sm font-heading font-semibold text-primary">{t("લાયકાત", "Requirement")}</p>
                 </div>
                 {eligibility.map((e, i) => (
                   <div key={i} className="contents">
                     <div className="bg-card p-4 border-t border-border/30">
-                      <p className="text-sm font-medium text-foreground">{e.grade}</p>
+                      <p className="text-base font-medium text-foreground">{e.grade}</p>
                     </div>
                     <div className="bg-card p-4 border-t border-border/30">
-                      <p className="text-sm text-muted-foreground">{e.age}</p>
+                      <p className="text-base text-muted-foreground">{e.age}</p>
                     </div>
                   </div>
                 ))}
@@ -210,13 +210,13 @@ const Admissions = () => {
       {/* Documents */}
       <section className="section-padding bg-background relative">
         <FloatingShapes variant="light" density="medium" />
-        <div className="section-container max-w-3xl relative z-10">
+        <div className="section-container max-w-7xl relative z-10">
           <AnimatedSection>
             <span className="section-label">{t("દસ્તાવેજો", "Documents")}</span>
-            <h2 className="text-2xl font-bold text-foreground mb-3">
+            <h2 className="text-3xl font-bold text-foreground mb-3">
               {t("જરૂરી દસ્તાવેજો", "Required Documents")}
             </h2>
-            <p className="text-sm text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-base text-muted-foreground mb-8 leading-relaxed">
               {t(
                 "પ્રવેશ સમયે નીચેના દસ્તાવેજો ફરજિયાત છે. ઓરિજિનલ અને ફોટોકોપી બંને લાવો. ચકાસણી પછી ઓરિજિનલ પરત કરવામાં આવશે.",
                 "The following documents are mandatory at admission. Bring both originals and photocopies. Originals will be returned after verification."
@@ -230,7 +230,7 @@ const Admissions = () => {
                 {documents.map((doc, i) => (
                   <div key={i} className="flex items-start gap-3 group">
                     <CheckCircle className="w-4 h-4 text-primary/60 mt-0.5 shrink-0 group-hover:text-primary transition-colors" />
-                    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors leading-relaxed">{doc}</span>
+                    <span className="text-base text-muted-foreground group-hover:text-foreground transition-colors leading-relaxed">{doc}</span>
                   </div>
                 ))}
               </div>
@@ -242,10 +242,10 @@ const Admissions = () => {
       {/* FAQs */}
       <section className="section-padding bg-muted/30 relative">
         <FloatingShapes variant="light" density="low" />
-        <div className="section-container max-w-3xl relative z-10">
+        <div className="section-container max-w-7xl relative z-10">
           <AnimatedSection>
             <span className="section-label">{t("FAQ", "FAQ")}</span>
-            <h2 className="text-2xl font-bold text-foreground mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-8">
               {t("વારંવાર પૂછાતા પ્રશ્નો", "Frequently Asked Questions")}
             </h2>
           </AnimatedSection>
@@ -256,9 +256,9 @@ const Admissions = () => {
                 <div className="card-modern p-6">
                   <div className="flex items-start gap-3 mb-3">
                     <HelpCircle className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                    <p className="font-heading font-semibold text-sm text-foreground">{faq.q}</p>
+                    <p className="font-heading font-semibold text-base text-foreground">{faq.q}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed pl-7">{faq.a}</p>
+                  <p className="text-base text-muted-foreground leading-relaxed pl-7">{faq.a}</p>
                 </div>
               </AnimatedSection>
             ))}
@@ -271,10 +271,10 @@ const Admissions = () => {
         <FloatingShapes variant="dark" density="medium" />
         <div className="section-container py-20 sm:py-24 relative z-10 text-center max-w-lg mx-auto">
           <AnimatedSection>
-            <h2 className="text-2xl sm:text-3xl font-bold text-primary-foreground mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-primary-foreground mb-4">
               {t("પ્રવેશ માટે સંપર્ક કરો", "Contact for Admissions")}
             </h2>
-            <p className="text-sm text-primary-foreground/60 mb-10 leading-relaxed">
+            <p className="text-base text-primary-foreground/60 mb-10 leading-relaxed">
               {t(
                 `વધુ માહિતી, ફી માળખું, અથવા શાળા મુલાકાત માટે અમારો સંપર્ક કરો. અમે મદદ માટે તત્પર છીએ. ફોન: ${SCHOOL_INFO.phone}`,
                 `Contact us for more information, fee structure, or school visit. We're here to help. Phone: ${SCHOOL_INFO.phone}`

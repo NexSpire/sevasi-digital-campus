@@ -108,10 +108,10 @@ const StudentLife = () => {
             <span className="section-label text-primary-foreground/40 before:bg-primary-foreground/20">
               {t("વિદ્યાર્થી જીવન", "Student Life")}
             </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-5">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-5">
               {t("વિદ્યાર્થી જીવન", "Life at Sevasi")}
             </h1>
-            <p className="text-sm sm:text-base text-primary-foreground/60 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg text-primary-foreground/60 max-w-xl leading-relaxed">
               {t(
                 "શૈક્ષણિક ઉત્કૃષ્ટતાની સાથે રમતગમત, સાંસ્કૃતિક પ્રવૃત્તિઓ, NCC/NSS, સાહિત્ય, અને સમાજસેવા દ્વારા સર્વાંગી વિકાસ. દરેક વિદ્યાર્થીને ઓછામાં ઓછી 1 સહઅભ્યાસિક પ્રવૃત્તિમાં ભાગ લેવાનું ફરજિયાત. વર્ષમાં 20+ કાર્યક્રમોનું આયોજન.",
                 "Holistic development through sports, cultural activities, NCC/NSS, literature, and community service alongside academic excellence. Every student must participate in at least 1 co-curricular activity. 20+ events organized per year."
@@ -128,10 +128,10 @@ const StudentLife = () => {
           <AnimatedSection>
             <div className="text-center mb-14">
               <span className="section-label">{t("પ્રવૃત્તિઓ", "Activities")}</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
                 {t("સહઅભ્યાસિક પ્રવૃત્તિઓ", "Co-Curricular Activities")}
               </h2>
-              <p className="text-sm text-muted-foreground mt-3 max-w-lg mx-auto">
+              <p className="text-base text-muted-foreground mt-3 max-w-lg mx-auto">
                 {t(
                   "અમે માનીએ છીએ કે સંપૂર્ણ શિક્ષણ = અભ્યાસ + પ્રવૃત્તિઓ. રમતગમત, કલા, સાહિત્ય, સેવા — દરેક ક્ષેત્રમાં તક.",
                   "We believe complete education = academics + activities. Opportunities in sports, art, literature, service — every field."
@@ -145,15 +145,15 @@ const StudentLife = () => {
               <AnimatedSection key={i} delay={i * 0.08}>
                 <div className="card-modern p-6 sm:p-8">
                   <div className="flex flex-col md:flex-row gap-6">
-                    <div className="w-12 h-12 shrink-0 rounded-xl bg-primary/5 flex items-center justify-center">
+                    <div className="w-12 h-12 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center">
                       <a.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-heading font-bold text-lg text-foreground mb-2">{a.title}</h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed mb-5">{a.desc}</p>
+                      <h3 className="font-heading font-bold text-xl text-foreground mb-2">{a.title}</h3>
+                      <p className="text-base text-muted-foreground leading-relaxed mb-5">{a.desc}</p>
                       <div className="flex flex-wrap gap-2">
                         {a.items.map((item) => (
-                          <span key={item} className="text-xs bg-muted/80 px-3 py-1.5 rounded-lg text-muted-foreground font-medium">
+                          <span key={item} className="text-sm bg-muted/80 px-3 py-1.5 rounded-lg text-muted-foreground font-medium">
                             {item}
                           </span>
                         ))}
@@ -174,10 +174,10 @@ const StudentLife = () => {
           <AnimatedSection>
             <div className="text-center mb-14">
               <span className="section-label">{t("સિદ્ધિઓ", "Achievements")}</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
                 {t("તાજેતરની સિદ્ધિઓ", "Recent Achievements")}
               </h2>
-              <p className="text-sm text-muted-foreground mt-3 max-w-lg mx-auto">
+              <p className="text-base text-muted-foreground mt-3 max-w-lg mx-auto">
                 {t(
                   "છેલ્લા 3 વર્ષમાં અમારા વિદ્યાર્થીઓએ રમતગમત, શૈક્ષણિક, અને સાંસ્કૃતિક ક્ષેત્રોમાં જિલ્લા અને રાજ્ય સ્તરે ઉત્કૃષ્ટ સિદ્ધિઓ મેળવી છે.",
                   "In the last 3 years, our students have achieved outstanding results at district and state levels in sports, academic, and cultural fields."
@@ -194,8 +194,8 @@ const StudentLife = () => {
                     <a.icon className="w-5 h-5 text-secondary" />
                   </div>
                   <div>
-                    <p className="font-heading font-semibold text-sm text-foreground mb-0.5">{a.title}</p>
-                    <p className="text-xs text-muted-foreground">{a.year}</p>
+                    <p className="font-heading font-semibold text-base text-foreground mb-0.5">{a.title}</p>
+                    <p className="text-sm text-muted-foreground">{a.year}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -211,7 +211,7 @@ const StudentLife = () => {
           <AnimatedSection>
             <div className="text-center mb-14">
               <span className="section-label">{t("દૈનિક કાર્યક્રમ", "Daily Schedule")}</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
                 {t("એક દિવસ સેવાસી હાઈ સ્કૂલમાં", "A Day at Sevasi High School")}
               </h2>
             </div>
@@ -232,9 +232,9 @@ const StudentLife = () => {
                   { time: "3:00-4:00", activity: t("વધારાની પ્રવૃત્તિ / રીમીડિયલ (વૈકલ્પિક)", "Extra activity / Remedial (optional)") },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4 items-start">
-                    <span className="text-xs font-heading font-bold text-primary w-20 shrink-0 mt-0.5">{item.time}</span>
+                    <span className="text-sm font-heading font-bold text-primary w-20 shrink-0 mt-0.5">{item.time}</span>
                     <div className="flex-1 border-l-2 border-border/40 pl-4">
-                      <p className="text-sm text-muted-foreground">{item.activity}</p>
+                      <p className="text-base text-muted-foreground">{item.activity}</p>
                     </div>
                   </div>
                 ))}

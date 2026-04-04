@@ -16,15 +16,15 @@ const currentYear = new Date().getFullYear();
             <div className="flex items-center gap-3 mb-5">
               <img src={logoImg} alt="Logo" className="w-10 h-10 object-contain brightness-0 invert opacity-80" />
               <div className="leading-[1.2]">
-                <span className="font-heading font-bold text-sm block">
+                <span className="font-heading font-bold text-base block">
                   {SCHOOL_INFO.name}
                 </span>
-                <span className="font-gujarati text-[0.65rem] opacity-60">
+                <span className="font-gujarati text-[0.775rem] opacity-60">
                   {SCHOOL_INFO.nameGujarati}
                 </span>
               </div>
             </div>
-            <p className="font-gujarati text-sm opacity-60 leading-relaxed max-w-xs">
+            <p className="font-gujarati text-base opacity-60 leading-relaxed max-w-xs">
               {t(
                 "ગુણવત્તાયુક્ત શિક્ષણ અને સર્વાંગી વિકાસ માટે સમર્પિત સંસ્થા. ૧૯૬૭ થી વડોદરાના વિદ્યાર્થીઓને ઉત્તમ શિક્ષણ આપી રહ્યા છીએ.",
                 "An institution dedicated to quality education and holistic development. Serving Vadodara's students with excellence since 1967."
@@ -34,7 +34,7 @@ const currentYear = new Date().getFullYear();
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading font-semibold text-xs tracking-wider uppercase opacity-40 mb-5">
+            <h4 className="font-heading font-semibold text-sm tracking-wider uppercase opacity-40 mb-5">
               {t("ઝડપી લિંક", "Quick Links")}
             </h4>
             <nav className="flex flex-col gap-2.5">
@@ -42,7 +42,7 @@ const currentYear = new Date().getFullYear();
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="text-sm opacity-60 hover:opacity-100 transition-all duration-200 flex items-center gap-1 group"
+                  className="text-base opacity-60 hover:opacity-100 transition-all duration-200 flex items-center gap-1 group"
                 >
                   {lang === "gu" ? item.label : item.labelEn}
                   <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 translate-y-0.5 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
@@ -53,7 +53,7 @@ const currentYear = new Date().getFullYear();
 
           {/* More Links */}
           <div>
-            <h4 className="font-heading font-semibold text-xs tracking-wider uppercase opacity-40 mb-5">
+            <h4 className="font-heading font-semibold text-sm tracking-wider uppercase opacity-40 mb-5">
               {t("વિશેષ", "Explore")}
             </h4>
             <nav className="flex flex-col gap-2.5">
@@ -61,7 +61,7 @@ const currentYear = new Date().getFullYear();
                 <Link
                   key={item.href}
                   to={item.href}
-                  className="text-sm opacity-60 hover:opacity-100 transition-all duration-200 flex items-center gap-1 group"
+                  className="text-base opacity-60 hover:opacity-100 transition-all duration-200 flex items-center gap-1 group"
                 >
                   {lang === "gu" ? item.label : item.labelEn}
                   <ArrowUpRight className="w-3 h-3 opacity-0 -translate-x-1 translate-y-0.5 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
@@ -72,10 +72,10 @@ const currentYear = new Date().getFullYear();
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-xs tracking-wider uppercase opacity-40 mb-5">
+            <h4 className="font-heading font-semibold text-sm tracking-wider uppercase opacity-40 mb-5">
               {t("સંપર્ક", "Contact")}
             </h4>
-            <div className="flex flex-col gap-3.5 text-sm opacity-60">
+            <div className="flex flex-col gap-3.5 text-base opacity-60">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 mt-0.5 shrink-0 opacity-70" />
                 <span className="font-gujarati">{SCHOOL_INFO.address}</span>
@@ -86,7 +86,7 @@ const currentYear = new Date().getFullYear();
               </div>
               <div className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 shrink-0 opacity-70" />
-                <span className="text-xs">{SCHOOL_INFO.email}</span>
+                <span className="text-sm">{SCHOOL_INFO.email}</span>
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@ const currentYear = new Date().getFullYear();
 
         <div className="h-px bg-primary-foreground/10 my-10" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs opacity-40">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm opacity-40">
           <span>© {currentYear} {SCHOOL_INFO.name}. {t("સ્થાપના: ૧૯૬૭", "Est. 1967")}. All rights reserved.</span>
           <span className="font-gujarati">{t("સેવાસી, વડોદરા | સોમ-શનિ: ૭AM-૬PM", "Sewasi, Vadodara | Mon-Sat: 7AM-6PM")}</span>
         </div>
