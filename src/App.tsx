@@ -19,6 +19,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 import AdminTestDashboard from "./pages/AdminTestDashboard";
+import Staff from "./pages/Staff";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const AppLayout = () => {
           <Route path="/admissions" element={<Admissions />} />
           <Route path="/student-life" element={<StudentLife />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/staff" element={<Staff />} />
           <Route path="/testimonials/submit" element={<SubmitTestimonial />} />
           <Route path="/admin/test-dashboard" element={<ProtectedRoute><AdminTestDashboard /></ProtectedRoute>} />
           <Route path="/admin" element={<AdminLogin />} />

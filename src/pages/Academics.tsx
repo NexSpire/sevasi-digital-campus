@@ -183,7 +183,6 @@ const Academics = () => {
         t("મનોવિજ્ઞાન", "Psychology"),
       ],
       points: [
-        t("NEET, JEE, GUJCET તૈયારી", "NEET, JEE, GUJCET coaching"),
         t("મોક ટેસ્ટ", "Mock tests"),
         t("એલ્યુમ્ની સત્રો", "Alumni sessions"),
         t("કોલેજ માર્ગદર્શન", "College guidance"),

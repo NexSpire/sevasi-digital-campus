@@ -30,7 +30,6 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: MapPin, label: t("સરનામું", "Address"), value: t(SCHOOL_INFO.address, SCHOOL_INFO.addressEn) },
-    { icon: Phone, label: t("ફોન", "Phone"), value: SCHOOL_INFO.phone },
     { icon: Mail, label: t("ઈમેલ", "Email"), value: SCHOOL_INFO.email },
     { icon: Globe, label: t("વેબસાઇટ", "Website"), value: SCHOOL_INFO.website },
     {
@@ -41,7 +40,6 @@ const Contact = () => {
         `Mon-Fri: ${SCHOOL_INFO.officeHours.weekdays} | Sat: ${SCHOOL_INFO.officeHours.saturday} | Sun: ${SCHOOL_INFO.officeHours.sunday}`,
       ),
     },
-    { icon: MessageCircle, label: t("WhatsApp", "WhatsApp"), value: SCHOOL_INFO.phone },
   ];
 
   return (
@@ -104,16 +102,7 @@ const Contact = () => {
               {/* Map */}
               <AnimatedSection delay={0.3}>
                 <div className="mt-8 rounded-xl overflow-hidden border border-border/60">
-                  <iframe
-                    title="Sevasi High School Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14767.5!2d73.1!3d22.25!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc5e7!2sSevasi%2C%20Vadodara!5e0!3m2!1sen!2sin!4v1700000000000"
-                    width="100%"
-                    height="240"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7381.883973228874!2d73.11584732586566!3d22.318033689693532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc88a55555555%3A0x7544a645a194af90!2sSevasi%20High%20School!5e0!3m2!1sen!2sus!4v1775825826805!5m2!1sen!2sus" width="600" height="450" style={{border:0}}  loading="lazy"/> 
                 </div>
               </AnimatedSection>
             </div>

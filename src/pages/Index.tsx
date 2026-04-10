@@ -68,8 +68,8 @@ const Index = () => {
       icon: Award,
       title: t("ઉત્કૃષ્ટ પરિણામો", "Excellent Results"),
       desc: t(
-        "બોર્ડ પરીક્ષાઓમાં સતત ઉત્તમ પરિણામોની પરંપરા. દર વર્ષે 98% થી વધુ વિદ્યાર્થીઓ ઉત્તીર્ણ. છેલ્લા 10 વર્ષમાં 50+ વિદ્યાર્થીઓએ A1 ગ્રેડ મેળવ્યો છે. NEET અને JEE જેવી સ્પર્ધાત્મક પરીક્ષાઓમાં પણ અમારા વિદ્યાર્થીઓ ઉત્તમ પ્રદર્શન કરે છે.",
-        "A legacy of outstanding board exam results. Over 98% pass rate year after year. In the last 10 years, 50+ students have achieved A1 grades. Our students also excel in competitive exams like NEET and JEE.",
+        "બોર્ડ પરીક્ષાઓમાં સતત ઉત્તમ પરિણામોની પરંપરા. દર વર્ષે 98% થી વધુ વિદ્યાર્થીઓ ઉત્તીર્ણ. છેલ્લા 10 વર્ષમાં 50+ વિદ્યાર્થીઓએ A1 ગ્રેડ મેળવ્યો છે.",
+        "A legacy of outstanding board exam results. Over 98% pass rate year after year. In the last 10 years, 50+ students have achieved A1 grades.",
       ),
     },
     {
@@ -106,10 +106,10 @@ const Index = () => {
     },
     {
       icon: Globe2,
-      title: t("સ્પર્ધાત્મક તૈયારી", "Competitive Readiness"),
+      title: t("સર્વાંગી વિકાસ", "Holistic Development"),
       desc: t(
-        "ધોરણ 10 અને 12 પછી NEET, JEE, અને અન્ય સ્પર્ધાત્મક પરીક્ષાઓ માટે વિશેષ માર્ગદર્શન. કારકિર્દી કાઉન્સેલિંગ, મોક ટેસ્ટ, અને નિષ્ણાતો દ્વારા સેમિનાર. વિદ્યાર્થીઓને રાષ્ટ્રીય અને આંતરરાષ્ટ્રીય સ્તરે સ્પર્ધાત્મક બનાવવા.",
-        "Special guidance for NEET, JEE, and other competitive exams after Grade 10 and 12. Career counseling, mock tests, and seminars by experts. Preparing students to compete at national and international levels.",
+        "શૈક્ષણિક ઉત્કૃષ્ટતા સાથે સાથે રમત-ગમત, સાંસ્કૃતિક પ્રવૃત્તિઓ, અને સ્વ-શિસ્ત દ્વારા વિદ્યાર્થીઓના સર્વાંગી વ્યક્તિત્વ ઘડતરનો ધ્યેય. શ્રેષ્ઠ નાગરિક બનાવવાની અમારી પ્રતિબદ્ધતા.",
+        "Alongside academic excellence, our goal is to build well-rounded personalities through sports, cultural activities, and self-discipline — committed to shaping responsible citizens.",
       ),
     },
   ];

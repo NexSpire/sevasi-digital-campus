@@ -1,11 +1,67 @@
+import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingShapes from "@/components/FloatingShapes";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SCHOOL_INFO_PARTIAL_DATA } from "@/config/constants";
-import { Trophy, Music, Calendar, Users, Medal, Palette, Flag, BookOpen, Heart, Star } from "lucide-react";
+import { Trophy, Music, Calendar, Users, Medal, Palette, Flag, BookOpen, Heart, Star, Clock } from "lucide-react";
+
+// ─── Bell-schedule data ───────────────────────────────────────────────────────
+
+type BellRow = { labelGu: string; labelEn: string; time: string; minGu: string; minEn: string; isBreak?: boolean };
+
+const PRIMARY_WEEKDAY: BellRow[] = [
+  { labelGu: "શાળા પ્રવેશ",   labelEn: "School Entry",  time: "7:30",  minGu: "",       minEn: "",        isBreak: false },
+  { labelGu: "પ્રાર્થના",      labelEn: "Prayer",        time: "7:30 – 7:40",  minGu: "10 મિ.", minEn: "10 min" },
+  { labelGu: "કાલાંશ ૧",      labelEn: "Period 1",       time: "7:40 – 8:15",  minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૨",      labelEn: "Period 2",       time: "8:15 – 8:50",  minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૩",      labelEn: "Period 3",       time: "8:50 – 9:25",  minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "રીશેષ",         labelEn: "Recess",         time: "9:25 – 9:40",  minGu: "15 મિ.", minEn: "15 min", isBreak: true },
+  { labelGu: "કાલાંશ ૪",      labelEn: "Period 4",       time: "9:40 – 10:15", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૫",      labelEn: "Period 5",       time: "10:15 – 10:50",minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૬",      labelEn: "Period 6",       time: "10:50 – 11:25",minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "છૂટવાનો સમય",   labelEn: "Dismissal",      time: "11:30", minGu: "",       minEn: "",        isBreak: false },
+];
+
+const PRIMARY_SATURDAY: BellRow[] = [
+  { labelGu: "પ્રાર્થના",     labelEn: "Prayer",    time: "11:30 – 11:40", minGu: "10 મિ.", minEn: "10 min" },
+  { labelGu: "કાલાંશ ૧",     labelEn: "Period 1",   time: "11:40 – 12:15", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૨",     labelEn: "Period 2",   time: "12:15 – 12:50", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "રીશેષ",        labelEn: "Recess",     time: "12:50 – 1:05",  minGu: "15 મિ.", minEn: "15 min", isBreak: true },
+  { labelGu: "કાલાંશ ૩",     labelEn: "Period 3",   time: "1:05 – 1:40",   minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૪",     labelEn: "Period 4",   time: "1:40 – 2:10",   minGu: "30 મિ.", minEn: "30 min" },
+  { labelGu: "છૂટવાનો સમય",  labelEn: "Dismissal",  time: "2:30",  minGu: "",       minEn: "" },
+];
+
+const SECONDARY_WEEKDAY: BellRow[] = [
+  { labelGu: "પ્રાર્થના",     labelEn: "Prayer",       time: "11:45 – 11:55", minGu: "10 મિ.", minEn: "10 min" },
+  { labelGu: "કાલાંશ ૧",     labelEn: "Period 1",      time: "11:55 – 12:30", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૨",     labelEn: "Period 2",      time: "12:30 – 01:05", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૩",     labelEn: "Period 3",      time: "01:05 – 01:40", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "ભોજન વિરામ",   labelEn: "Lunch Break",   time: "01:40 – 02:10", minGu: "30 મિ.", minEn: "30 min", isBreak: true },
+  { labelGu: "કાલાંશ ૪",     labelEn: "Period 4",      time: "02:10 – 02:45", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૫",     labelEn: "Period 5",      time: "02:45 – 03:20", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૬",     labelEn: "Period 6",      time: "03:20 – 03:50", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "રીશેષ",        labelEn: "Recess",        time: "03:50 – 04:00", minGu: "10 મિ.", minEn: "10 min", isBreak: true },
+  { labelGu: "કાલાંશ ૭",     labelEn: "Period 7",      time: "04:00 – 04:30", minGu: "30 મિ.", minEn: "30 min" },
+  { labelGu: "કાલાંશ ૮",     labelEn: "Period 8",      time: "04:30 – 05:00", minGu: "30 મિ.", minEn: "30 min" },
+];
+
+const SECONDARY_SATURDAY: BellRow[] = [
+  { labelGu: "પ્રાર્થના",    labelEn: "Prayer",    time: "07:50 – 08:00", minGu: "10 મિ.", minEn: "10 min" },
+  { labelGu: "કાલાંશ ૧",    labelEn: "Period 1",   time: "08:00 – 08:35", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૨",    labelEn: "Period 2",   time: "08:35 – 09:10", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "કાલાંશ ૩",    labelEn: "Period 3",   time: "09:10 – 09:45", minGu: "35 મિ.", minEn: "35 min" },
+  { labelGu: "રીશેષ",       labelEn: "Recess",     time: "09:45 – 10:05", minGu: "20 મિ.", minEn: "20 min", isBreak: true },
+  { labelGu: "કાલાંશ ૪",    labelEn: "Period 4",   time: "10:05 – 10:35", minGu: "30 મિ.", minEn: "30 min" },
+  { labelGu: "કાલાંશ ૫",    labelEn: "Period 5",   time: "10:35 – 11:10", minGu: "30 મિ.", minEn: "30 min" },
+];
+
+// ─── Component ────────────────────────────────────────────────────────────────
 
 const StudentLife = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const [activeSection, setActiveSection] = useState<"primary" | "secondary">("primary");
+  const [activeDay, setActiveDay]         = useState<"weekday" | "saturday">("weekday");
   const celebrationItems = t(
     SCHOOL_INFO_PARTIAL_DATA.activities_and_celebrations.gu.join("\n"),
     SCHOOL_INFO_PARTIAL_DATA.activities_and_celebrations.en.join("\n"),
@@ -204,41 +260,99 @@ const StudentLife = () => {
         </div>
       </section>
 
-      {/* Typical Day */}
+      {/* Bell Schedule */}
       <section className="section-padding bg-background relative">
         <FloatingShapes variant="light" density="low" />
         <div className="section-container max-w-2xl relative z-10">
           <AnimatedSection>
-            <div className="text-center mb-14">
-              <span className="section-label">{t("દૈનિક કાર્યક્રમ", "Daily Schedule")}</span>
+            <div className="text-center mb-10">
+              <span className="section-label">{t("ટકોરા પત્રક", "Bell Schedule")}</span>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
                 {t("એક દિવસ સેવાસી હાઈ સ્કૂલમાં", "A Day at Sevasi High School")}
               </h2>
             </div>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.1}>
-            <div className="card-modern p-6 sm:p-8">
-              <div className="space-y-4">
-                {[
-                  { time: "7:30 AM", activity: t("શાળા પ્રવેશ, બેગ ચેક", "School entry, bag check") },
-                  { time: "7:45 AM", activity: t("પ્રાર્થના સભા — રાષ્ટ્રગીત, પ્રાર્થના, સમાચાર", "Prayer assembly — National anthem, prayer, news") },
-                  { time: "8:00 AM", activity: t("પ્રથમ સત્ર — 4 કાલાંશ (દરેક 40 મિનિટ)", "First session — 4 periods (40 min each)") },
-                  { time: "10:40 AM", activity: t("ટૂંકો વિરામ — 15 મિનિટ (નાસ્તો)", "Short break — 15 min (snack)") },
-                  { time: "10:55 AM", activity: t("બીજું સત્ર — 3 કાલાંશ", "Second session — 3 periods") },
-                  { time: "12:55 PM", activity: t("ભોજન વિરામ — 30 મિનિટ", "Lunch break — 30 min") },
-                  { time: "1:25 PM", activity: t("ત્રીજું સત્ર — 2 કાલાંશ + PT/Games", "Third session — 2 periods + PT/Games") },
-                  { time: "3:00 PM", activity: t("શાળા છૂટવાનો સમય", "School dismissal") },
-                  { time: "3:00-4:00", activity: t("વધારાની પ્રવૃત્તિ / રીમીડિયલ (વૈકલ્પિક)", "Extra activity / Remedial (optional)") },
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-4 items-start">
-                    <span className="text-sm font-heading font-bold text-primary w-20 shrink-0 mt-0.5">{item.time}</span>
-                    <div className="flex-1 border-l-2 border-border/40 pl-4">
-                      <p className="text-base text-muted-foreground">{item.activity}</p>
-                    </div>
-                  </div>
-                ))}
+          <AnimatedSection delay={0.08}>
+            {/* Section tabs — Primary / Secondary */}
+            <div className="flex gap-2 mb-6 bg-muted/60 p-1 rounded-xl">
+              {(["primary", "secondary"] as const).map((s) => (
+                <button
+                  key={s}
+                  onClick={() => { setActiveSection(s); setActiveDay("weekday"); }}
+                  className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                    activeSection === s
+                      ? "bg-card shadow text-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {s === "primary"
+                    ? t("પ્રાથમિક (Primary)", "Primary School")
+                    : t("માધ્યમિક (Secondary)", "Secondary School")}
+                </button>
+              ))}
+            </div>
+
+            {/* Day tabs — Weekday / Saturday */}
+            <div className="flex gap-2 mb-5">
+              {(["weekday", "saturday"] as const).map((d) => (
+                <button
+                  key={d}
+                  onClick={() => setActiveDay(d)}
+                  className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200 ${
+                    activeDay === d
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "border-border/60 text-muted-foreground hover:text-foreground hover:border-border"
+                  }`}
+                >
+                  <Clock className="w-3 h-3" />
+                  {d === "weekday" ? t("સોમ–શુક્ર", "Mon–Fri") : t("શનિવાર", "Saturday")}
+                </button>
+              ))}
+            </div>
+
+            {/* Schedule table */}
+            <div className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm">
+              {/* Header */}
+              <div className="grid grid-cols-[2rem_1fr_auto] gap-3 px-5 py-3 bg-primary/5 border-b border-border/40 text-xs font-bold text-muted-foreground uppercase tracking-wider">
+                <span>{t("ક્રમ", "No.")}</span>
+                <span>{t("કાલાંશ", "Period")}</span>
+                <span className="text-right">{t("સમય", "Time")}</span>
               </div>
+
+              {/* Rows */}
+              {(() => {
+                const rows =
+                  activeSection === "primary"
+                    ? activeDay === "weekday" ? PRIMARY_WEEKDAY : PRIMARY_SATURDAY
+                    : activeDay === "weekday" ? SECONDARY_WEEKDAY : SECONDARY_SATURDAY;
+
+                return rows.map((row, i) => (
+                  <div
+                    key={i}
+                    className={`grid grid-cols-[2rem_1fr_auto] gap-3 items-center px-5 py-3 border-b border-border/30 last:border-0 transition-colors ${
+                      row.isBreak ? "bg-amber-50/60" : "hover:bg-muted/20"
+                    }`}
+                  >
+                    <span className={`text-xs font-bold ${row.isBreak ? "text-amber-600" : "text-primary/60"}`}>
+                      {row.minGu ? i + 1 : ""}
+                    </span>
+                    <div>
+                      <p className={`text-sm font-semibold ${row.isBreak ? "text-amber-700" : "text-foreground"}`}>
+                        {lang === "gu" ? row.labelGu : row.labelEn}
+                      </p>
+                      {row.minGu && (
+                        <p className="text-[11px] text-muted-foreground mt-0.5">
+                          {lang === "gu" ? row.minGu : row.minEn}
+                        </p>
+                      )}
+                    </div>
+                    <span className="font-mono text-xs font-semibold text-foreground/70 text-right whitespace-nowrap">
+                      {row.time}
+                    </span>
+                  </div>
+                ));
+              })()}
             </div>
           </AnimatedSection>
         </div>

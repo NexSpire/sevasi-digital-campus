@@ -81,12 +81,12 @@ const About = () => {
   ).split("\n");
 
   const schoolSongStanzas = [
-    "અમારી આ શાળા, મધુર સપનાનું સિદ્ધ કરતી\nરૂપે રંગે સાથી, અમહદયમાં લ્હાલવર્તી",
-    "રમતી રીમઝીમ, સકળ શિશુનો થાક હરતી\nસદા સોને સાથી, પ્રગટ કરતી જ્ઞાન ઉમદા",
-    "સેવાથી હાર્દિકતમાં, સુમધુર વહે જ્ઞાનસરિતા\nવિચાર્યું અને સૌ, સકળ શિશુશાળા અજબ આ",
-    "પલવે આ મોટી છે, અમ હૃદય ઉલ્લાસ ભરતી\nપ્રકાશે એ સોના, સકળ શિશુનાં સ્વપ્ન ઉમદા",
-    "શિવની આ પુરી, સકળ જગત શિવ કરશે\nકૃપા જયારે થશે, અમ ઉપર મા તુજની",
-    "અને કીર્તિ તારી, ગુણગાન સદા શિવપુરીમાં\nસદા સંસ્કારથી સુમધુર શિવિ નૃત્ય કરશે.",
+    "અમારી આ શાળા, મધુર સપનાં સિધ્ધ કરતી\nરૂપે રંગે સાડી, અમ હૃદયમાં વ્હાલ ભરતી",
+    "રમાડી રીઝવી, સકલ શિશુનો થાક હરતી\nસદા સૌની સાથી, પ્રગટ કરતી જ્ઞાન ઉમદા",
+    "સેવાસી હાઈસ્કૂલમાં, સુમધુર વહે જ્ઞાનસરિતા\nપિયાસું ઝંખે સૌ, સકળ શિશુશાળા અજબ આ",
+    "પ્રભાવે આ મોટી છે, અમ હૃદય ઉલ્લાસ ભરતી\nપ્રકાશે એ સૌમાં, સકલ શિશુનાં સ્વપ્ન ઉમદા",
+    "શિવોની આ પુરી, સકલ જગનું શિવ કરશે\nકૃપા જ્યારે થાશે, અમ ઉપર મા તુજની",
+    "ઝંખે કિર્તી તારી, ગુરૂકૃપા સદા શિવપુરીમાં\nસદા સંસ્કારોથી સુમધુર શિખિ નૃત્ય કરશે.",
   ];
 
   return (
@@ -305,36 +305,43 @@ const About = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.06}>
-            <div className="max-w-7xl mx-auto bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm">
-              {/* Header */}
-              <div className="flex items-center gap-4 px-7 py-5 border-b border-border/40 bg-primary/5">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <Quote className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-heading text-lg font-bold text-foreground">
-                    {t("સેવાસી હાઈ સ્કૂલ — શાળા ગીત", "Sevasi High School — School Song")}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {t("પ્રેરણા, જ્ઞાન અને સંસ્કારનો સ્વર", "A melody of inspiration, learning, and values")}
-                  </p>
-                </div>
-              </div>
-              {/* Stanzas */}
-              <div className="p-7 grid sm:grid-cols-2 gap-4">
-                {schoolSongStanzas.map((stanza, i) => (
-                  <div
-                    key={i}
-                    className="relative rounded-xl border border-border/50 bg-muted/30 px-5 py-4"
-                  >
-                    <span className="absolute top-3 right-3.5 text-xs font-bold text-muted-foreground/40 select-none">
-                      {i + 1}
-                    </span>
-                    <p className="text-sm sm:text-base leading-[2] text-foreground/85 whitespace-pre-line">
-                      {stanza}
+            <div className="max-w-2xl mx-auto">
+              {/* Card wrapper */}
+              <div className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-sm">
+
+                {/* Header */}
+                <div className="flex items-center gap-4 px-7 py-5 border-b border-border/40 bg-primary/5">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Quote className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-lg font-bold text-foreground">
+                      {t("સેવાસી હાઈ સ્કૂલ — શાળા ગીત", "Sevasi High School — School Song")}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      {t("પ્રેરણા, જ્ઞાન અને સંસ્કારનો સ્વર", "A melody of inspiration, learning, and values")}
                     </p>
                   </div>
-                ))}
+                </div>
+
+                {/* Lyrics */}
+                <div className="px-8 py-10 text-center">
+                  {schoolSongStanzas.map((stanza, i) => (
+                    <div key={i}>
+                      <p className="font-gujarati text-base sm:text-lg leading-[2.2] text-foreground/85 whitespace-pre-line">
+                        {stanza}
+                      </p>
+                      {i < schoolSongStanzas.length - 1 && (
+                        <div className="flex items-center justify-center gap-2 my-6">
+                          <span className="w-8 h-px bg-border/60" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary/30" />
+                          <span className="w-8 h-px bg-border/60" />
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
               </div>
             </div>
           </AnimatedSection>
