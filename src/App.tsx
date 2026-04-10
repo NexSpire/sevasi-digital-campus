@@ -8,6 +8,7 @@ import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileCTA from "@/components/MobileCTA";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Academics from "./pages/Academics";
@@ -56,6 +57,7 @@ const AppLayout = () => {
       </main>
       {!admin && <Footer />}
       {!admin && <MobileCTA />}
+      {!admin && <ScrollToTop />}
     </>
   );
 };

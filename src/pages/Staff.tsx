@@ -745,14 +745,14 @@ const Staff = () => {
   const [photoOpen, setPhotoOpen] = useState(false);
 
   return (
-    <div className="pt-20 pb-16 lg:pb-0">
+    <div className="pt-20 lg:pt-0 pb-16 lg:pb-0">
 
       {/* ── Hero ── */}
-      <section className="cta-surface py-20 sm:py-28 relative overflow-hidden">
+      <section className="page-header py-20 sm:py-28 relative overflow-hidden">
         <FloatingShapes variant="dark" density="medium" />
         <div className="section-container relative z-10">
           <AnimatedSection>
-            <span className="section-label text-primary-foreground/40 before:bg-primary-foreground/20">
+            <span className="section-label text-primary-foreground/40 before:bg-secondary/60">
               {t("શાળા પરિવાર", "School Family")}
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-5 max-w-2xl">
