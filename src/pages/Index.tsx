@@ -243,7 +243,7 @@ const Index = () => {
                   </Button>
                 </Link>
                 <Link to="/about">
-                  <Button variant="outline" className="btn-standard-lg border-white/20 text-white hover:bg-white/10 rounded-xl backdrop-blur-sm text-sm">
+                  <Button variant="outline">
                     {t("અમારા વિશે જાણો", "Learn About Us")}
                   </Button>
                 </Link>
