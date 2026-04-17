@@ -53,8 +53,8 @@ const TRUSTEES: Trustee[] = [
   },
   {
     serial: 4,
-    nameGu: "શ્રી શાલસભાઈ એફ. પટેલ",
-    nameEn: "Shri Shailasbhai F. Patel",
+    nameGu: "શ્રી શૈલેષ એફ. પટેલ",
+    nameEn: "Shri Shaileshbhai F. Patel",
     roleGu: "મંત્રીશ્રી",
     roleEn: "Secretary",
     tenureGu: "૧૯૮૭ – ૧૯૯૧",
