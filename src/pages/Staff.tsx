@@ -1,18 +1,18 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import principalPhoto from "@/assets/WhatsApp Image 2026-04-10 at 2.37.04 PM.jpeg";
 import AnimatedSection from "@/components/AnimatedSection";
 import FloatingShapes from "@/components/FloatingShapes";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
-  GraduationCap, Calendar, CalendarDays, Building2,
-  Users, Star, Briefcase, Crown, ScrollText, Clock,
+  GraduationCap, CalendarDays, Building2,
+  Users, Star, Briefcase, Clock,
   Hash, ChevronDown, ChevronUp, BadgeCheck, Anchor, UserCheck, X, ZoomIn,
 } from "lucide-react";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 type Role = "headmaster" | "teacher" | "assistant" | "nonteaching";
-type TrusteeRole = "president" | "secretary";
 
 interface StaffMember {
   serial: number | string;
@@ -24,7 +24,6 @@ interface StaffMember {
   qualProfessional: string;
   joiningDate: string;
   institutionJoiningDate: string;
-  birthDate: string;
   retirementDate: string;
   cpf: string;
   gpf: string;
@@ -32,17 +31,6 @@ interface StaffMember {
   employeeNo: string;
   paNo: string;
   role: Role;
-}
-
-interface Trustee {
-  serial: number;
-  nameGu: string;
-  nameEn: string;
-  roleGu: string;
-  roleEn: string;
-  tenureGu: string;
-  tenureEn: string;
-  trusteeRole: TrusteeRole;
 }
 
 // ─── Staff Data ───────────────────────────────────────────────────────────────
@@ -59,7 +47,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "",
     joiningDate: "01/01/2002",
     institutionJoiningDate: "29/08/2023",
-    birthDate: "20/06/1970",
     retirementDate: "30/10/2034",
     cpf: "20080604682236070",
     gpf: "",
@@ -78,7 +65,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "09/04/1999",
     institutionJoiningDate: "09/04/1999",
-    birthDate: "29/05/1972",
     retirementDate: "31/05/2030",
     cpf: "–",
     gpf: "8299",
@@ -97,7 +83,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "26/02/2004",
     institutionJoiningDate: "26/02/2004",
-    birthDate: "01/06/1977",
     retirementDate: "31/10/2035",
     cpf: "20100604268820011",
     gpf: "",
@@ -116,7 +101,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "28/02/2004",
     institutionJoiningDate: "28/02/2004",
-    birthDate: "21/02/1976",
     retirementDate: "31/05/2034",
     cpf: "20100604268820016",
     gpf: "",
@@ -135,7 +119,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "13/06/2005",
     institutionJoiningDate: "13/06/2005",
-    birthDate: "02/02/1975",
     retirementDate: "31/05/2033",
     cpf: "20210604268200499",
     gpf: "",
@@ -154,7 +137,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "A.T.D.",
     joiningDate: "14/08/2008",
     institutionJoiningDate: "14/08/2008",
-    birthDate: "01/06/1973",
     retirementDate: "31/10/2041",
     cpf: "30150604268200274",
     gpf: "",
@@ -173,7 +155,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "A.T.D.",
     joiningDate: "01/06/1995",
     institutionJoiningDate: "01/11/2024",
-    birthDate: "22/10/1970",
     retirementDate: "31/10/2028",
     cpf: "–",
     gpf: "7707",
@@ -192,7 +173,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "D.Bed.",
     joiningDate: "22/12/2016",
     institutionJoiningDate: "01/05/2025",
-    birthDate: "03/01/1977",
     retirementDate: "31/05/2035",
     cpf: "20240604272220068",
     gpf: "",
@@ -211,7 +191,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "28/09/2006",
     institutionJoiningDate: "01/05/2025",
-    birthDate: "11/11/1981",
     retirementDate: "31/05/2040",
     cpf: "20190604268200070",
     gpf: "",
@@ -230,7 +209,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "26/06/2014",
     institutionJoiningDate: "16/04/2025",
-    birthDate: "11/12/1981",
     retirementDate: "31/05/2040",
     cpf: "20200604268200053",
     gpf: "",
@@ -249,7 +227,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "14/12/2016",
     institutionJoiningDate: "01/05/2025",
-    birthDate: "23/11/1981",
     retirementDate: "31/05/2040",
     cpf: "20240604285200012",
     gpf: "",
@@ -268,7 +245,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "09/07/2025",
     institutionJoiningDate: "09/07/2025",
-    birthDate: "19/02/1992",
     retirementDate: "31/05/2050",
     cpf: "",
     gpf: "",
@@ -287,7 +263,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "B.Ed.",
     joiningDate: "09/07/2025",
     institutionJoiningDate: "09/07/2025",
-    birthDate: "02/04/1993",
     retirementDate: "31/05/2051",
     cpf: "",
     gpf: "",
@@ -307,7 +282,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "",
     joiningDate: "25/08/2008",
     institutionJoiningDate: "25/08/2008",
-    birthDate: "01/06/1976",
     retirementDate: "31/10/2046",
     cpf: "20150604268200018",
     gpf: "",
@@ -326,7 +300,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     qualProfessional: "",
     joiningDate: "02/07/2001",
     institutionJoiningDate: "02/07/2001",
-    birthDate: "18/08/1980",
     retirementDate: "31/10/2040",
     cpf: "20080604268200008",
     gpf: "",
@@ -335,77 +308,6 @@ const STAFF_MEMBERS: StaffMember[] = [
     paNo: "DAOPP 3496N",
     role: "nonteaching",
   },
-];
-
-// ─── Trustees Data ────────────────────────────────────────────────────────────
-
-const TRUSTEES: Trustee[] = [
-  {
-    serial: 1,
-    nameGu: "શ્રી ઈશ્વર ભાઈ જે. પટેલ",
-    nameEn: "Shri Ishwarbhai J. Patel",
-    roleGu: "પ્રમુખશ્રી",
-    roleEn: "President",
-    tenureGu: "૧૯૬૭ – ૧૯૮૭",
-    tenureEn: "1967 – 1987",
-    trusteeRole: "president",
-  },
-  {
-    serial: 2,
-    nameGu: "શ્રી રમણભાઈ આર. પટેલ",
-    nameEn: "Shri Ramanbhai R. Patel",
-    roleGu: "મંત્રીશ્રી",
-    roleEn: "Secretary",
-    tenureGu: "૧૯૬૭ – ૧૯૮૭",
-    tenureEn: "1967 – 1987",
-    trusteeRole: "secretary",
-  },
-  {
-    serial: 3,
-    nameGu: "શ્રી કાંતિ ભાઈ જી. પટેલ",
-    nameEn: "Shri Kantibhai J. Patel",
-    roleGu: "પ્રમુખશ્રી",
-    roleEn: "President",
-    tenureGu: "૧૯૮૭ – ૧૯૯૧",
-    tenureEn: "1987 – 1991",
-    trusteeRole: "president",
-  },
-  {
-    serial: 4,
-    nameGu: "શ્રી શૈલા ભાઈ એફ. પટેલ",
-    nameEn: "Shri Shailabhai F. Patel",
-    roleGu: "મંત્રીશ્રી",
-    roleEn: "Secretary",
-    tenureGu: "૧૯૮૭ – ૧૯૯૧",
-    tenureEn: "1987 – 1991",
-    trusteeRole: "secretary",
-  },
-  {
-    serial: 5,
-    nameGu: "શ્રી દિલીપ ભાઈ સી. પટેલ",
-    nameEn: "Shri Dilipbhai C. Patel",
-    roleGu: "પ્રમુખશ્રી",
-    roleEn: "President",
-    tenureGu: "૧૯૯૧",
-    tenureEn: "1991",
-    trusteeRole: "president",
-  },
-  {
-    serial: 6,
-    nameGu: "શ્રી રાજુ ભાઈ કે. પટેલ",
-    nameEn: "Shri Rajubhai K. Patel",
-    roleGu: "મંત્રીશ્રી",
-    roleEn: "Secretary",
-    tenureGu: "૧૯૯૧",
-    tenureEn: "1991",
-    trusteeRole: "secretary",
-  },
-];
-
-const TRUSTEE_ERAS = [
-  { tenureEn: "1967 – 1987", tenureGu: "૧૯૬૭ – ૧૯૮૭", labelEn: "Founding Era", labelGu: "સ્થાપના કાળ" },
-  { tenureEn: "1987 – 1991", tenureGu: "૧૯૮૭ – ૧૯૯૧", labelEn: "Second Era",   labelGu: "બીજો કાળ"   },
-  { tenureEn: "1991",        tenureGu: "૧૯૯૧",          labelEn: "Third Era",    labelGu: "ત્રીજો કાળ"  },
 ];
 
 // ─── Role Config ──────────────────────────────────────────────────────────────
@@ -539,7 +441,6 @@ const StaffCard = ({ member, lang }: StaffCardProps) => {
           {[
             { icon: Briefcase,    labelGu: "સેવા જોડાણ",    labelEn: "Joined Service",  val: member.joiningDate },
             { icon: Building2,    labelGu: "સંસ્થા જોડાણ",  labelEn: "Joined Here",     val: member.institutionJoiningDate },
-            { icon: Calendar,     labelGu: "જન્મ તારીખ",    labelEn: "Date of Birth",   val: member.birthDate },
             { icon: CalendarDays, labelGu: "નિવૃત્તિ",       labelEn: "Retirement",      val: member.retirementDate },
           ].map((d) => (
             <div key={d.labelEn} className="flex flex-col gap-0.5 bg-muted/30 rounded-lg p-2">
@@ -766,7 +667,7 @@ const Staff = () => {
             </p>
 
             {/* Stats strip */}
-            <div className="flex flex-wrap gap-6 sm:gap-10">
+            <div className="flex flex-wrap gap-6 sm:gap-10 mb-8">
               {[
                 { icon: Users,         value: `${STAFF_MEMBERS.length}`, labelGu: "કુલ સ્ટાફ",      labelEn: "Total Staff" },
                 { icon: Star,          value: "1",                        labelGu: "આચાર્ય",          labelEn: "Principal" },
@@ -784,6 +685,14 @@ const Staff = () => {
                 </div>
               ))}
             </div>
+
+            {/* Trustees link */}
+            <Link
+              to="/trustees"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary-foreground/10 hover:bg-primary-foreground/20 text-primary-foreground text-sm font-semibold transition-colors duration-200 border border-primary-foreground/20"
+            >
+              {t("ટ્રસ્ટી મંડળ જુઓ →", "View Board of Trustees →")}
+            </Link>
           </AnimatedSection>
         </div>
       </section>
@@ -896,7 +805,6 @@ const Staff = () => {
                   {[
                     { icon: Briefcase,    labelGu: "સેવા જોડાણ",   labelEn: "Joined Service",  val: hm.joiningDate },
                     { icon: Building2,    labelGu: "સંસ્થા જોડાણ", labelEn: "Joined Here",     val: hm.institutionJoiningDate },
-                    { icon: Calendar,     labelGu: "જન્મ તારીખ",   labelEn: "Date of Birth",   val: hm.birthDate },
                     { icon: CalendarDays, labelGu: "નિવૃત્તિ",      labelEn: "Retirement",      val: hm.retirementDate },
                   ].map((d) => (
                     <div key={d.labelEn} className="bg-amber-50 border border-amber-100 rounded-xl px-4 py-2.5">
@@ -908,103 +816,6 @@ const Staff = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ── Trustees ── */}
-      <section className="section-padding bg-muted/40 relative">
-        <div className="section-container">
-          <AnimatedSection>
-            <span className="section-label">{t("કેળવણી મંડળ", "Kelavani Mandal")}</span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-foreground mb-2">
-              {t("કેળવણી મંડળના સૂત્રઘારો", "Board of Trustees")}
-            </h2>
-            <p className="text-muted-foreground mb-10">
-              {t(
-                "સ્થાપના ૧૯૬૭ થી સેવાસી હાઈ સ્કૂલના ઇતિહાસ ઘડનારા પ્રમુખ-મંત્રીઓ",
-                "Presidents and Secretaries who shaped Sevasi High School since its founding in 1967"
-              )}
-            </p>
-
-            {/* Legend */}
-            <div className="flex flex-wrap gap-3 mb-10">
-              <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold">
-                <Crown className="w-3.5 h-3.5" />
-                {t("પ્રમુખ (President)", "Pramukh — President")}
-              </span>
-              <span className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-100 text-rose-800 text-xs font-semibold">
-                <ScrollText className="w-3.5 h-3.5" />
-                {t("મંત્રી (Secretary)", "Mantri — Secretary")}
-              </span>
-            </div>
-
-            {/* Timeline */}
-            <div className="relative">
-              <div className="absolute left-5 top-0 bottom-0 w-px bg-border/60 hidden sm:block" />
-              <div className="flex flex-col gap-10">
-                {TRUSTEE_ERAS.map((era, eraIdx) => {
-                  const eraMembers = TRUSTEES.filter((tr) => tr.tenureEn === era.tenureEn);
-                  return (
-                    <AnimatedSection key={era.tenureEn} delay={eraIdx * 0.1}>
-                      <div className="sm:pl-14 relative">
-                        <div className="hidden sm:flex absolute left-0 top-1 w-10 h-10 rounded-full bg-primary items-center justify-center shadow-md">
-                          <Clock className="w-4 h-4 text-primary-foreground" />
-                        </div>
-                        <div className="flex flex-wrap items-center gap-3 mb-4">
-                          <span className="font-heading font-bold text-xl text-foreground">
-                            {lang === "gu" ? era.tenureGu : era.tenureEn}
-                          </span>
-                          <span className="px-3 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold tracking-wide">
-                            {lang === "gu" ? era.labelGu : era.labelEn}
-                          </span>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {eraMembers.map((tr) => {
-                            const isPresident = tr.trusteeRole === "president";
-                            return (
-                              <div
-                                key={tr.serial}
-                                className={`bg-card rounded-2xl border-2 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden ${
-                                  isPresident ? "border-emerald-200" : "border-rose-200"
-                                }`}
-                              >
-                                <div className={`h-1.5 ${isPresident ? "bg-gradient-to-r from-emerald-400 to-teal-500" : "bg-gradient-to-r from-rose-400 to-pink-500"}`} />
-                                <div className="p-5 flex items-start gap-4">
-                                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white shrink-0 shadow-sm ${isPresident ? "bg-gradient-to-br from-emerald-400 to-teal-600" : "bg-gradient-to-br from-rose-400 to-pink-600"}`}>
-                                    {isPresident ? <Crown className="w-5 h-5" /> : <ScrollText className="w-5 h-5" />}
-                                  </div>
-                                  <div className="min-w-0 flex-1">
-                                    <p className="font-heading font-bold text-foreground leading-snug">
-                                      {lang === "gu" ? tr.nameGu : tr.nameEn}
-                                    </p>
-                                    <p className="text-xs text-muted-foreground font-gujarati mt-0.5">
-                                      {lang === "gu" ? tr.nameEn : tr.nameGu}
-                                    </p>
-                                    <div className="flex flex-wrap items-center gap-2 mt-2.5">
-                                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${isPresident ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"}`}>
-                                        {lang === "gu" ? tr.roleGu : tr.roleEn}
-                                      </span>
-                                      <span className="flex items-center gap-1 text-xs text-muted-foreground bg-muted/60 px-2.5 py-0.5 rounded-full">
-                                        <Clock className="w-3 h-3" />
-                                        {lang === "gu" ? tr.tenureGu : tr.tenureEn}
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <span className="shrink-0 w-6 h-6 rounded-md bg-muted/60 flex items-center justify-center text-xs font-bold text-muted-foreground">
-                                    {tr.serial}
-                                  </span>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </AnimatedSection>
-                  );
-                })}
               </div>
             </div>
           </AnimatedSection>

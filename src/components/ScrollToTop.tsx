@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLenis } from "@/components/SmoothScroll";
 
 const ScrollToTop = () => {
   const [show, setShow] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > 400);
@@ -12,7 +14,11 @@ const ScrollToTop = () => {
   }, []);
 
   const scrollUp = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.4, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (

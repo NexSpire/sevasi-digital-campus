@@ -3,7 +3,26 @@ import AnimatedSection from "@/components/AnimatedSection";
 import FloatingShapes from "@/components/FloatingShapes";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SCHOOL_INFO_PARTIAL_DATA } from "@/config/constants";
-import { Trophy, Music, Calendar, Users, Medal, Palette, Flag, BookOpen, Heart, Star, Clock } from "lucide-react";
+import { Trophy, Music, Calendar, Users, Medal, Palette, Flag, BookOpen, Heart, Star, Clock, X, ChevronLeft, ChevronRight, Images } from "lucide-react";
+
+import event1  from "@/assets/events/1.jpeg";
+import event2  from "@/assets/events/2.jpeg";
+import event3  from "@/assets/events/3.jpeg";
+import event4  from "@/assets/events/4.jpeg";
+import event5  from "@/assets/events/5.jpeg";
+import event6  from "@/assets/events/6.jpeg";
+import event7  from "@/assets/events/7.jpeg";
+import event8  from "@/assets/events/8.jpeg";
+import event9  from "@/assets/events/9.jpeg";
+import event10 from "@/assets/events/10.jpeg";
+import event12 from "@/assets/events/12.jpeg";
+import event13 from "@/assets/events/13.jpeg";
+import event14 from "@/assets/events/14.jpeg";
+
+const EVENT_PHOTOS = [
+  event1, event2, event3, event4, event5, event6, event7,
+  event8, event9, event10, event12, event13, event14,
+];
 
 // ─── Bell-schedule data ───────────────────────────────────────────────────────
 
@@ -55,6 +74,92 @@ const SECONDARY_SATURDAY: BellRow[] = [
   { labelGu: "કાલાંશ ૪",    labelEn: "Period 4",   time: "10:05 – 10:35", minGu: "30 મિ.", minEn: "30 min" },
   { labelGu: "કાલાંશ ૫",    labelEn: "Period 5",   time: "10:35 – 11:10", minGu: "30 મિ.", minEn: "30 min" },
 ];
+
+// ─── Event Gallery ────────────────────────────────────────────────────────────
+
+const EventGallery = ({ photos }: { photos: string[] }) => {
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+
+  const prev = () => setLightboxIdx((i) => (i === null ? null : (i - 1 + photos.length) % photos.length));
+  const next = () => setLightboxIdx((i) => (i === null ? null : (i + 1) % photos.length));
+
+  return (
+    <>
+      {/* Masonry-style grid */}
+      <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 space-y-3">
+        {photos.map((src, i) => (
+          <AnimatedSection key={i} delay={i * 0.04}>
+            <button
+              onClick={() => setLightboxIdx(i)}
+              className="group relative block w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-shadow duration-300"
+            >
+              <img
+                src={src}
+                alt={`Event photo ${i + 1}`}
+                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                <Images className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+              </div>
+            </button>
+          </AnimatedSection>
+        ))}
+      </div>
+
+      {/* Lightbox */}
+      {lightboxIdx !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+          onClick={() => setLightboxIdx(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={photos[lightboxIdx]}
+              alt={`Event photo ${lightboxIdx + 1}`}
+              className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+            />
+
+            {/* Counter */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/60 text-white text-xs font-semibold">
+              {lightboxIdx + 1} / {photos.length}
+            </div>
+
+            {/* Prev */}
+            <button
+              onClick={(e) => { e.stopPropagation(); prev(); }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:bg-white transition-colors"
+              aria-label="Previous"
+            >
+              <ChevronLeft className="w-5 h-5 text-foreground" />
+            </button>
+
+            {/* Next */}
+            <button
+              onClick={(e) => { e.stopPropagation(); next(); }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:bg-white transition-colors"
+              aria-label="Next"
+            >
+              <ChevronRight className="w-5 h-5 text-foreground" />
+            </button>
+
+            {/* Close */}
+            <button
+              onClick={() => setLightboxIdx(null)}
+              className="absolute -top-4 -right-4 w-9 h-9 rounded-full bg-white shadow-lg flex items-center justify-center text-foreground hover:bg-muted transition-colors"
+              aria-label="Close"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -224,7 +329,7 @@ const StudentLife = () => {
       </section>
 
       {/* Achievements */}
-      <section className="section-padding bg-muted/30 relative">
+      {/* <section className="section-padding bg-muted/30 relative">
         <FloatingShapes variant="light" density="low" />
         <div className="section-container relative z-10">
           <AnimatedSection>
@@ -258,10 +363,33 @@ const StudentLife = () => {
             ))}
           </div>
         </div>
+      </section> */}
+
+      {/* Events Gallery */}
+      <section className="section-padding bg-background relative">
+        <FloatingShapes variant="light" density="low" />
+        <div className="section-container relative z-10">
+          <AnimatedSection>
+            <div className="text-center mb-10">
+              <span className="section-label">{t("ફોટો ગેલેરી", "Photo Gallery")}</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+                {t("શાળા જીવનની ઝલક", "A Glimpse of School Life")}
+              </h2>
+              <p className="text-base text-muted-foreground mt-3 max-w-lg mx-auto">
+                {t(
+                  "ઉત્સવો, સ્પર્ધાઓ, અને રોજિંદા ક્ષણો — અમારી શાળાની યાદગાર તસ્વીરો",
+                  "Celebrations, competitions, and everyday moments — memorable photos from our school"
+                )}
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <EventGallery photos={EVENT_PHOTOS} />
+        </div>
       </section>
 
       {/* Bell Schedule */}
-      <section className="section-padding bg-background relative">
+      <section className="section-padding bg-muted/30 relative">
         <FloatingShapes variant="light" density="low" />
         <div className="section-container max-w-2xl relative z-10">
           <AnimatedSection>

@@ -12,7 +12,7 @@ export const SCHOOL_INFO = {
   established: "1967",
   rating: "3.9",
   reviewCount: "22",
-  email: "principalshs02@gmail.com",
+  email: "sevasihighschool184@gmail.com",
   website: "http://www.sevasihighschool.com",
   address: "પો.મુ. સેવાસી, તા. જી. વડોદરા - 391101",
   addressEn: "Post Sevasi, Taluka & District Vadodara - 391101",
@@ -34,7 +34,8 @@ export const NAV_ITEMS = [
   { label: "શૈક્ષણિક", labelEn: "Academics", href: "/academics" },
   { label: "પ્રવેશ", labelEn: "Admissions", href: "/admissions" },
   { label: "વિદ્યાર્થી જીવન", labelEn: "Student Life", href: "/student-life" },
-  { label: "સ્ટાફ", labelEn: "Staff & Trustees", href: "/staff" },
+  { label: "સ્ટાફ", labelEn: "Staff", href: "/staff" },
+  { label: "ટ્રસ્ટી", labelEn: "Trustees", href: "/trustees" },
   { label: "સંપર્ક", labelEn: "Contact", href: "/contact" },
 ] as const;
 
@@ -60,7 +61,7 @@ export const SCHOOL_INFO_PARTIAL_DATA = {
       en: "Post Sevasi, Taluka & District Vadodara - 391101",
     },
     contact: {
-      email: "principalshs02@gmail.com",
+      email: "sevasihighschool184@gmail.com",
       website: "http://www.sevasihighschool.com",
     },
     established_year: 1967,
