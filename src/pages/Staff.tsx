@@ -629,6 +629,35 @@ const PRINCIPAL_HISTORY: PrincipalRecord[] = [
   },
 ];
 
+// ─── Primary School Staff (Class 1–8) ────────────────────────────────────────
+
+interface PrimaryStaff {
+  serial: number;
+  nameEn: string;
+  nameGj: string;
+  age: number;
+  designationEn: string;
+  designationGu: string;
+  role: "teacher" | "clerk";
+}
+
+const PRIMARY_STAFF: PrimaryStaff[] = [
+  { serial:  2, nameEn: "Parekh Hetalben Suvasbhai",      nameGj: "પારેખ હેતલબેન સુવાસભાઈ",      age: 42, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial:  3, nameEn: "Gohil Sanjaykumar Raijibhai",    nameGj: "ગોહિલ સંજયકુમાર રૈજીભાઈ",    age: 35, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial:  4, nameEn: "Hetal Ankur Brahmbhatt",         nameGj: "હેતલ અંકુર બ્રહ્મભટ્ટ",       age: 41, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial:  5, nameEn: "Joshi Ankita Jigar",             nameGj: "જોષી અંકિતા જિગર",             age: 47, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial:  6, nameEn: "Parmar Minalben Kiransinh",      nameGj: "પરમાર મીનલબેન કિરણસિંહ",      age: 50, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial:  7, nameEn: "Shah Pinkal Manish",             nameGj: "શાહ પિંકલ મનીષ",               age: 38, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial:  8, nameEn: "Chauhan Ketki Ullas",            nameGj: "ચૌહાણ કેતકી ઉલ્લાસ",           age: 41, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial:  9, nameEn: "Parmar Manishaben Harendrasinh", nameGj: "પરમાર મનીષાબેન હરેન્દ્રસિંહ", age: 45, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial: 10, nameEn: "Meenaben Hareshkumar Patel",     nameGj: "મીનાબેન હરેશકુમાર પટેલ",       age: 57, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial: 11, nameEn: "Gitaben Ranjitsinh",             nameGj: "ગીતાબેન રણજિતસિંહ",            age: 57, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial: 12, nameEn: "Jigisha D. Gohil",              nameGj: "જિગીષા ડી. ગોહિલ",             age: 42, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial: 13, nameEn: "Anjana G. Yadav",               nameGj: "અંજના જી. યાદવ",                age: 42, designationEn: "Teacher",   designationGu: "શિ.સ.",      role: "teacher" },
+  { serial: 14, nameEn: "Parul P. Vyas",                 nameGj: "પારૂલ પી. વ્યાસ",               age: 54, designationEn: "Clerk",     designationGu: "કારકૂન",     role: "clerk"   },
+  { serial: 15, nameEn: "Bhupendra B. Brahmbhatt",       nameGj: "ભૂપેન્દ્ર બી. બ્રહ્મભટ્ટ",     age: 63, designationEn: "Sr. Clerk", designationGu: "વ. કારકૂન",  role: "clerk"   },
+];
+
 // ─── Derived groups ───────────────────────────────────────────────────────────
 
 const headmasterList  = STAFF_MEMBERS.filter((m) => m.role === "headmaster");
@@ -986,6 +1015,71 @@ const Staff = () => {
                   <StaffCard member={member} lang={lang} />
                 </AnimatedSection>
               ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ── Primary School Staff (Class 1–8) ── */}
+      <section className="section-padding bg-background relative">
+        <div className="section-container">
+          <AnimatedSection>
+            <span className="section-label">{t("પ્રાથમિક વિભાગ", "Primary Section")}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-foreground mb-1">
+              {t("ધોરણ ૧–૮ સ્ટાફ", "Class 1–8 Staff")}
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              {t(
+                `${PRIMARY_STAFF.length} સ્ટાફ સભ્ય — પ્રાથમિક વિભાગ (ધોરણ ૧ થી ૮)`,
+                `${PRIMARY_STAFF.length} staff members — Primary Section (Class 1 to 8)`
+              )}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {PRIMARY_STAFF.map((member, i) => {
+                const cfg = ROLE_CONFIG[member.role === "clerk" ? "nonteaching" : "teacher"];
+                const initials = member.nameEn
+                  .split(" ").filter(Boolean).slice(0, 2)
+                  .map(w => w[0]).join("").toUpperCase();
+                const name        = lang === "gu" ? member.nameGj : member.nameEn;
+                const altName     = lang === "gu" ? member.nameEn : member.nameGj;
+                const designation = lang === "gu" ? member.designationGu : member.designationEn;
+                return (
+                  <AnimatedSection key={member.serial} delay={i * 0.05}>
+                    <div className={`bg-card rounded-2xl border ${cfg.borderAccent} shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col`}>
+                      {/* Top stripe */}
+                      <div className={`h-1.5 bg-gradient-to-r ${cfg.topStripe}`} />
+
+                      <div className="p-5 flex flex-col gap-3.5">
+                        {/* Header */}
+                        <div className="flex items-start gap-3">
+                          <div className={`w-11 h-11 rounded-xl ${cfg.avatarBg} flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm`}>
+                            {initials}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-heading font-semibold text-foreground leading-tight">{name}</p>
+                            <p className="font-gujarati text-[11px] text-muted-foreground mt-0.5 truncate">{altName}</p>
+                            <span className={`inline-block mt-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${cfg.badgeBg} ${cfg.badgeText}`}>
+                              {designation}
+                            </span>
+                          </div>
+                          {/* Serial badge */}
+                          <div className="shrink-0 flex flex-col items-center">
+                            <span className="text-[10px] text-muted-foreground font-medium">{lang === "gu" ? "ક્રમ" : "No."}</span>
+                            <span className="font-mono text-xs font-bold text-foreground/70">{member.serial}</span>
+                          </div>
+                        </div>
+
+                        {/* Age chip */}
+                        <div className="flex items-center gap-1.5 bg-muted/40 rounded-lg px-3 py-2 text-xs w-fit">
+                          <Users className="w-3.5 h-3.5 shrink-0 text-primary/60" />
+                          <span className="text-[10px] text-muted-foreground">{lang === "gu" ? "ઉંમર:" : "Age:"}</span>
+                          <span className="font-bold text-foreground">{member.age}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </AnimatedSection>
+                );
+              })}
             </div>
           </AnimatedSection>
         </div>
